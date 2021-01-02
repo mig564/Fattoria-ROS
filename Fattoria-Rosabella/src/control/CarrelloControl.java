@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet({"/Carrello"})
-public class Carrello extends HttpServlet {
+@WebServlet({"/CarrelloControl"})
+public class CarrelloControl extends HttpServlet {
    private static final long serialVersionUID = 1L;
    private AttivitaModelDM attivitaModelDM = new AttivitaModelDM();
    
@@ -28,13 +28,13 @@ public class Carrello extends HttpServlet {
       
       if (action != null) {
          String id_attivita = request.getParameter("id");
-         if (action.equals("Aggiungi")) {
+         if (action.equals("aggiungi")) {
         	 if (cercaElemento(formCart, id_attivita).getId_attivita()!=0) {
         		 formCart.add(new Formare((Integer)request.getSession().getAttribute("carrello"), Integer.parseInt(id_attivita), (String)request.getAttribute("data"), (String)request.getAttribute("ora"), 1));
         	 }
-         } else if (action.equals("Rimuovi")) {
+         } else if (action.equals("rimuovi")) {
             formCart.remove(cercaElemento(formCart, id_attivita));
-         } else if(action.equals("SvuotaCarrello")) {
+         } else if(action.equals("svuotaCarrello")) {
         	formCart.clear(); 
          }
       }

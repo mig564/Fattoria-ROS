@@ -2,8 +2,9 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Collection;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,8 +27,14 @@ public class PrenotazioniCalendarioControl extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			ArrayList<Attivita> attivitas = (ArrayList<Attivita>) attivitaModelDM.doRetrieveByAtti((String) request.getAttribute("date"), (String) request.getAttribute("categoria"));
-			
+			Collection<Attivita> attivitas = attivitaModelDM.doRetrieveByAtti((String) request.getAttribute("date"), (String) request.getAttribute("categoria"));
+			if (attivitas.size() > 0) {
+				request.setAttribute("attivitas", attivitas);
+			} else {
+				request.setAttribute("error", "spiacente non ci sono attivita nel giorno selezionato");
+			}
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/prenotazioni.jsp");
+		    dispatcher.forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,6 +1,9 @@
+<%@page import="beans.Attivita"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*"%>
-<%	boolean log = false;	%>
+<%Collection<?> attivitas = (Collection<?>) request.getAttribute("attivitas");
+String error = (String) request.getAttribute("error");
+boolean log = false;	%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -95,11 +98,16 @@
 						<p class="text-center"><button type="submit" class="btn btn-success">Cerca</button></p>
 					</form>
 					<p style="color: white;" >L'attività di balneazione è sospesa nel periodo invernale</p>
+					<% if (attivitas.size() > 0) {
+						
+						response.sendRedirect(response.encodeRedirectURL("./Carrello?action=aggiungi"));
+					} else { %> 
+						<p><%=error%> </p> <%
+					} %>
 					
 					</div>
     		</div>
 			</div>
-			
 			
 		</div>
 		
@@ -124,7 +132,6 @@
 				</div>
 				</form>
 				
-			
 			</div>
 			
 			<div class="container">
@@ -174,8 +181,6 @@
 				
 			
 			</div>
-		
-	
 		
 		<!-- Footer -->
 		<div class="container-fluid" style="background-color: #198754; margin-top: 100px; padding: 22px 0px;">
