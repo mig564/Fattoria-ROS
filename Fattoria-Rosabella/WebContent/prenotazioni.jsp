@@ -77,14 +77,14 @@
 				<div class="text-center cover-text">
 					<div class="row">
 						<h3 class= "text-center" style="color: white; margin-top: 15px; margin-bottom: 25px;">PRENOTA LE TUE ATTIVITÀ</h3>
-    					<form name="prenotazione" method="post" action="" onSubmit="">	
+    					<form name="prenotazione" method="post" action="PrenotazioniCalendarioControl" onSubmit="">	
 						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="date" class="form-control" 
+							<input type="date" name="date" class="form-control" 
 							id="prenotazioneData"  placeholder="Seleziona una data">
 							<label for="prenotazioneData">Seleziona una data</label>
 						</div>
 						<div class="form-floating" style="margin-bottom: 22px;">
-							<select class="form-select" id="selezionaMese" aria-label="Seleziona mese">
+							<select class="form-select" name="categoria" id="selezionaMese" aria-label="Seleziona mese">
 									<option selected="selected">TUTTE</option>
 	 							 	<option value="1">Escursioni</option>
 	 							 	<option value="2">Visite guidate</option>

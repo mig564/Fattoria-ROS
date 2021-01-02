@@ -1,6 +1,7 @@
 package model;
 
 import beans.Attivita;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +10,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 public class AttivitaModelDM implements Model<Attivita> {
-   public Attivita doRetrieveByKey(String code) throws SQLException {
+   
+	public Attivita doRetrieveByKey(String code) throws SQLException {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
       Attivita bean = new Attivita();
@@ -41,10 +43,46 @@ public class AttivitaModelDM implements Model<Attivita> {
          } finally {
             DriverManagerConnectionPool.releaseConnection(connection);
          }
-
       }
    }
 
+	public Collection<Attivita> doRetrieveByAtti(String data, String categoria ) throws SQLException {
+		   Connection connection = null;
+		   PreparedStatement preparedStatement = null;
+		   Collection<Attivita> attivita = new LinkedList<Attivita>();
+		   String selectSQL = "SELECT a.id_attivita, a.categoria, a.nome, a.descrizione, a.max_persone, a.prezzo FROM calendario AS c, attivita AS a WHERE c.data = ? AND a.categoria = ?";
+
+		   try {
+		   connection = DriverManagerConnectionPool.getConnection();
+		   preparedStatement = connection.prepareStatement(selectSQL);
+		   preparedStatement.setString(1, data);
+		   preparedStatement.setString(2, categoria);
+		   System.out.println("DoRetreiveAll: " + preparedStatement.toString());
+		   ResultSet rs = preparedStatement.executeQuery();
+
+		   while(rs.next()) {
+			   Attivita bean = new Attivita();
+		       bean.setId_attivita(rs.getInt("id_attivita"));
+		       bean.setCategoria(rs.getString("categoria"));
+		       bean.setNome(rs.getString("nome"));
+		       bean.setDescrizione(rs.getString("descrizione"));
+		       bean.setMax_persone(rs.getInt("max_persone"));
+		       bean.setPrezzo(rs.getInt("prezzo"));
+		       attivita.add(bean);;
+		   }
+		      } finally {
+		         try {
+		            if (preparedStatement != null) {
+		               preparedStatement.close();
+		            }
+		         } finally {
+		            DriverManagerConnectionPool.releaseConnection(connection);
+		         }
+
+		      }
+		      return attivita;
+	   	}
+	
    public Collection<Attivita> doRetrieveAll(String order) throws SQLException {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
@@ -75,9 +113,7 @@ public class AttivitaModelDM implements Model<Attivita> {
          } finally {
             DriverManagerConnectionPool.releaseConnection(connection);
          }
-
       }
-
       return attivita;
    }
 
@@ -106,9 +142,7 @@ public class AttivitaModelDM implements Model<Attivita> {
          } finally {
             DriverManagerConnectionPool.releaseConnection(connection);
          }
-
       }
-
    }
 
    public void doUpdate(Attivita product) throws SQLException {
@@ -137,9 +171,7 @@ public class AttivitaModelDM implements Model<Attivita> {
          } finally {
             DriverManagerConnectionPool.releaseConnection(connection);
          }
-
       }
-
    }
 
    public void doDelete(Attivita product) throws SQLException {
@@ -161,9 +193,7 @@ public class AttivitaModelDM implements Model<Attivita> {
          } finally {
             DriverManagerConnectionPool.releaseConnection(connection);
          }
-
       }
-
    }
 
 }

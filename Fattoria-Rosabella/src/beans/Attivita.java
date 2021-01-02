@@ -1,6 +1,7 @@
 package beans;
 
 public class Attivita {
+	
    private int id_attivita;
    private String categoria;
    private String nome;

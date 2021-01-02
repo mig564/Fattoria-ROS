@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 public class CalendarioModelDM implements Model<Calendario> {
+	
    public Calendario doRetrieveByKey(String code) throws SQLException {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
@@ -42,6 +43,8 @@ public class CalendarioModelDM implements Model<Calendario> {
       }
    }
 
+   
+   
    public Collection<Calendario> doRetrieveAll(String order) throws SQLException {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
@@ -69,9 +72,7 @@ public class CalendarioModelDM implements Model<Calendario> {
          } finally {
             DriverManagerConnectionPool.releaseConnection(connection);
          }
-
       }
-
       return calendari;
    }
 
