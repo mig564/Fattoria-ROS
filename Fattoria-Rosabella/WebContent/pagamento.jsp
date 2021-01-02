@@ -72,6 +72,8 @@
   			</div>
 		</nav>
 		
+		<a href="">compra</a>
+		
 		<!-- Seleziona metodo di pagamento -->
 		<div class="container" style="margin-top: 40px;">
 			<h3 class="text-center title-green">PAGAMENTI</h3>

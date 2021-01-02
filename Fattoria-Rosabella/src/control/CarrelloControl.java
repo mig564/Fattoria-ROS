@@ -29,7 +29,7 @@ public class CarrelloControl extends HttpServlet {
       if (action != null) {
          String id_attivita = request.getParameter("id");
          if (action.equals("aggiungi")) {
-        	 if (cercaElemento(formCart, id_attivita).getId_attivita()!=0) {
+        	 if (cercaElemento(formCart, id_attivita).getId_attivita() != 0) {
         		 formCart.add(new Formare((Integer)request.getSession().getAttribute("carrello"), Integer.parseInt(id_attivita), (String)request.getAttribute("data"), (String)request.getAttribute("ora"), 1));
         	 }
          } else if (action.equals("rimuovi")) {

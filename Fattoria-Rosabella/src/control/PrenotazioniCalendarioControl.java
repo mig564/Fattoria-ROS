@@ -27,10 +27,12 @@ public class PrenotazioniCalendarioControl extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			Collection<Attivita> attivitas = attivitaModelDM.doRetrieveByAtti((String) request.getAttribute("date"), (String) request.getAttribute("categoria"));
+			Collection<Attivita> attivitas = attivitaModelDM.doRetrieveByAtti((String) request.getParameter("date"), (String) request.getParameter("categoria"));
 			if (attivitas.size() > 0) {
+				request.removeAttribute("attivitas");
 				request.setAttribute("attivitas", attivitas);
 			} else {
+				request.removeAttribute("error");
 				request.setAttribute("error", "spiacente non ci sono attivita nel giorno selezionato");
 			}
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/prenotazioni.jsp");

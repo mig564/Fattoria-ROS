@@ -50,10 +50,16 @@ public class AttivitaModelDM implements Model<Attivita> {
 		   Connection connection = null;
 		   PreparedStatement preparedStatement = null;
 		   Collection<Attivita> attivita = new LinkedList<Attivita>();
-		   String selectSQL = "SELECT a.id_attivita, a.categoria, a.nome, a.descrizione, a.max_persone, a.prezzo FROM calendario AS c, attivita AS a WHERE c.data = ? AND a.categoria = ?";
-
+		   String selectSQL;
+		   
 		   try {
 		   connection = DriverManagerConnectionPool.getConnection();
+		   switch (categoria) {
+		   case "TUTTE":
+			   selectSQL = "SELECT a.id_attivita, a.categoria, a.nome, a.descrizione, a.max_persone, a.prezzo FROM calendario AS c, attivita AS a WHERE c.data = ? AND a.id_attivita = c.id_attivita AND c.ora='09:00'";
+			   break;
+		   default: selectSQL = "SELECT a.id_attivita, a.categoria, a.nome, a.descrizione, a.max_persone, a.prezzo FROM calendario AS c, attivita AS a WHERE c.data = ? AND a.categoria = ? AND a.id_attivita = c.id_attivita AND c.ora='09:00'";
+		   }
 		   preparedStatement = connection.prepareStatement(selectSQL);
 		   preparedStatement.setString(1, data);
 		   preparedStatement.setString(2, categoria);
