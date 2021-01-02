@@ -11,9 +11,9 @@ USE fattoria;
 DROP TABLE IF EXISTS attivita;
 CREATE TABLE attivita (
 	id_attivita INT NOT NULL,
-	categoria VARCHAR(50),
-	nome VARCHAR(50),
-	descrizione VARCHAR(50),
+	categoria VARCHAR(256),
+	nome VARCHAR(256),
+	descrizione VARCHAR(256),
 	max_persone INT,
 	prezzo INT,
 	PRIMARY KEY(id_attivita));
@@ -44,13 +44,13 @@ CREATE TABLE formare (
 
 DROP TABLE IF EXISTS utente;
 CREATE TABLE utente (
-	email VARCHAR(20) NOT NULL,
-	password VARCHAR(20) NOT NULL,
-	nome VARCHAR(20) NOT NULL,
-	cognome VARCHAR(20) NOT NULL,
+	email VARCHAR(256) NOT NULL,
+	password VARCHAR(256) NOT NULL,
+	nome VARCHAR(256) NOT NULL,
+	cognome VARCHAR(256) NOT NULL,
 	data_nascita DATE,
-    citta VARCHAR(20) NOT NULL,
-	indirizzo VARCHAR(20) NOT NULL,
+    citta VARCHAR(256) NOT NULL,
+	indirizzo VARCHAR(256) NOT NULL,
 	id_riepilogo INT,
 	PRIMARY KEY(email),
 	FOREIGN KEY(id_riepilogo) REFERENCES riepilogoOrdine(id_riepilogo) ON UPDATE CASCADE ON DELETE CASCADE);
@@ -69,16 +69,26 @@ CREATE TABLE prenotazioneAttivita (
 	id_attivita INT NOT NULL,
 	data DATE,
 	ora TIME,
+    partecipanti INT NOT NULL,
 	PRIMARY KEY(id_prenotazione, id_attivita, data),
 	FOREIGN KEY(id_prenotazione) REFERENCES prenotazione(id_prenotazione) ON UPDATE CASCADE ON DELETE CASCADE);
 	
 DROP TABLE IF EXISTS cartaDiCredito;
 CREATE TABLE cartaDiCredito (
-	numero INT NOT NULL,
-	intestatario VARCHAR(20) NOT NULL,
-	scadenza VARCHAR(20) NOT NULL,
+	numero VARCHAR(256) NOT NULL,
+	intestatario VARCHAR(64) NOT NULL,
+	scadenza VARCHAR(256) NOT NULL,
 	cvv INT,
-	email VARCHAR(20) NOT NULL,
+	email VARCHAR(256) NOT NULL,
 	PRIMARY KEY(numero),
 	FOREIGN KEY(email) REFERENCES utente(email) ON UPDATE CASCADE ON DELETE CASCADE);
+
+DROP TABLE IF EXISTS gestore;
+CREATE TABLE gestore(
+	email VARCHAR(256) NOT NULL,
+	password VARCHAR(256) NOT NULL,
+	PRIMARY KEY(email));
+
+
+
 
