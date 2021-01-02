@@ -46,6 +46,7 @@
 				<div class="col-md-6 card " style = "height: 100%; padding: 20px;">
 				
 					<!-- Form di login -->
+					
 					<% String error = (String) request.getAttribute("error"); %>
 					<form name="login" method="post" action="Login" onSubmit="" >
 						<h3 class="text-center title-green" style="margin-bottom: 22px;">LOGIN</h3>
@@ -61,7 +62,7 @@
 							<input type="checkbox" class="form-check-input" id="exampleCheck1">
 							<label class="form-check-label" for="exampleCheck1">Ricordami</label>
 						</div>
-						<% if(error!=null)  {%>
+						<% if(error != null) {%>
 							<p id="error"><%=error%></p>
 						<%} %>
 						<p class="text-center"><button type="submit" class="btn btn-success">Accedi</button></p>
