@@ -5,8 +5,7 @@ Collection<?> attivita = (Collection<?>) request.getAttribute("attivita");
 if (attivita == null) {
 	response.sendRedirect(response.encodeRedirectURL("./Carrello"));
 	return;
-}
-%>
+}%>
 <!DOCTYPE html>
 <html>
 	<head>
