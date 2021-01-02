@@ -1,0 +1,73 @@
+@charset "ISO-8859-1";
+.navbar-expand-lg .navbar-collapse {
+    margin-left: 100px;
+}
+
+svg .bi .bi-box-arrow-in-right .icon-position {
+    margin-top: -3.2px;
+    margin-right: 8px;
+}
+
+.carousel-inner > .carousel-item {
+	min-height: 600px;
+	background-size: cover;
+	background-position: center top;
+}
+
+.carousel-text {
+	margin: auto;
+	margin-top: 360px;
+	padding: 22px;
+	border-radius: 12px;
+	height: 40%;
+	width: 40%;
+	background: rgb(0,0,0,.60);
+}
+
+.cover-img {
+	padding: 50px;
+	min-height: 220px;
+	background-size: cover;
+	background-position: center center;
+}
+
+.cover-prenotazione {
+	padding: 50px;
+	min-height: 600px;
+	background-size: cover;
+	background-position: center center;
+}
+
+.cover-text {
+	margin: auto;
+	padding: 22px;
+	border-radius: 12px;
+	height: 60%;
+	width: 60%;
+	background: rgb(0,0,0,.60);
+}
+
+.title-green {
+	color:  #198754;
+}
+
+.container-img-card {
+	min-height: 160px;
+	background-size: cover;
+	background-position: center center;
+}
+
+.btn-link {
+    color: red;
+    text-decoration: none;
+}
+
+.card-shadow {
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.7);
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    border:0;
+    background-color: #198754;
+}
+
