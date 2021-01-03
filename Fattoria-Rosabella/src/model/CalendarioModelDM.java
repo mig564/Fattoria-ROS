@@ -41,17 +41,18 @@ public class CalendarioModelDM implements Model<Calendario> {
       }
    }
 
-   public Collection<Calendario> doRetrieveByAtt(int id) throws SQLException {
+   public Collection<Calendario> doRetrieveByAtt(int id, String data) throws SQLException {
 	   Connection connection = null;
 	      PreparedStatement preparedStatement = null;
 	      Collection<Calendario> calendari = new LinkedList<Calendario>();
-	      String selectSQL = "SELECT * FROM calendario WHERE id_attivita = ?";
+	      String selectSQL = "SELECT * FROM calendario WHERE id_attivita = ? AND data = ?";
 
 	      try {
 	         connection = DriverManagerConnectionPool.getConnection();
 	         preparedStatement = connection.prepareStatement(selectSQL);
 	         preparedStatement.setInt(1, id);
-	         System.out.println("DoRetreiveAll: " + preparedStatement.toString());
+	         preparedStatement.setString(2, data);
+	         System.out.println("DoRetreiveByAtt: " + preparedStatement.toString());
 	         ResultSet rs = preparedStatement.executeQuery();
 
 	         while(rs.next()) {

@@ -31,6 +31,8 @@ public class PrenotazioniCalendarioControl extends HttpServlet {
 			if (attivitas.size() > 0) {
 				request.removeAttribute("attivitas");
 				request.setAttribute("attivitas", attivitas);
+				request.removeAttribute("date");
+				request.setAttribute("date", (String) request.getParameter("date"));
 			} else {
 				request.removeAttribute("error");
 				request.setAttribute("error", "spiacente non ci sono attivita nel giorno selezionato");

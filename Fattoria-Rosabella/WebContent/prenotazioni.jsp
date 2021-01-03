@@ -4,6 +4,7 @@
 		pageEncoding="ISO-8859-1"  import="java.util.*"%>
 <%Collection<?> attivitas = (Collection<?>) request.getAttribute("attivitas");
 String error = (String) request.getAttribute("error");
+String date = (String) request.getAttribute("date");
 boolean log = false;	%>
 <!DOCTYPE html>
 <html>
@@ -111,7 +112,7 @@ boolean log = false;	%>
 			Iterator<?> iterator = attivitas.iterator();
 			while (iterator.hasNext()) {
 				Attivita bean = (Attivita) iterator.next();
-				Collection<?> calendarios = (Collection<?>) calendarioModelDM.doRetrieveByAtt(bean.getId_attivita());
+				Collection<?> calendarios = (Collection<?>) calendarioModelDM.doRetrieveByAtt(bean.getId_attivita(), date);
 				Iterator<?> iterator2 = calendarios.iterator();%>
 		<div class="container">
 				<!-- card orizzontale per attività -->
