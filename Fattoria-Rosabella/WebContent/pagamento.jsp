@@ -1,7 +1,7 @@
 <%@page import="beans.CartaDiCredito"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*" import="beans.CartaDiCredito"%>
-<%	
+<% String error = (String) request.getAttribute("error");
 Collection<?> carte = (Collection<?>) request.getAttribute("carte"); 
 if (carte == null) {
 	response.sendRedirect(response.encodeRedirectURL("./PagamentoControl"));
@@ -80,7 +80,6 @@ boolean log = false;	%>
   			</div>
 		</nav>
 
-		<a href="./PagamentoControl?action=paga">compra</a>
 		<!-- Seleziona metodo di pagamento -->
 		<div class="container" style="margin-top: 40px;">
 			<h3 class="text-center title-green">PAGAMENTI</h3>
@@ -120,7 +119,6 @@ boolean log = false;	%>
 				while(iterator.hasNext()) {
 					CartaDiCredito bean = (CartaDiCredito) iterator.next();%>
 					
-		
 				<div class="col-sm-4 mx-auto">
 					<p class="text-center"><%=bean.getIntestatrio() %></p>
 				</div>
@@ -135,7 +133,12 @@ boolean log = false;	%>
 			} else {%>
 				<p>Non ci sono carte</p>
 		<%	} %>
-						
+			
+			<a href="./PagamentoControl?action=paga">compra</a>
+			<% 	if(error != null) {%>
+					<p id="error"><%=error%></p>
+			<%	} %>
+			
 			<!-- Form per aggiunta di una nuova carta -->
 			<div class="row" style="margin: 0 32px;">
 				<p class="text-center"><button type="button" class="btn btn-link" style="color: green; text-decoration: none;" onclick="showFormAggiungiCarta()">
