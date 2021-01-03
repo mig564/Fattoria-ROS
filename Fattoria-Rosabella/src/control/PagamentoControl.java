@@ -14,13 +14,13 @@ import beans.CartaDiCredito;
 import model.CartaDiCreditoModelDM;
 
 /**
- * Servlet implementation class CartControl
+ * Servlet implementation class PagamentoControl
  */
-@WebServlet("/CarteControl")
-public class CarteControl extends HttpServlet {
+@WebServlet("/PagamentoControl")
+public class PagamentoControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static CartaDiCreditoModelDM cartaDiCreditoModelDM = new CartaDiCreditoModelDM();
-
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -37,8 +37,10 @@ public class CarteControl extends HttpServlet {
 					String anno = (String) request.getParameter("anno");
 					String cvv = (String) request.getParameter("cvv");
 					cartaDiCreditoModelDM.doSave(new CartaDiCredito(Integer.parseInt(numero), nome+cognome, mese+"/"+anno, Integer.parseInt(cvv), email));
-				} else {
-					cartaDiCreditoModelDM.doDelete(new CartaDiCredito(Integer.parseInt(request.getParameter("numero")), "","",0,""));
+				} else if (action.equals("paga")){
+					
+					
+					response.sendRedirect("index.jsp");
 				}
 			}
 			request.removeAttribute("carte");
@@ -47,7 +49,7 @@ public class CarteControl extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/lemiecarte.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/pagamento.jsp");
 	    dispatcher.forward(request, response);
 	}
 

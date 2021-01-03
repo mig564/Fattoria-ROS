@@ -57,68 +57,31 @@ if (attivita == null) {
 				Iterator<?> iterator =  attivita.iterator();
 				while(iterator.hasNext()){
 					Attivita bean = (Attivita) iterator.next();%>
-					<p><%=bean.getNome()%></p>
+				<div class="row" style="margin-top: 40px;">
+						<div class="col-3 card-shadow" style="background-image: url('img/cascata.jpg'); border-radius: 30px 0px 0px 30px;"></div>
+						<div class="col-9 card-shadow" style="background-color: white; border-radius: 0px 30px 30px 0px;">
+							<h3><%=bean.getNome()%></h3> 
+							<p>Prezzo: <%=bean.getPrezzo()%> $</p>
+							<p>Orario <select style="margin-left: 5px;">
+								<option value="10:00-11:00" selected="selected">10:00-11:00 </option>
+								<option value="orario1">09:00-10:00 </option>
+								<option value="orario2">08:00-09:00 </option></select></p> 
+							<p>partecipanti <select style="margin-left: 5px;">
+								<option value="10:00-11:00" selected="selected">1 </option>
+								<option value="part1">2 </option>
+								<option value="part2">3 </option></select>
+								<button type="submit" class="btn btn-success" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
+						</div>
+				</div>    
 				
+				<a href="pagamento.jsp">procedi al pagamento</a>		
 			<%	}
 			} else {%>
 				<p>Non ci sono attivita</p>
 		<%	} %>
 			
-    		<div class="row" style="margin-top: 40px;">
-						<div class="col-3 card-shadow" style="background-image: url('img/cascata.jpg'); border-radius: 30px 0px 0px 30px;"></div>
-						<div class="col-9 card-shadow" style="background-color: white; border-radius: 0px 30px 30px 0px;">
-							<h3>Titolo</h3> 
-							<p>Prezzo: 15 $</p>
-							<p>Orario <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected">10:00-11:00 </option>
-								<option value="orario1">09:00-10:00 </option>
-								<option value="orario2">08:00-09:00 </option></select></p> 
-							<p>partecipanti <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected">1 </option>
-								<option value="part1">2 </option>
-								<option value="part2">3 </option></select>
-								<button type="submit" class="btn btn-success" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
-						</div>
-				</div>    		
     		
-    		<div class="row" style="margin-top: 40px;">
-						<div class="col-3 card-shadow" style="background-image: url('img/cascata.jpg'); border-radius: 30px 0px 0px 30px;"></div>
-						<div class="col-9 card-shadow" style="background-color: white; border-radius: 0px 30px 30px 0px;">
-							<h3>Titolo</h3> 
-							<p>Prezzo: 15 $</p>
-							<p>Orario <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected">10:00-11:00 </option>
-								<option value="orario1">09:00-10:00 </option>
-								<option value="orario2">08:00-09:00 </option></select></p> 
-							<p>partecipanti <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected">1 </option>
-								<option value="part1">2 </option>
-								<option value="part2">3 </option></select>
-								<button type="submit" class="btn btn-success" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
-						</div>
-				</div> 
-				
-				<div class="row" style="margin-top: 40px;">
-						<div class="col-3 card-shadow" style="background-image: url('img/cascata.jpg'); border-radius: 30px 0px 0px 30px;"></div>
-						<div class="col-9 card-shadow" style="background-color: white; border-radius: 0px 30px 30px 0px;">
-							<h3>Titolo</h3> 
-							<p>Prezzo: 15 $</p>
-							<p>Orario <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected">10:00-11:00 </option>
-								<option value="orario1">09:00-10:00 </option>
-								<option value="orario2">08:00-09:00 </option></select></p> 
-							<p>partecipanti <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected">1 </option>
-								<option value="part1">2 </option>
-								<option value="part2">3 </option></select>
-								<button type="submit" class="btn btn-success" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
-						</div>
-				</div> 
-		
-		</div>
-
-
-
+    		
 <!-- Footer -->
 		<div class="container-fluid" style="background-color: #198754; margin-top: 42px; padding: 22px 0px;">
 			<div class="container">

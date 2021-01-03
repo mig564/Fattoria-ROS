@@ -1,6 +1,14 @@
+<%@page import="beans.CartaDiCredito"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-		pageEncoding="ISO-8859-1"  import="java.util.*"%>
-<%	boolean log = false;	%>
+		pageEncoding="ISO-8859-1"  import="java.util.*" import="beans.CartaDiCredito"%>
+<%	
+Collection<?> carte = (Collection<?>) request.getAttribute("carte"); 
+if (carte == null) {
+	response.sendRedirect(response.encodeRedirectURL("./PagamentoControl"));
+	return; 
+}
+
+boolean log = false;	%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -71,9 +79,8 @@
     			</div>
   			</div>
 		</nav>
-		
-		<a href="">compra</a>
-		
+
+		<a href="./PagamentoControl?action=paga">compra</a>
 		<!-- Seleziona metodo di pagamento -->
 		<div class="container" style="margin-top: 40px;">
 			<h3 class="text-center title-green">PAGAMENTI</h3>
@@ -106,34 +113,28 @@
   						<input class="form-check-input custom-control-input" type="radio" name="selezionaCarta" id="carta1" value="carta1">
 					</div>
 				</div>
+				
+				<%
+				if(carte != null && carte.size() > 0) {
+				Iterator<?> iterator =  carte.iterator();
+				while(iterator.hasNext()) {
+					CartaDiCredito bean = (CartaDiCredito) iterator.next();%>
+					
+		
 				<div class="col-sm-4 mx-auto">
-					<p class="text-center">Carmine Pastore</p>
+					<p class="text-center"><%=bean.getIntestatrio() %></p>
 				</div>
 				<div class="col-sm-4 mx-auto">
-					<p class="text-center">**** **** **** 9875</p>
+					<p class="text-center"><%=bean.getNumero() %></p>
 				</div>
 				<div class="col-sm-2 mx-auto">
-					<p class="text-center">07/26</p>
+					<p class="text-center"><%=bean.getScadenza() %></p>
 				</div>
 			</div>
-			<hr>
-			<div class="row" style="padding: 8px 0;">
-				<div class="col-sm-2 mx-auto">
-					<div class="form-check form-check-inline" style="padding-left: 40px;">
-  						<input class="form-check-input custom-control-input" type="radio" name="selezionaCarta" id="carta2" value="carta2">
-					</div>
-				</div>
-				<div class="col-sm-4 mx-auto">
-					<p class="text-center">Carmine Pastore</p>
-				</div>
-				<div class="col-sm-4 mx-auto">
-					<p class="text-center">**** **** **** 9875</p>
-				</div>
-				<div class="col-sm-2 mx-auto">
-					<p class="text-center">07/26</p>
-				</div>
-			</div>
-			<hr>
+			<%	}
+			} else {%>
+				<p>Non ci sono carte</p>
+		<%	} %>
 						
 			<!-- Form per aggiunta di una nuova carta -->
 			<div class="row" style="margin: 0 32px;">
@@ -144,28 +145,28 @@
 					</svg> Aggiungi una nuova carta
 				</button></p>
 				<!-- Form di aggiunta carta -->
-				<form name="aggiungicarta" method="post" action="" onSubmit="" style="display: none;">
+				<form name="aggiungicarta" method="post" action="CarteControl?action=aggiungi" onSubmit="" style="display: none;">
 					<h3 class="text-center title-green" style="margin-bottom: 22px;">REGISTRAZIONE</h3>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="number" class="form-control" id="campoNumeroCarta"  placeholder="0055 1234 1234 1234">
+						<input type="number" name="numero" class="form-control" id="campoNumeroCarta"  placeholder="0055 1234 1234 1234">
 						<label for="campoNumeroCarta">Numero carta</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="text" class="form-control" id="nomeUtente"  placeholder="Nome">
+						<input type="text" name="nome" class="form-control" id="nomeUtente"  placeholder="Nome">
 						<label for="nomeUtente">Nome intestatario</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="text" class="form-control" id="cognomeUtente"  placeholder="Cognome">
+						<input type="text" name="cognome" class="form-control" id="cognomeUtente"  placeholder="Cognome">
 						<label for="cognomeUtente">Cogome intestatario</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="number" class="form-control" id="campoCVV"  placeholder="CVV">
+						<input type="number" name="cvv" class="form-control" id="campoCVV"  placeholder="CVV">
 						<label for="campoCVV">CVV</label>
 					</div>
 					<div class="row" style="margin-bottom: 12px;">
 						<div class="col">
 							<div class="form-floating">
-								<select class="form-select" id="selezionaMese" aria-label="Seleziona mese">
+								<select name="mese" class="form-select" id="selezionaMese" aria-label="Seleziona mese">
 	 							 	<option value="1">Gennaio</option>
 	 							 	<option value="2">Febbraio</option>
 	 							 	<option value="3">Marzo</option>
@@ -184,7 +185,7 @@
 						</div>
 						<div class="col">
 							<div class="form-floating">
-								<select class="form-select" id="selezionaAnno" aria-label="Seleziona mese">
+								<select name="anno" class="form-select" id="selezionaAnno" aria-label="Seleziona mese">
 		 						 	<option value="2021">2021</option>
 		 						 	<option value="2022">2022</option>
 		 						 	<option value="2023">2023</option>

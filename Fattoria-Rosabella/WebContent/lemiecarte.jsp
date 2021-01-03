@@ -82,7 +82,7 @@ boolean log = false;	%>
 				
 				<%	}
 			} else {%>
-				<p>Non ci sono attivita</p>
+				<p>Non ci sono carte</p>
 		<%	} %>
 			
 			<div class="row" style="padding: 8px 0;">
@@ -121,28 +121,28 @@ boolean log = false;	%>
 					</svg> Aggiungi una nuova carta
 				</button></p>
 				<!-- Form di aggiunta carta -->
-				<form name="aggiungicarta" method="post" action="" onSubmit="" style="display: none;">
+				<form name="aggiungicarta" method="post" action="CarteControl?action=aggiungi" onSubmit="" style="display: none;">
 					<h3 class="text-center title-green" style="margin-bottom: 22px;">REGISTRAZIONE</h3>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="number" class="form-control" id="campoNumeroCarta"  placeholder="0055 1234 1234 1234">
+						<input name="numero" type="number" class="form-control" id="campoNumeroCarta"  placeholder="0055 1234 1234 1234">
 						<label for="campoNumeroCarta">Numero carta</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="text" class="form-control" id="nomeUtente"  placeholder="Nome">
+						<input name="nome" type="text" class="form-control" id="nomeUtente"  placeholder="Nome">
 						<label for="nomeUtente">Nome intestatario</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="text" class="form-control" id="cognomeUtente"  placeholder="Cognome">
+						<input name="cognome" type="text" class="form-control" id="cognomeUtente"  placeholder="Cognome">
 						<label for="cognomeUtente">Cogome intestatario</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="number" class="form-control" id="campoCVV"  placeholder="CVV">
+						<input name="cvv" type="number" class="form-control" id="campoCVV"  placeholder="CVV">
 						<label for="campoCVV">CVV</label>
 					</div>
 					<div class="row" style="margin-bottom: 12px;">
 						<div class="col">
 							<div class="form-floating">
-								<select class="form-select" id="selezionaMese" aria-label="Seleziona mese">
+								<select name="mese" class="form-select" id="selezionaMese" aria-label="Seleziona mese">
 	 							 	<option value="1">Gennaio</option>
 	 							 	<option value="2">Febbraio</option>
 	 							 	<option value="3">Marzo</option>
@@ -161,7 +161,7 @@ boolean log = false;	%>
 						</div>
 						<div class="col">
 							<div class="form-floating">
-								<select class="form-select" id="selezionaAnno" aria-label="Seleziona mese">
+								<select name="anno" class="form-select" id="selezionaAnno" aria-label="Seleziona mese">
 		 						 	<option value="2021">2021</option>
 		 						 	<option value="2022">2022</option>
 		 						 	<option value="2023">2023</option>

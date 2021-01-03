@@ -48,11 +48,12 @@ public class CartaDiCreditoModelDM implements Model<CartaDiCredito> {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
       Collection<CartaDiCredito> carte = new LinkedList<CartaDiCredito>();
-      String selectSQL = "SELECT * FROM cartaDiCredito";
+      String selectSQL = "SELECT * FROM cartaDiCredito WHERE email = ?";
 
       try {
          connection = DriverManagerConnectionPool.getConnection();
          preparedStatement = connection.prepareStatement(selectSQL);
+         preparedStatement.setString(1, order);
          System.out.println("DoRetreiveAll: " + preparedStatement.toString());
          ResultSet rs = preparedStatement.executeQuery();
 
@@ -82,7 +83,7 @@ public class CartaDiCreditoModelDM implements Model<CartaDiCredito> {
    public void doSave(CartaDiCredito product) throws SQLException {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
-      String insertSQL = "INSERT INTO carteDiCredito(numero, intestatario, scadenza, cvv, email) VALUES (?, ?, ?, ?, ?)";
+      String insertSQL = "INSERT INTO cartaDiCredito(numero, intestatario, scadenza, cvv, email) VALUES (?, ?, ?, ?, ?)";
 
       try {
          connection = DriverManagerConnectionPool.getConnection();
@@ -90,8 +91,8 @@ public class CartaDiCreditoModelDM implements Model<CartaDiCredito> {
          preparedStatement.setInt(1, product.getNumero());
          preparedStatement.setString(2, product.getIntestatrio());
          preparedStatement.setString(3, product.getScadenza());
-         preparedStatement.setInt(1, product.getCvv());
-         preparedStatement.setString(3, product.getEmail());
+         preparedStatement.setInt(4, product.getCvv());
+         preparedStatement.setString(5, product.getEmail());
          System.out.println("doSave: " + preparedStatement.toString());
          preparedStatement.executeUpdate();
          connection.commit();
