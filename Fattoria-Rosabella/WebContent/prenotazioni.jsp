@@ -1,4 +1,5 @@
-<%@page import="beans.Attivita"%>
+<%@page import="beans.Calendario"%>
+<%@page import="beans.Attivita" import="model.CalendarioModelDM"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*"%>
 <%Collection<?> attivitas = (Collection<?>) request.getAttribute("attivitas");
@@ -106,10 +107,12 @@ boolean log = false;	%>
 		</div>
 		
 	<% 	if (attivitas != null && attivitas.size() > 0) {
-			Iterator<?> iterator =  attivitas.iterator();
-			while(iterator.hasNext()){
-				Attivita bean = (Attivita) iterator.next();%>
-					
+			CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
+			Iterator<?> iterator = attivitas.iterator();
+			while (iterator.hasNext()) {
+				Attivita bean = (Attivita) iterator.next();
+				Collection<?> calendarios = (Collection<?>) calendarioModelDM.doRetrieveByAtt(bean.getId_attivita());
+				Iterator<?> iterator2 = calendarios.iterator();%>
 		<div class="container">
 				<!-- card orizzontale per attività -->
 				
@@ -120,9 +123,10 @@ boolean log = false;	%>
 							<h3><%=bean.getNome() %></h3> 
 							<p>Prezzo: <%=bean.getPrezzo() %> $</p>
 							<p>Orario <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected">10:00-11:00 </option>
-								<option value="orario1">09:00-10:00 </option>
-								<option value="orario2">08:00-09:00 </option></select></p> 
+								<%while (iterator2.hasNext()) {
+									Calendario calendario = (Calendario) iterator2.next();%>
+									<option value="orario1"><%=calendario.getOra() %></option>
+							<%	} %></select></p> 
 							<p>partecipanti <select style="margin-left: 5px;">
 								<option value="10:00-11:00" selected="selected">1 </option>
 								<option value="part1">2 </option>
@@ -178,6 +182,5 @@ boolean log = false;	%>
 			crossorigin="anonymous">
 		</script>
 		
-
 </body>
 </html>

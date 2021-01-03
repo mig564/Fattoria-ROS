@@ -28,7 +28,6 @@ public class CalendarioModelDM implements Model<Calendario> {
             bean.setOra(rs.getString("ora"));
             bean.setId_attivita(rs.getInt("id_attivita"));
          }
-
          System.out.println(bean);
          return bean;
       } finally {
@@ -39,11 +38,40 @@ public class CalendarioModelDM implements Model<Calendario> {
          } finally {
             DriverManagerConnectionPool.releaseConnection(connection);
          }
-
       }
    }
 
-   
+   public Collection<Calendario> doRetrieveByAtt(int id) throws SQLException {
+	   Connection connection = null;
+	      PreparedStatement preparedStatement = null;
+	      Collection<Calendario> calendari = new LinkedList<Calendario>();
+	      String selectSQL = "SELECT * FROM calendario WHERE id_attivita = ?";
+
+	      try {
+	         connection = DriverManagerConnectionPool.getConnection();
+	         preparedStatement = connection.prepareStatement(selectSQL);
+	         preparedStatement.setInt(1, id);
+	         System.out.println("DoRetreiveAll: " + preparedStatement.toString());
+	         ResultSet rs = preparedStatement.executeQuery();
+
+	         while(rs.next()) {
+	            Calendario bean = new Calendario();
+	            bean.setDate(rs.getString("data"));
+	            bean.setOra(rs.getString("ora"));
+	            bean.setId_attivita(rs.getInt("id_attivita"));
+	            calendari.add(bean);
+	         }
+	      } finally {
+	         try {
+	            if (preparedStatement != null) {
+	               preparedStatement.close();
+	            }
+	         } finally {
+	            DriverManagerConnectionPool.releaseConnection(connection);
+	         }
+	      }
+	      return calendari;
+   }
    
    public Collection<Calendario> doRetrieveAll(String order) throws SQLException {
       Connection connection = null;
