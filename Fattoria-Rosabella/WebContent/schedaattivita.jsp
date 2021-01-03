@@ -81,71 +81,71 @@ boolean log = false;	%>
 		
 		<!-- pagina di una attività con pulsante prenota -->
 		
-		
 		<div class="container">
-			<h2 class="title-green text-center" style="margin-top: 40px;"><%=attivita.getNome()%></h2>
-			<p class="text-center" style="margin: 40px 0;">Un'avventura straordinaria!</p>
-		
-			<div class="row">
-				<div class= "col-md-5 cover-img" style="background-image: url(img/<%=attivita.getNome()%>.jpg)"></div>
-				
+			<div class="row" style="margin: 40px 0;">
+				<h2 class="title-green text-center"><%=attivita.getNome()%></h2>
+				<p class="text-center">Un'avventura straordinaria!</p>
+			</div>
+
+			<div class="row" style="border-radius: 12px; box-shadow: 10px 10px 5px grey;">
+				<div class= "col-md-5 cover-img" style="background-image: url('img/<%=attivita.getNome()%>.jpg');  border-radius: 12px 0 0 12px;"></div>
+
 				<div class="col-md-7" style="padding: 22px">
 					<div class="row">
 						<div class="col-md-4">
-						<h4 class="title-green">Descrizione</h4>
-						</div>Attivita [id_attivita=100, categoria=Visita guidata, nome=Cascata della Maronnella, max_persone=32, prezzo=25]
-						
-						<div class="col-md-8">
-						<h6>questa è una descrizione dell'attività scelta</h6>
+							<h4 class="title-green">Descrizione</h4>
 						</div>
-						
+
+						<div class="col-md-8">
+							<h6><%=attivita.getDescrizione()%></h6>
+						</div>
+
 					<div class="row">
 						<div class="col-md-4">
-						<h4 class="title-green">Durata</h4>
+							<h4 class="title-green">Durata</h4>
 						</div>
 						<div class="col-md-8">
-						<h6>90 minuti</h6>
-						</div>	
+							<h6>90 minuti</h6>
+						</div>
 					</div>
-					
+
 					<div class="row">
 						<div class="col-md-4">
-						<h4 class="title-green">Prezzo</h4>
+							<h4 class="title-green">Prezzo</h4>
 						</div>
 						<div class="col-md-8">
-						<h6><%=attivita.getPrezzo()%></h6>
-						</div>	
+							<h6><%=attivita.getPrezzo()%>,00 Euro</h6>
+						</div>
 					</div>
-					
+
 					<button type="button" class="btn btn-outline-success" onclick="window.location.href='login.jsp'">VAI ALLE PRENOTAZIONI</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 		<!-- Secondo box: Le nostre escursioni -->
 		<div class="container" style="margin-top: 40px;">
 		<h3>Dai un'occhiata anche a:</h3>
 			<div class="row">
-				<div class="col-sm-3">
-					<div class="card" style="width: 18rem;">
-					<%Random random = new Random(); AttivitaModelDM dm = new AttivitaModelDM(); Attivita bean = new Attivita();
-					for(int i=0; i<4; i++) {
-						while((bean = dm.doRetrieveByKey(""+random.nextInt(200))).getId_attivita() == 0){;} %>
-						<div class="container-img-card" style="background-image: url('img/<%=bean.getNome()%>.jpg');"></div>
-  						<div class="card-body">
-    						<h5 class="card-title title-green text-center"><%=bean.getNome()%></h5>
-    						<p class="card-text text-center">La nostra attrazione principale, il punto più bello del parco.</p>
-    						<p class="text-center"><a href="<%=response.encodeURL("schedaattivita.jsp?id="+bean.getId_attivita())%>" class="btn btn-outline-success">Scopri di più</a></p>
+				<%Random random = new Random(); AttivitaModelDM dm = new AttivitaModelDM(); Attivita bean = new Attivita();
+				for(int i=0; i<4; i++) {
+					while((bean = dm.doRetrieveByKey(""+random.nextInt(200))).getId_attivita() == 0){;} %>
+					<div class="col-md-3">
+						<div class="card" style="width: 18rem;">
+							<div class="container-img-card" style="background-image: url('img/<%=bean.getNome()%>.jpg');"></div>
+  							<div class="card-body">
+    							<h5 class="card-title title-green text-center"><%=bean.getNome()%></h5>
+    							<p class="card-text text-center">La nostra attrazione principale, il punto più bello del parco.</p>
+    							<p class="text-center"><a href="<%=response.encodeURL("schedaattivita.jsp?id="+bean.getId_attivita())%>" class="btn btn-outline-success">Scopri di più</a></p>
+  							</div>
   						</div>
+  					</div>
   					<%} %>
-					</div>
-				</div>
-			
+
 			</div>
 		</div>
-		
 		
 		
 		<!-- Footer -->

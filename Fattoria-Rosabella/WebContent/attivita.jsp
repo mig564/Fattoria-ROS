@@ -75,36 +75,38 @@
 		<!-- il nome della categoria va inserito ogni volta dinamicamente prima delle card di quella categoria -->
 		
 		<div class="container" style="margin-top: 40px;">
-		<h3 class="text-center title-green">Scopri le nostre attività</h3>
-		<p class="text-center">Una vasta gamma di attività green pensate per trascorrere del tempo all'aria aperta</p>
-		<h4>Le nostre escursioni</h4>
-			
-		<%
-		Collection<?> attivita = (Collection<?>) request.getAttribute("attivita"); 
-		if (attivita == null) {
-			response.sendRedirect("./AttivitaControl");
-		}%>
-		<div class="row" style="margin-bottom: 20px;">
-				<div class="col-sm-3">
-					<div class="card" style="width: 18rem;">
-					<%
-				if(attivita != null && attivita.size() > 0) {
+			<h3 class="text-center title-green">Scopri le nostre attività</h3>
+			<p class="text-center">Una vasta gamma di attività green pensate per trascorrere del tempo all'aria aperta</p>
+		</div>
+
+		<div class="container">
+		<div class="row">
+			<%
+			Collection<?> attivita = (Collection<?>) request.getAttribute("attivita");
+			if (attivita == null) {
+				response.sendRedirect("./AttivitaControl");
+			}%>
+			<%
+			if(attivita != null && attivita.size() > 0) {
 				Iterator<?> iterator =  attivita.iterator();
 				while(iterator.hasNext()){
-				Attivita bean = (Attivita) iterator.next();%>	
-						<div class="container-img-card" style="background-image: url('img/<%=bean.getNome()%>.jpg');"></div>
-  						<div class="card-body">
-    						<h5 class="card-title title-green text-center"><%=bean.getNome()%></h5>
-    						<p class="card-text text-center">La nostra attrazione principale, il punto più bello del parco.</p>
-    						<p class="text-center"><a href="<%=response.encodeURL("schedaattivita.jsp?id="+bean.getId_attivita())%>" class="btn btn-outline-success">Scopri di più</a></p>
-  						<%	}
-				} else {%>
-					<p>Non ci sono attivita</p>
-			<%	} %>
-  						</div>
-  				
-					</div>
-				</div>
+					Attivita bean = (Attivita) iterator.next();%>
+					<div class="col-md-3" style="margin-bottom: 12px;">
+						<div class="card" style="width: 18rem;">
+							<div class="container-img-card" style="background-image: url('img/<%=bean.getNome()%>.jpg');"></div>
+  							<div class="card-body">
+    							<h5 class="card-title title-green text-center"><%=bean.getNome()%></h5>
+    							<p class="card-text text-center">La nostra attrazione principale, il punto più bello del parco.</p>
+    							<p class="text-center"><a href="<%=response.encodeURL("schedaattivita.jsp?id="+bean.getId_attivita())%>" class="btn btn-outline-success">Scopri di più</a></p>
+    						</div>
+    					</div>
+    				</div>
+  				<%}
+			} else {%>
+				<p>Non ci sono attivita</p>
+		<%} %>
+  		</div>
+  		</div>
 				
 		<!-- Footer -->
 		<div class="container-fluid" style="background-color: #198754; margin-top: 42px; padding: 22px 0px;">
