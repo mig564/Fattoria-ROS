@@ -3,7 +3,7 @@
 <%
 Collection<?> attivita = (Collection<?>) request.getAttribute("attivita");
 if (attivita == null) {
-	response.sendRedirect(response.encodeRedirectURL("./Carrello"));
+	response.sendRedirect(response.encodeRedirectURL("./CarrelloControl"));
 	return;
 }%>
 <!DOCTYPE html>
@@ -115,8 +115,6 @@ if (attivita == null) {
 						</div>
 				</div> 
 		
-		
-				
 		</div>
 
 
