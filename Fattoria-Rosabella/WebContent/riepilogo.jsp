@@ -53,7 +53,7 @@ if (attivita == null) {
 		<h3 class="text-center title-green">Riepilogo Ordine</h3>
 			
 			<!-- card orizzontale per attività -->
-			<%if(attivita != null && attivita.size() > 0) {
+			<%if (attivita != null && attivita.size() > 0) {
 				Iterator<?> iterator =  attivita.iterator();
 				while(iterator.hasNext()){
 					Attivita bean = (Attivita) iterator.next();%>
@@ -118,8 +118,6 @@ if (attivita == null) {
 		
 				
 		</div>
-
-
 
 
 
