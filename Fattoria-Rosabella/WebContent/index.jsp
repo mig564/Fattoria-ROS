@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-		pageEncoding="ISO-8859-1"  import="java.util.*"%>
+		pageEncoding="ISO-8859-1"  import="java.util.*" import="beans.Attivita" import="model.AttivitaModelDM"%>
 <%	boolean log = false;	%>
 <!DOCTYPE html>
 <html>
@@ -137,52 +137,23 @@
 		<div class="container" style="margin-top: 40px;">
 		<h3>Le nostre escursioni</h3>
 			<div class="row">
+			
+			<%Random random = new Random(); AttivitaModelDM attivita = new AttivitaModelDM(); Attivita bean = new Attivita();
+			for(int i=0; i<4; i++) {%>
+			
+			<%while((bean = attivita.doRetrieveByKey(""+random.nextInt(400))).getId_attivita() == 0){;} %>
 				<div class="col-sm-3">
 					<div class="card" style="width: 18rem;">
-						<div class="container-img-card" style="background-image: url('img/Cascatadellamaronnella.jpg');"></div>
+						<div class="container-img-card" style="background-image: url('img/<%=bean.getNome() %>.jpg');"></div>
   						<div class="card-body">
-    						<h5 class="card-title title-green text-center">Cascata della Maronnella</h5>
-    						<p class="card-text text-center">La nostra attrazione principale, il punto più bello del parco.</p>
-    						<p class="text-center"><a href="#" class="btn btn-outline-success">Scopri di più</a></p>
+    						<h5 class="card-title title-green text-center"><%=bean.getNome() %></h5>
+    						<p class="card-text text-center"><%=bean.getDescrizione() %></p>
+    						<p class="text-center"><a href="schedaattivita.jsp?id=<%= bean.getId_attivita() %>" class="btn btn-outline-success">Scopri di più</a></p>
   						</div>
 					</div>
 				</div>
+		<%	} %>
 				
-				<div class="col-sm-3">
-					<div class="card" style="width: 18rem;">
-						<div class="container-img-card" style="background-image: url('img/Ponte del somaro.jpg');"></div>
-  						<div class="card-body">
-    						<h5 class="card-title title-green text-center">Ponte del somaro</h5>
-    						<p class="card-text text-center">Luogo di passaggio degli allevatori di 100 anni fa</p>
-    						<p class="text-center"><a href="#" class="btn btn-outline-success">Scopri di più</a></p>
-  						</div>
-					</div>
-				</div>
-				
-				<div class="col-md-3">
-					<div class="card" style="width: 18rem;">
-						<div class="container-img-card" style="background-image: url('img/Ritrovodeicacciatori.jpg');"></div>
-  						<div class="card-body">
-    						<h5 class="card-title title-green text-center">Ritrovo dei cacciatori</h5>
-    						<p class="card-text text-center">Chalet usato dai cacciatori come luogo di ritrovo durante la caccia</p>
-    						<p class="text-center"><a href="#" class="btn btn-outline-success">Scopri di più</a></p>
-  						</div>
-					</div>
-				</div>
-				
-				<div class="col-md-3">
-					<div class="card" style="width: 18rem;">
-						<div class="container-img-card" style="background-image: url('img/Avalle.jpg');"></div>
-  						<div class="card-body">
-    						<h5 class="card-title title-green text-center">Fino a valle</h5>
-    						<p class="card-text text-center">Il percorso più lungo, permette di girare tutto il parco.</p>
-    						<p class="text-center"><a href="#" class="btn btn-outline-success">Scopri di più</a></p>
-  						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
 		<!-- Terzo box: immagine (left) e testo (right) -->
 		<div class="container" style="margin-top: 40px;">
 			<div class="row">
