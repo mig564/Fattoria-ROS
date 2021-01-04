@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*" import="beans.Utente"%>
+<%	if(request.getSession().getAttribute("email") == null) {
+			response.sendRedirect("./error.html");
+			return;
+		}		
+%>
 <!DOCTYPE html>
 <html>
 <head>

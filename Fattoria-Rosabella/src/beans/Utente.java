@@ -8,14 +8,16 @@ public class Utente {
    private String data_nascita;
    private String citta;
    private String indirizzo;
+   private int attivo;
    private int id_riepilogo;
 
-   public Utente(String email, String nome, String cognome, String password, String indirizzo, String citta, String data_nascita, int id_riepilogo) {
+   public Utente(String email, String nome, String cognome, String password, String indirizzo, int attivo, String citta, String data_nascita, int id_riepilogo) {
       this.email = email;
       this.nome = nome;
       this.cognome = cognome;
       this.password = password;
       this.indirizzo = indirizzo;
+      this.attivo = attivo;
       this.citta = citta;
       this.data_nascita = data_nascita;
       this.id_riepilogo = id_riepilogo;
@@ -71,6 +73,14 @@ public class Utente {
    public void setCitta(String citta) {
       this.citta = citta;
    }
+   
+   public int getAttivo() {
+	      return this.attivo;
+	   }
+
+	   public void setAttivo(int attivo) {
+	      this.attivo = attivo;
+	   }
 
    public String getData_nascita() {
       return this.data_nascita;

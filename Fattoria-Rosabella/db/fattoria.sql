@@ -51,6 +51,7 @@ CREATE TABLE utente (
 	data_nascita DATE,
     citta VARCHAR(256) NOT NULL,
 	indirizzo VARCHAR(256) NOT NULL,
+	attivo INT NOT NULL,
 	id_riepilogo INT,
 	PRIMARY KEY(email),
 	FOREIGN KEY(id_riepilogo) REFERENCES riepilogoOrdine(id_riepilogo) ON UPDATE CASCADE ON DELETE CASCADE);

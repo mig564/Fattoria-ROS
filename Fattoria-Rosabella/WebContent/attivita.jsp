@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*" import="beans.Attivita"%>
-<%	boolean log = false;	%>
+<%	boolean log = false;	
+		if(request.getSession().getAttribute("email") != null) log = true;
+%>
 <!DOCTYPE html>
 <html>
 	<head>

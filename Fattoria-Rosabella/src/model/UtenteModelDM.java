@@ -46,6 +46,46 @@ public class UtenteModelDM implements Model<Utente> {
 
       }
    }
+   
+   public Utente doRetrieveByKeyAndInattiveState(String code, String id) throws SQLException {
+	      Connection connection = null;
+	      PreparedStatement preparedStatement = null;
+	      Utente bean = new Utente();
+	      String selectSQL = "SELECT * FROM utente WHERE email = ? AND id_riepilogo = ? AND attivo = '0'";
+
+	      try {
+	         connection = DriverManagerConnectionPool.getConnection();
+	         preparedStatement = connection.prepareStatement(selectSQL);
+	         preparedStatement.setString(1, code);
+	         preparedStatement.setString(2, id);
+	         System.out.println("doRetrieveByKeyAndInattiveState: " + preparedStatement.toString());
+	         ResultSet rs = preparedStatement.executeQuery();
+
+	         while(rs.next()) {
+	            bean.setEmail(rs.getString("email"));
+	            bean.setNome(rs.getString("nome"));
+	            bean.setCognome(rs.getString("cognome"));
+	            bean.setCitta(rs.getString("citta"));
+	            bean.setIndirizzo(rs.getString("indirizzo"));
+	            bean.setPassword(rs.getString("password"));
+	            bean.setData_nascita(rs.getString("data_nascita"));
+	            bean.setAttivo(rs.getInt("attivo"));
+	            bean.setId_riepilogo(rs.getInt("id_riepilogo"));
+	         }
+
+	         System.out.println(bean);
+	         return bean;
+	      } finally {
+	         try {
+	            if (preparedStatement != null) {
+	               preparedStatement.close();
+	            }
+	         } finally {
+	            DriverManagerConnectionPool.releaseConnection(connection);
+	         }
+
+	      }
+	   }
 
    public Collection<Utente> doRetrieveAll(String order) throws SQLException {
       Connection connection = null;
@@ -91,7 +131,7 @@ public class UtenteModelDM implements Model<Utente> {
    public void doSave(Utente product) throws SQLException {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
-      String insertSQL = "INSERT INTO utente (email, password, nome, cognome, data_nascita, citta, indirizzo, id_riepilogo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      String insertSQL = "INSERT INTO utente (email, password, nome, cognome, data_nascita, citta, indirizzo, id_riepilogo, attivo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       try {
          connection = DriverManagerConnectionPool.getConnection();
@@ -104,6 +144,7 @@ public class UtenteModelDM implements Model<Utente> {
          preparedStatement.setString(6, product.getCitta());
          preparedStatement.setString(7, product.getIndirizzo());
          preparedStatement.setInt(8, product.getId_riepilogo());
+         preparedStatement.setInt(9, product.getAttivo());
          System.out.println("doSave: " + preparedStatement.toString());
          preparedStatement.executeUpdate();
          connection.commit();
@@ -152,6 +193,31 @@ public class UtenteModelDM implements Model<Utente> {
       }
 
    }
+   
+   public void doUpdateState(Utente product) throws SQLException {
+	      Connection connection = null;
+	      PreparedStatement preparedStatement = null;
+	      String updateSQL = "UPDATE utente SET attivo = '1' WHERE email = ? ";
+
+	      try {
+	         connection = DriverManagerConnectionPool.getConnection();
+	         preparedStatement = connection.prepareStatement(updateSQL);
+	         preparedStatement.setString(1, product.getEmail());
+	         System.out.println("doUpdate: " + preparedStatement.toString());
+	         preparedStatement.executeUpdate();
+	         connection.commit();
+	      } finally {
+	         try {
+	            if (preparedStatement != null) {
+	               preparedStatement.close();
+	            }
+	         } finally {
+	            DriverManagerConnectionPool.releaseConnection(connection);
+	         }
+
+	      }
+
+	   }
 
    public void doDelete(Utente product) throws SQLException {
       Connection connection = null;

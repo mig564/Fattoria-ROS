@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*" import="beans.Attivita" import="model.AttivitaModelDM"%>
-<%	boolean log = false;	%>
+<%	boolean log = false;	
+		if(request.getSession().getAttribute("email") != null) log = true;
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -50,18 +52,18 @@
   							<%} else { %>
   								<li class="nav-item dropdown">
 					  				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"	role="button" data-bs-toggle="dropdown" aria-expanded="false">
-										<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="$red-300" class="bi bi-person-circle" viewBox="0 0 16 16">
+										<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi bi-person-circle" viewBox="0 0 16 16">
 	 				 						<path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
 	  										<path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 	  										<path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
 										</svg>
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<li><a class="dropdown-item" href="#">Il mio profilo</a></li>
-										<li><a class="dropdown-item" href="#">Le mie prenotazioni</a></li>
-										<li><a class="dropdown-item" href="#">Le mie carte</a></li>
+										<li><a class="dropdown-item" href="ilmioprofilo.jsp">Il mio profilo</a></li>
+										<li><a class="dropdown-item" href="lemieprenotazioni.jsp">Le mie prenotazioni</a></li>
+										<li><a class="dropdown-item" href="lemiecarte.jsp">Le mie carte</a></li>
 										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" href="#">Logout</a></li>
+										<li><a class="dropdown-item" onclick="window.location.href='./Logout'">Logout</a></li>
 									</ul>
 								</li>
 					    	<%} %>	
@@ -117,7 +119,7 @@
 		<div class="container" style="margin-top: 40px;">
 			<div class="row">
 				<div class="col-md-6">
-					<h3 class="text-center title-green">BIOPARCO FATTORIA ROSABELLA</h3>
+					<h3 class="text-center title-green" style="margin-top: 22px;">BIOPARCO FATTORIA ROSABELLA</h3>
 					<h5 class="text-center">Un'avventura straordinaria</h5>
 					<p>
 						La più grande avventura che tu possa mai vivere.<br>
@@ -153,16 +155,18 @@
 					</div>
 				</div>
 		<%	} %>
+			</div>
+		</div>
 				
 		<!-- Terzo box: immagine (left) e testo (right) -->
 		<div class="container" style="margin-top: 40px;">
 			<div class="row">
 				<div class="col-md-6">
-					<img src="img/Fattoria didattiva.jpg" class="img-thumbnail" alt="">
+					<img src="img/Fattoria didattica.jpg" class="img-thumbnail" alt="">
 				</div>
 				
 				<div class="col-md-6">
-					<h3 class="text-center title-green">LA FATTORIA DIDATTICA</h3>
+					<h3 class="text-center title-green" style="margin-top: 22px;">LA FATTORIA DIDATTICA</h3>
 					<h5 class="text-center">Per i più piccoli</h5>
 					<p>
 						La più grande avventura che tu possa mai vivere.<br>

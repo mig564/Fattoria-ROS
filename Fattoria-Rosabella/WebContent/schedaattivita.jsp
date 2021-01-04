@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*" import="beans.Attivita" import="model.AttivitaModelDM"%>
-<%
-String id = (String) request.getParameter("id");
-Attivita attivita = (Attivita) request.getAttribute("attivita");
-if (attivita == null) {
-	response.sendRedirect(response.encodeRedirectURL("./SchedaAttivita?id="+id));
-	return; 
-}
-
-boolean log = false;	%>
+<%	String id = (String) request.getParameter("id");
+		Attivita attivita = (Attivita) request.getAttribute("attivita");
+		if (attivita == null) {
+			response.sendRedirect(response.encodeRedirectURL("./SchedaAttivita?id="+id));
+			return; 
+		}
+		boolean log = false;	
+		if(request.getSession().getAttribute("email") != null) log = true;
+%>
 <!DOCTYPE html>
 <html>
 	<head>

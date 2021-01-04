@@ -30,15 +30,20 @@ public class Registration extends HttpServlet {
       utente.setData_nascita(request.getParameter("data_nascita").trim());
       utente.setPassword(request.getParameter("password").trim());
       utente.setIndirizzo(request.getParameter("indirizzo").trim());
+      utente.setAttivo(0);
       utente.setId_riepilogo(random.nextInt());
 
       try {
          this.riepilogoOrdineModelDM.doSave(new RiepilogoOrdine(utente.getId_riepilogo()));
          this.utenteModelDM.doSave(utente);
+         System.out.println("Email: " + utente.getEmail());
+         System.out.println("    id: " + utente.getId_riepilogo()+"");
+         SendingEmail se = new SendingEmail(utente.getEmail(), utente.getId_riepilogo()+"");
+         se.sendMail();
       } catch (SQLException var6) {
       }
 
-      RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login.jsp");
+      RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/attivazioneaccount.jsp");
       dispatcher.forward(request, response);
    }
 

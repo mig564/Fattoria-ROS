@@ -2,10 +2,12 @@
 <%@page import="beans.Attivita" import="model.CalendarioModelDM"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*"%>
-<%Collection<?> attivitas = (Collection<?>) request.getAttribute("attivitas");
-String error = (String) request.getAttribute("error");
-String date = (String) request.getAttribute("date");
-boolean log = false;	%>
+		<%Collection<?> attivitas = (Collection<?>) request.getAttribute("attivitas");
+		String error = (String) request.getAttribute("error");
+		String date = (String) request.getAttribute("date");
+		boolean log = false;	
+		if(request.getSession().getAttribute("email") != null) log = true;		
+%>
 <!DOCTYPE html>
 <html>
 	<head>
