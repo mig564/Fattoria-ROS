@@ -69,6 +69,8 @@ public class PagamentoControl extends HttpServlet {
 						for (Formare formare : formares) {
 							prenotazioneAttivitaModelDM.doSave(new PrenotazioneAttivita(formare.getId_attivita(), id_prenotazione, formare.getDate(), formare.getOra()));
 						}
+						formares.clear();
+						request.getSession().setAttribute("formCart", formares);
 						response.sendRedirect("index.jsp");
 					}
 				}
