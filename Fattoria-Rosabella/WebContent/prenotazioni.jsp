@@ -94,6 +94,8 @@ boolean log = false;	%>
 	 							 	<option value="Escursione">Escursioni</option>
 	 							 	<option value="Visita guidata">Visite guidate</option>
 	 							 	<option value="Balnezione">Balnezione</option>
+	 							 	<option value="Fattoria didattica">Fattoria didattica</option>
+	 							 	<option value="Ristoro">Ristoro</option>
 		 						 </select>
 							<label for="prenotazioneData">Seleziona una categoria</label>
 						</div>
@@ -107,41 +109,49 @@ boolean log = false;	%>
 			
 		</div>
 		
-	<% 	if (attivitas != null && attivitas.size() > 0) {
-			CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
+	<% if (attivitas != null && attivitas.size() > 0) {%>
+			<h2 class="text-center title-green" style="margin-top: 42px; ">Attività disponibili</h2>
+		<%CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
 			Iterator<?> iterator = attivitas.iterator();
 			while (iterator.hasNext()) {
 				Attivita bean = (Attivita) iterator.next();
 				Collection<?> calendarios = (Collection<?>) calendarioModelDM.doRetrieveByAtt(bean.getId_attivita(), date);
 				Iterator<?> iterator2 = calendarios.iterator();%>
-		<div class="container">
-				<!-- card orizzontale per attività -->
+				<div class="container">
 				
-    		<form name="selezioneAttivita" method="post" action="CarrelloControl?data=<%=date %>&action=aggiungi&id=<%=bean.getId_attivita() %>" onsubmit="">
-    		<div class="row" style="height: 150px; margin-top: 100px;">
-						<div class="col-3 card-shadow" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
-						<div class="col-9 card-shadow" style="background-color: white; border-radius: 0px 30px 30px 0px;">
+					<!-- card orizzontale per attività -->
+    				<form name="selezioneAttivita" method="post" action="CarrelloControl?data=<%=date %>&action=aggiungi&id=<%=bean.getId_attivita() %>" onsubmit="">
+    					<div class="row" style="margin-top: 60px;" >
+							<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
+							<div class="col-md-7" style="background-color: white; border-radius: 0px 30px 30px 0px;  border: 1px solid rgba(0,0,0,.125); padding: 22px;">
 							
-							<h3><%=bean.getNome() %></h3> 
-							<p>Prezzo: <%=bean.getPrezzo() %> $</p>
-							<p>Orario <select style="margin-left: 5px;" name="ora">
+								<h3 class="title-green"><%=bean.getNome() %></h3> 
+								<p>Prezzo: <%=bean.getPrezzo() %>,00 Euro</p>
+								<p>Orario <select style="margin-left: 5px;" name="ora">
 								<%while (iterator2.hasNext()) {
 									Calendario calendario = (Calendario) iterator2.next();%>
 									<option value="orario1"><%=calendario.getOra() %></option>
-							<%	} %></select></p> 
-							<p>partecipanti <select name="partecipanti" style="margin-left: 5px;">
-								<option value="1" selected="selected">1 </option>
-								<option value="2">2 </option>
-								<option value="3">3 </option></select>
-								<button type="submit" class="btn btn-success" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
+								<%} %></select></p> 
+								<p>Partecipanti
+								
+								<!-- PRENDERE NUMERO MASSIMO DI PARTECIPANTI DA CALENDARIO E NON DA ATTIVITA' -->
+								
+									<select name="partecipanti" style="margin-left: 5px;">
+										<%int i;
+											for(i=1; i<=bean.getMax_persone(); i++) {%>
+												<option value="<%=i %>"><%=i %></option>
+											<%} %>
+										</select>
+								<button type="submit" class="btn btn-success btn-lg" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
+							</div>
 						</div>
+					</form>
 				</div>
-				</form>
-			</div>
-		<% 		}
+		<% 	}
 			} else if (error != null){ %> 
 				<p><%=error%> </p> <%
 			} %>
+			
 		<!-- Footer -->
 		<div class="container-fluid" style="background-color: #198754; margin-top: 100px; padding: 22px 0px;">
 			<div class="container">

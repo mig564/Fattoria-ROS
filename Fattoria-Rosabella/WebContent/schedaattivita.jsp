@@ -87,8 +87,8 @@ boolean log = false;	%>
 				<p class="text-center">Un'avventura straordinaria!</p>
 			</div>
 
-			<div class="row" style="border-radius: 12px; box-shadow: 10px 10px 5px grey;">
-				<div class= "col-md-5 cover-img" style="background-image: url('img/<%=attivita.getNome()%>.jpg');  border-radius: 12px 0 0 12px;"></div>
+			<div class="row" style=" border: 1px solid rgba(0,0,0,.125);">
+				<div class= "col-md-5 cover-img" style="background-image: url('img/<%=attivita.getNome()%>.jpg');"></div>
 
 				<div class="col-md-7" style="padding: 22px">
 					<div class="row">
@@ -118,7 +118,7 @@ boolean log = false;	%>
 						</div>
 					</div>
 
-					<button type="button" class="btn btn-outline-success" onclick="window.location.href='login.jsp'">VAI ALLE PRENOTAZIONI</button>
+					<button type="button" class="btn btn-outline-success" onclick="window.location.href='login.jsp'" style="margin-top: 22px;">VAI ALLE PRENOTAZIONI</button>
 					</div>
 				</div>
 			</div>

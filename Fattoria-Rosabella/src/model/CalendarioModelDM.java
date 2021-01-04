@@ -59,6 +59,7 @@ public class CalendarioModelDM implements Model<Calendario> {
 	            Calendario bean = new Calendario();
 	            bean.setDate(rs.getString("data"));
 	            bean.setOra(rs.getString("ora"));
+	            bean.setPartecipanti(rs.getInt("partecipanti"));
 	            bean.setId_attivita(rs.getInt("id_attivita"));
 	            calendari.add(bean);
 	         }
