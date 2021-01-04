@@ -64,11 +64,11 @@
 										</svg>
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<li><a class="dropdown-item" href="#">Il mio profilo</a></li>
-										<li><a class="dropdown-item" href="#">Le mie prenotazioni</a></li>
-										<li><a class="dropdown-item" href="#">Le mie carte</a></li>
+										<li><a class="dropdown-item" href="ilmioprofilo.jsp">Il mio profilo</a></li>
+										<li><a class="dropdown-item" href="lemieprenotazioni.jsp">Le mie prenotazioni</a></li>
+										<li><a class="dropdown-item" href="lemiecarte.jsp">Le mie carte</a></li>
 										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" href="#">Logout</a></li>
+										<li><a class="dropdown-item" onclick="window.location.href='./Logout'">Logout</a></li>
 									</ul>
 								</li>
 					    	<%} %>	

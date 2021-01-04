@@ -43,7 +43,7 @@
 		<div class="container">
 			<h1 class="text-center title-green" style="margin-top: 40px;">GRAZIE PER LA REGISTRAZIONE</h1>
 			<p class="text-center">Controlla la tua casella di posta eletronica e conferma la registrazione.</p>
-			<p class="text-center"><img alt="error" src="img/mailsent.svg" height="600px"></p>
+			<p class="text-center"><img alt="error" src="img/mailsent.svg" height="460px" style="margin: 42px;"></p>
 		</div>
 
 		<!-- Footer -->

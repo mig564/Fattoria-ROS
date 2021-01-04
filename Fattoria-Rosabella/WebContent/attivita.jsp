@@ -59,11 +59,11 @@
 										</svg>
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<li><a class="dropdown-item" href="#">Il mio profilo</a></li>
-										<li><a class="dropdown-item" href="#">Le mie prenotazioni</a></li>
-										<li><a class="dropdown-item" href="#">Le mie carte</a></li>
+										<li><a class="dropdown-item" href="ilmioprofilo.jsp">Il mio profilo</a></li>
+										<li><a class="dropdown-item" href="lemieprenotazioni.jsp">Le mie prenotazioni</a></li>
+										<li><a class="dropdown-item" href="lemiecarte.jsp">Le mie carte</a></li>
 										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" href="#">Logout</a></li>
+										<li><a class="dropdown-item" onclick="window.location.href='./Logout'">Logout</a></li>
 									</ul>
 								</li>
 					    	<%} %>	
@@ -75,11 +75,16 @@
 		
 		<!-- card per le attività  -->
 		<!-- il nome della categoria va inserito ogni volta dinamicamente prima delle card di quella categoria -->
-		
-		<div class="container" style="margin-top: 40px;">
-			<h3 class="text-center title-green">Scopri le nostre attività</h3>
-			<p class="text-center">Una vasta gamma di attività green pensate per trascorrere del tempo all'aria aperta</p>
+		<!-- Immagine di copertina -->
+		<div class="container-fluid cover-img" style="background-image: url('img/cascata.jpg'); margin-bottom: 42px;">
+			<div class="container">
+				<div class="text-center cover-text">
+					<h3 class="title-green">Scopri le nostre attività</h3>
+					<p style="color: white;">Una vasta gamma di attività green pensate per trascorrere del tempo all'aria aperta</p>
+				</div>
+			</div>
 		</div>
+		
 
 		<div class="container">
 		<div class="row">

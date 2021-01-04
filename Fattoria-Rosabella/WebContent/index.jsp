@@ -86,21 +86,21 @@
 					<div class="text-center carousel-text">
 						<h3 class="title-green">Immergiti nella natura</h3>
 						<p style="color: white;">Un'avventura incredibile immersi nel verde</p>
-						<button type="button" class="btn btn-outline-success">Tutte le attività</button>
+						<button type="button" class="btn btn-outline-success" onclick="window.location.href='attivita.jsp'">Tutte le attività</button>
 					</div>
 				</div>
 				<div class="carousel-item text-center" style="background-image: url('img/escursione.jpg');">
 					<div class="text-center carousel-text">
 						<h3 class="title-green">Scopri le nostre escursioni</h3>
 						<p style="color: white;">Scegli un'escursione e lanciati in una nuova avventura</p>
-						<button type="button" class="btn btn-outline-success">Le escursioni</button>
+						<button type="button" class="btn btn-outline-success" onclick="window.location.href='attivita.jsp'">Le escursioni</button>
 					</div>
 				</div>
 				<div class="carousel-item text-center" style="background-image: url('img/cascata.jpg');">
 					<div class="text-center carousel-text">
 						<h3 class="title-green">Cascata della Madonnella</h3>
 						<p style="color: white;">La nostra attrazione principale</p>
-						<button type="button" class="btn btn-outline-success">Balneazione</button>
+						<button type="button" class="btn btn-outline-success" onclick="window.location.href='attivita.jsp'">Balneazione</button>
 					</div>
 				</div>
 			</div>
@@ -127,7 +127,7 @@
 						Tra le attività proposte abbiamo escursione, visite guidate, pic-nic, bagno alla cascata della Maronnella e, per i più piccoli, la fattoria didattica. Naviga il nostro sito per saperne di più. Inoltre, è possibile prenotare le attività citate amche attraverso il sito!<br>
 						Non perdere la possibilità di prenotare al più grande bioparco del sud Italia, <strong>Fattoria Rosabella</strong> ti aspetta!						
 					</p>
-					<p class="text-center"><button type="button" class="btn btn-outline-success">Scopri di più</button></p>
+					<p class="text-center"><button type="button" class="btn btn-outline-success" onclick="window.location.href='prenotazioni.jsp'">Scopri di più</button></p>
 				</div>
 				<div class="col-md-6">
 					<img src="img/ponte.jpg" class="img-thumbnail" alt="">
@@ -174,7 +174,7 @@
 						Tra le attività proposte abbiamo escursione, visite guidate, pic-nic, bagno alla cascata della Maronnella e, per i più piccoli, la fattoria didattica. Naviga il nostro sito per saperne di più. Inoltre, è possibile prenotare le attività citate amche attraverso il sito!<br>
 						Non perdere la possibilità di prenotare al più grande bioparco del sud Italia, <strong>Fattoria Rosabella</strong> ti aspetta!						
 					</p>
-					<p class="text-center"><button type="button" class="btn btn-outline-success">Scopri di più</button></p>
+					<p class="text-center"><button type="button" class="btn btn-outline-success" onclick="window.location.href='schedaattivita.jsp?id=200'">Scopri di più</button></p>
 				</div>
 			</div>
 		</div>
