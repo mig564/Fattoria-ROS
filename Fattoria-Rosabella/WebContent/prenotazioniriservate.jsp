@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*"%>
 <%Boolean adminRoles = (Boolean) session.getAttribute("adminFilterRoles");
-if ((adminRoles == null) || (!adminRoles.booleanValue())){	
+if ((adminRoles == null) || (!adminRoles.booleanValue())) {	
    	response.sendRedirect("./login-form-filter.jsp");
    	return;
 } %>
@@ -76,11 +76,8 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())){
 				</div>
 			</div>
 		
-		
-		
 		</div>
 		
-
 		<!-- Bootstrap - JavaScript -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"

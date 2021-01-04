@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*"%>
 <%Boolean adminRoles = (Boolean) session.getAttribute("adminFilterRoles");
-if ((adminRoles == null) || (!adminRoles.booleanValue())){	
+if ((adminRoles == null) || (!adminRoles.booleanValue())) {	
    	response.sendRedirect("./login-form-filter.jsp");
    	return;
 } %>
