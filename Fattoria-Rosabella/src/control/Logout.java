@@ -4,7 +4,6 @@ import beans.Formare;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,24 +20,20 @@ public class Logout extends HttpServlet {
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       HttpSession session = request.getSession(true);
       if (session != null) {
-         @SuppressWarnings("unchecked")
-		ArrayList<Formare> formCart = (ArrayList<Formare>)request.getSession().getAttribute("formCart");
-
-         try {
-            formareModelDM.doDelete(new Formare((Integer)request.getAttribute(""), 0, "", "", 0));
-            Iterator<Formare> var6 = formCart.iterator();
-
-            while(var6.hasNext()) {
-               Formare formare = (Formare)var6.next();
-               formareModelDM.doSave(formare);
+        @SuppressWarnings("unchecked")
+		ArrayList<Formare> formCart = (ArrayList<Formare>) request.getSession().getAttribute("formCart");
+        int id_riepilogo = (int) request.getSession().getAttribute("carrello");
+        try {
+            formareModelDM.doDelete(new Formare(id_riepilogo, 0, "", "", 0));
+            for (Formare formare : formCart) {
+            	formareModelDM.doSave(formare);
             }
          } catch (SQLException var7) {
+        	 var7.printStackTrace();
          }
-
          session.invalidate();
          response.sendRedirect("index.jsp");
       }
-
    }
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
