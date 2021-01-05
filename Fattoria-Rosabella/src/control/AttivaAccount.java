@@ -1,6 +1,8 @@
 package control;
 
 import java.io.IOException;
+import java.util.GregorianCalendar;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,12 +20,26 @@ public class AttivaAccount extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("key1");
 		String id = request.getParameter("key2");
+		int sendTime = Integer.parseInt(request.getParameter("key3"));
+		
+		GregorianCalendar dataAttuale = new GregorianCalendar();
+		int hour = dataAttuale.get(GregorianCalendar.HOUR);
+		int minute = dataAttuale.get(GregorianCalendar.MINUTE);
+		int second = dataAttuale.get(GregorianCalendar.SECOND);
+		int now = second + (minute*60) + (hour*3600);
+		
 		String error = "";
 		try {
 			Utente utente = this.utenteModelDM.doRetrieveByKeyAndInattiveState(email, id);
 			if(utente == null) {
 				error = "Utente non trovato. Per favore, registrati di nuovo.";
 	            request.setAttribute("error", error);
+	            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login.jsp");
+	            dispatcher.forward(request, response);
+			} else if((now - sendTime) > 86600) {
+				error = "Il link è scaduto. Per favore, registrati di nuovo.";
+	            request.setAttribute("error", error);
+	            utenteModelDM.doDelete(utente);
 	            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login.jsp");
 	            dispatcher.forward(request, response);
 			} else {

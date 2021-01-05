@@ -1,5 +1,6 @@
 package control;
 
+import java.util.GregorianCalendar;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -39,13 +40,17 @@ public class SendingEmail {
 		});
 		
 		try {
-			
+			GregorianCalendar dataAttuale = new GregorianCalendar();
+			int hour = dataAttuale.get(GregorianCalendar.HOUR);
+			int minute = dataAttuale.get(GregorianCalendar.MINUTE);
+			int second = dataAttuale.get(GregorianCalendar.SECOND);
+			int sendTime = second + (minute*60) + (hour*3600);
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(email));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
 			message.setSubject("Email Verification Link");
 			message.setText("Click this link to confirm your email address and complete setup for your account."
-					+ "\n\nVerification Link: " + "http://localhost:8080/Fattoria-Rosabella/AttivaAccount?key1=" + userEmail + "&key2=" + id);
+					+ "\n\nVerification Link: " + "http://localhost:8080/Fattoria-Rosabella/AttivaAccount?key1=" + userEmail + "&key2=" + id + "&key3=" + sendTime);
 			
 			Transport.send(message);
 			

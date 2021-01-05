@@ -31,7 +31,7 @@ public class Login extends HttpServlet {
 
       try {
          Utente utente = this.utenteModelDM.doRetrieveByKey(email);
-         if (utente == null || utente.getEmail() == null || utente.getEmail().equals("") || !utente.getPassword().equals(password)) {
+         if (utente == null || utente.getEmail() == null || utente.getEmail().equals("") || !utente.getPassword().equals(password) || utente.getAttivo() == 0) {
             error = "Errore. Riprova.";
             request.setAttribute("error", error);
             RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login.jsp");

@@ -30,6 +30,7 @@ public class UtenteModelDM implements Model<Utente> {
             bean.setIndirizzo(rs.getString("indirizzo"));
             bean.setPassword(rs.getString("password"));
             bean.setData_nascita(rs.getString("data_nascita"));
+            bean.setAttivo(rs.getInt("attivo"));
             bean.setId_riepilogo(rs.getInt("id_riepilogo"));
          }
 
