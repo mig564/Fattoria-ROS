@@ -31,11 +31,11 @@
     		
 	    		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 	      			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	        			<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">HOME</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">ATTIVITÀ</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">PRENOTAZIONI</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">CONTATTI</a></li>
-					</ul>
+	        			<li class="nav-item"><a class="nav-link active" aria-current="page" href="index.jsp">HOME</a></li>
+						<li class="nav-item"><a class="nav-link" href="attivita.jsp">ATTIVITÀ</a></li>
+						<li class="nav-item"><a class="nav-link" href="prenotazioni.jsp">PRENOTAZIONI</a></li>
+						<li class="nav-item"><a class="nav-link" href="contatti.jsp">CONTATTI</a></li>
+					</ul>>
     			</div>
   			</div>
 		</nav>
