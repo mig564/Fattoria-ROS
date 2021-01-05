@@ -76,7 +76,9 @@
     
     	<div class="container" style="margin-top: 40px;">
     		<div class="row">
-    			<form name="registrazione" method="post" action="AreaPersonale" onSubmit="">
+    		<div class ="col-md-7">
+    			<form name="aggiornamento" method="post" action="AreaPersonale" onSubmit="" style="margin-top: 30px;">
+
 						<div class="form-floating" style="margin-bottom: 22px;">
 							<input type="text" class="form-control"  value="<%=utente.getNome() %>" name="nome" id="nomeUtente"  placeholder="Nome">
 							<label for="nomeUtente">Nome</label>
@@ -97,20 +99,14 @@
 							<input type="text" class="form-control" value="<%=utente.getCitta() %>" name="citta" id="citta"  placeholder="Città">
 							<label for="citta">Città</label>
 						</div>
-						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="email" class="form-control" value="<%=utente.getEmail() %>" name="email" id="email" aria-describedby="emailHelp" placeholder="Email">
-							<label for="email">Email</label>
-						</div>
-						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="password" class="form-control" value="<%=utente.getPassword() %>" name="password" id="primaPassword"	placeholder="Password">
-							<label for="primaPassword">Password</label>
-						</div>
-						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="password" class="form-control" id="secondaPassword" placeholder="Ripeti Password">
-							<label for="secondaPassword">Ripeti password</label>
-						</div>
+						
 						<p class="text-center"><button type="submit" class="btn btn-success">Aggiorna</button></p>
 					</form>
+				</div>
+				
+				<div class = "col-md-5">
+					<img alt="" src="img/myarea.svg" height="500px">
+				</div>
     		
     		</div>
     		

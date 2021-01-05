@@ -44,7 +44,7 @@ public class AttivaAccount extends HttpServlet {
 	            dispatcher.forward(request, response);
 			} else {
 				utenteModelDM.doUpdateState(utente);
-				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login.jsp");
+				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/confermaattivazioneaccount.jsp");
 	            dispatcher.forward(request, response);
 			}
  			

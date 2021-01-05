@@ -81,6 +81,46 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		<!-- form per richieste degli utenti  -->
+	
+    
+    	<div class="container" style="margin-top: 40px;">
+    		<div class="row">
+    		<div class ="col-md-7">
+    			<h3 class="title-green text-center" >Richiedi informazioni</h3>
+    			<form name="richiediInfo" method="post" action="SendingInfoEmailControl" onSubmit="" style="margin-top: 30px;">
+
+						<div class="form-floating" style="margin-bottom: 22px;">
+							<input type="text" class="form-control"  name="nome" id="nomeUtente"  placeholder="Nome">
+							<label for="nomeUtente">Nome</label>
+						</div>
+						<div class="form-floating" style="margin-bottom: 22px;">
+							<input type="text" class="form-control"  name="cognome" id="cognomeUtente"  placeholder="Cognome">
+							<label for="cognomeUtente">Cognome</label>
+						</div>
+						
+						<div class="form-floating" style="margin-bottom: 22px;">
+							<input type="text" class="form-control" name="email" id="email"  placeholder="Email">
+							<label for="email">Email</label>
+						</div>
+						<div class="form-floating" style="margin-bottom: 22px;">
+  							<textarea class="form-control" placeholder="messaggio" id="messaggio" name= "messaggio" style="height: 100px"></textarea>
+ 							 <label for="messaggio">Lascia un messaggio...</label>
+ 						</div>
+						
+						<p class="text-center"><button type="submit" class="btn btn-success">Invio</button></p>
+					</form>
+				</div>
+				
+				<div class = "col-md-5">
+					<img alt="" src="img/faq.svg" height="400px">
+				</div>
+    		
+    		</div>
+    		
+    	</div>
 	
 		
 		<!-- Footer -->

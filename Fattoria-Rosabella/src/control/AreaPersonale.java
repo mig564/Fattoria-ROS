@@ -21,14 +21,15 @@ public class AreaPersonale extends HttpServlet {
       System.out.println(action);
       try {
          if (action == null) {
-            Utente utente = new Utente();
-            utente.setEmail(request.getParameter("email").trim());
-            utente.setNome(request.getParameter("nome").trim());
-            utente.setCognome(request.getParameter("cognome").trim());
-            utente.setCitta(request.getParameter("citta").trim());
-            utente.setData_nascita(request.getParameter("data_nascita").trim());
-            utente.setPassword(request.getParameter("password").trim());
-            utente.setIndirizzo(request.getParameter("indirizzo").trim());
+        	Utente utente = utenteModelDM.doRetrieveByKey(email);
+            Utente newUtente = new Utente();
+            newUtente.setEmail(utente.getEmail());
+            newUtente.setPassword(utente.getPassword());
+        	newUtente.setNome(request.getParameter("nome").trim());
+        	newUtente.setCognome(request.getParameter("cognome").trim());
+        	newUtente.setCitta(request.getParameter("citta").trim());
+        	newUtente.setData_nascita(request.getParameter("data_nascita").trim());
+        	newUtente.setIndirizzo(request.getParameter("indirizzo").trim());
             utenteModelDM.doUpdate(utente);
          } else {
             request.removeAttribute("utente");
