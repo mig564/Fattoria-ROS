@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Attivita;
+import beans.Prenotazione;
 import model.AttivitaModelDM;
 import model.PrenotazioneModelDM;
 
@@ -37,6 +38,16 @@ public class AdminControl extends HttpServlet {
 							attivitaModelDM.doSave(new Attivita(Integer.parseInt(request.getParameter("id_attivita")), request.getParameter("categoria"), request.getParameter("nome"), request.getParameter("descrizione"), Integer.parseInt(request.getParameter("maxpersone")), Integer.parseInt(request.getParameter("prezzo"))));
 						} else if (action.equals("rimuovi")) {
 							attivitaModelDM.doDelete(new Attivita(Integer.parseInt(request.getParameter("id_attivita")), "", "", "", 0, 0));
+						} else if (action.equals("update")) {
+							attivitaModelDM.doUpdate(new Attivita(Integer.parseInt(request.getParameter("id_attivita")), request.getParameter("categoria"), request.getParameter("nome"), request.getParameter("descrizione"), Integer.parseInt(request.getParameter("maxpersone")), Integer.parseInt(request.getParameter("prezzo"))));
+						}
+					} else if (tipo.equals("prenotazioni")) {
+						if (action.equals("")) {
+							
+						} else if (action.equals("rimuovi")) {
+							prenotazioneModelDM.doDelete(new Prenotazione(Integer.parseInt(request.getParameter("id_prenotazione")), "", "", 0, 0));
+						} else if (action.equals("update")) {
+							
 						}
 					}
 				}
