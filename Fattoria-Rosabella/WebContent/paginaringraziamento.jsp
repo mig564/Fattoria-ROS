@@ -8,7 +8,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="refresh" content="10;URL=http://localhost:8080/Fattoria-Rosabella/index.jsp">
+		<meta http-equiv="refresh" content="6;URL=http://localhost:8080/Fattoria-Rosabella/index.jsp">
 		<link href="css/style.css" rel="stylesheet">
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
@@ -76,9 +76,9 @@
 		
 		<!-- Box rigranziamento -->
 		<div class="container">
-			<h1 class="text-center title-green" style="margin-top: 40px;">REGISTRAZONE AVVENUTA CON SUCCESSO</h1>
-			<p class="text-center">Benvenuto al portale online della Fattoria Rosabella.<br>Verrai reindirizzato alla pagina di login.</p>
-			<p class="text-center"><img alt="error" src="img/confirmed.svg" height="460px" style="margin: 42px;"></p>
+			<h1 class="text-center title-green" style="margin-top: 40px;">GRAZIE DEL TUO MESSAGGIO</h1>
+			<p class="text-center">Riceverai a breve una mail dal nostro staff.<br>Verrai reindirizzato alla Homepage.</p>
+			<p class="text-center"><img alt="error" src="img/ringraziamento.svg" height="460px" style="margin: 42px;"></p>
 		</div>
 		
 		

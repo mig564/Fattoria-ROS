@@ -27,7 +27,7 @@ public class SendingEmail {
 		String password = "Lautaro.1";
 		
 		Properties theProperties = new Properties();
-		
+		theProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 		theProperties.put("mail.smtp.auth", "true");
 		theProperties.put("mail.smtp.starttls.enable", "true");
 		theProperties.put("mail.smtp.host", "smtp.gmail.com");

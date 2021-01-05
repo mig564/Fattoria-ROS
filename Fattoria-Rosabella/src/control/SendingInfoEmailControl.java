@@ -41,7 +41,7 @@ public class SendingInfoEmailControl extends HttpServlet {
 		}
 		
 		sendMail(msg, email, nome, cognome);
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/contatti.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/paginaringraziamento.jsp");
 	    dispatcher.forward(request, response);
 	}
 
