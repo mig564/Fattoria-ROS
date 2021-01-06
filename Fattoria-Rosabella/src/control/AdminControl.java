@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,6 +42,8 @@ public class AdminControl extends HttpServlet {
 						} else if (action.equals("update")) {
 							attivitaModelDM.doUpdate(new Attivita(Integer.parseInt(request.getParameter("id_attivita")), request.getParameter("categoria"), request.getParameter("nome"), request.getParameter("descrizione"), Integer.parseInt(request.getParameter("maxpersone")), Integer.parseInt(request.getParameter("prezzo"))));
 						}
+						RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/attivitariservate.jsp");
+					    dispatcher.forward(request, response);
 					} else if (tipo.equals("prenotazioni")) {
 						if (action.equals("")) {
 							
@@ -49,6 +52,8 @@ public class AdminControl extends HttpServlet {
 						} else if (action.equals("update")) {
 							
 						}
+						RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/prenotazioniriservate.jsp");
+					    dispatcher.forward(request, response);
 					}
 				}
 			} catch (NumberFormatException | SQLException e) {
