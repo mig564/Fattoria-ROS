@@ -48,7 +48,7 @@
 					<!-- Form di login -->
 					
 					<% String error = (String) request.getAttribute("error"); %>
-					<form name="login" method="post" action="Login" onSubmit="" >
+					<form name="login" method="post" action="Login">
 						<h3 class="text-center title-green" style="margin-bottom: 22px;">LOGIN</h3>
 						<div class="form-floating" style="margin-bottom: 22px;">
 							<input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email">
@@ -70,7 +70,7 @@
 					</form>
 					
 					<!-- Form di regisrazione -->
-					<form name="registrazione" method="post" action="Registration" onSubmit="" style="display: none;">
+					<form name="registrazione" method="post" action="Registration" onSubmit="return check_reg();" style="display: none;">
 						<h3 class="text-center title-green" style="margin-bottom: 22px;">REGISTRAZIONE</h3>
 						<div class="form-floating" style="margin-bottom: 22px;">
 							<input type="text" class="form-control" name="nome" id="nomeUtente"  placeholder="Nome">
@@ -99,10 +99,12 @@
 						<div class="form-floating" style="margin-bottom: 22px;">
 							<input type="password" class="form-control" name="password" id="primaPassword"	placeholder="Password">
 							<label for="primaPassword">Password</label>
+							<p id="errorPassReg"></p>
 						</div>
 						<div class="form-floating" style="margin-bottom: 22px;">
 							<input type="password" class="form-control" id="secondaPassword" placeholder="Ripeti Password">
 							<label for="secondaPassword">Ripeti password</label>
+							<p id="errorRepeatPass"></p>
 						</div>
 					
 						<p class="text-center"><button type="submit" class="btn btn-success">Registrati</button></p>
