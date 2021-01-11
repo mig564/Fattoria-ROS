@@ -10,11 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.AttivitaModelDM;
 
+/**
+ * Servlet implementation class AttivitaControl
+ */
 @WebServlet({"/AttivitaControl"})
 public class AttivitaControl extends HttpServlet {
    private static final long serialVersionUID = 1L;
    static AttivitaModelDM attivitaModelDM = new AttivitaModelDM();
 
+   /**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       request.removeAttribute("attivita");
 
@@ -27,7 +33,10 @@ public class AttivitaControl extends HttpServlet {
       dispatcher.forward(request, response);
    }
 
-   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      this.doGet(request, response);
-   }
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+   	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   		this.doGet(request, response);
+   	}
 }

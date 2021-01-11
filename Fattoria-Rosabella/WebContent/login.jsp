@@ -162,7 +162,3 @@
 		</script>
 </body>
 </html>
-
-
-
-

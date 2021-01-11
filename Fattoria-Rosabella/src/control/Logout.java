@@ -12,11 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.FormareModelDM;
 
+/**
+ * Servlet implementation class Logout
+ */
 @WebServlet({"/Logout"})
 public class Logout extends HttpServlet {
    private static final long serialVersionUID = 1L;
    private static FormareModelDM formareModelDM = new FormareModelDM();
 
+   /**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       HttpSession session = request.getSession(true);
       if (session != null) {
@@ -35,7 +41,10 @@ public class Logout extends HttpServlet {
          response.sendRedirect("index.jsp");
       }
    }
-
+   
+   /**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       this.doGet(request, response);
    }

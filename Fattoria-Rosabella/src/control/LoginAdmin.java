@@ -46,6 +46,12 @@ public class LoginAdmin extends HttpServlet {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param email
+	 * @param password
+	 * @throws Exception
+	 */
 	private void checkLogin(String email, String password) throws Exception {
 		AdminModelDM adminModel = new AdminModelDM();
 		Admin admin = adminModel.doRetrieveByKey(email);

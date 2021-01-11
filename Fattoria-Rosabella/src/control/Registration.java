@@ -14,12 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 import model.RiepilogoOrdineModelDM;
 import model.UtenteModelDM;
 
+/**
+ * @author panica
+ * Servlet implementation class Registration
+ */
 @WebServlet({"/Registration"})
 public class Registration extends HttpServlet {
    private static final long serialVersionUID = 1L;
    private UtenteModelDM utenteModelDM = new UtenteModelDM();
    private RiepilogoOrdineModelDM riepilogoOrdineModelDM = new RiepilogoOrdineModelDM();
 
+   /**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       Random random = new Random();
       Utente utente = new Utente();
@@ -41,13 +48,18 @@ public class Registration extends HttpServlet {
          SendingEmail se = new SendingEmail(utente.getEmail(), utente.getId_riepilogo()+"");
          se.sendMail();
       } catch (SQLException var6) {
+    	  // TODO
       }
 
       RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/attivazioneaccount.jsp");
       dispatcher.forward(request, response);
    }
 
+   /**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       this.doGet(request, response);
    }
+   
 }

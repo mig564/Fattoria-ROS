@@ -17,6 +17,9 @@ import model.FormareModelDM;
 import model.RiepilogoOrdineModelDM;
 import model.UtenteModelDM;
 
+/**
+ * Servlet implementation class Login
+ */
 @WebServlet({"/Login"})
 public class Login extends HttpServlet {
    private static final long serialVersionUID = 1L;
@@ -24,6 +27,9 @@ public class Login extends HttpServlet {
    private RiepilogoOrdineModelDM riepilogoOrdineModelDM = new RiepilogoOrdineModelDM();
    private FormareModelDM formareModelDM = new FormareModelDM();
 
+   /**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       String error = "";
       String email = request.getParameter("email");
@@ -51,10 +57,13 @@ public class Login extends HttpServlet {
         	 }
          }
       } catch (SQLException var10) {
-    	  
+    	  response.sendRedirect("error.html");
       }
    }
 
+   /**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       this.doGet(request, response);
    }

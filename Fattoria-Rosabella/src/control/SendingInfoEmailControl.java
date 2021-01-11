@@ -17,17 +17,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ * @author panica
+ * Servlet implementation class SendingInfoEmailControl
+ */
 @WebServlet("/SendingInfoEmailControl")
 public class SendingInfoEmailControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
     public SendingInfoEmailControl() {
-        super();
-       
+        super(); 
     }
 
-	
+    /**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String nome = (String) request.getParameter("nome");
@@ -45,12 +49,21 @@ public class SendingInfoEmailControl extends HttpServlet {
 	    dispatcher.forward(request, response);
 	}
 
-	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		doGet(request, response);
 	}
 	
+	/**
+	 * 
+	 * @param msg
+	 * @param emailUtente
+	 * @param nomeUtente
+	 * @param cognomeUtente
+	 */
 	public void sendMail(String msg, String emailUtente, String nomeUtente, String cognomeUtente) {
 		// Enter the email address and password for the account from which verification link will be send
 		String email = "fattoriarosabella1@gmail.com";
@@ -68,7 +81,6 @@ public class SendingInfoEmailControl extends HttpServlet {
 				return new PasswordAuthentication(email, password);
 			}
 		});
-		
 		
 		try {
 			MimeMessage message = new MimeMessage(session);
@@ -88,6 +100,3 @@ public class SendingInfoEmailControl extends HttpServlet {
 	}
 
 }
-
-
-
