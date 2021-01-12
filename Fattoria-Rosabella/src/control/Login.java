@@ -18,7 +18,9 @@ import model.RiepilogoOrdineModelDM;
 import model.UtenteModelDM;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class Login
+ * Questa servlet effetua il login dell'utente
  */
 @WebServlet({"/Login"})
 public class Login extends HttpServlet {

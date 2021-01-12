@@ -13,7 +13,9 @@ import beans.Admin;
 import model.AdminModelDM;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class LoginAdmin
+ * Questa classe gestisce il login dell'admin
  */
 @WebServlet("/LoginAdmin")
 public class LoginAdmin extends HttpServlet {
@@ -47,10 +49,10 @@ public class LoginAdmin extends HttpServlet {
 	}
 	
 	/**
-	 * 
-	 * @param email
-	 * @param password
-	 * @throws Exception
+	 * Controllo login
+	 * @param email email admin
+	 * @param password password admin
+	 * @throws Exception eccezione se login sbagliato
 	 */
 	private void checkLogin(String email, String password) throws Exception {
 		AdminModelDM adminModel = new AdminModelDM();

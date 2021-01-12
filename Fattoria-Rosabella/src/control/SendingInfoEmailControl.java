@@ -18,8 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author panica
+ * @author pa.ni.ca
  * Servlet implementation class SendingInfoEmailControl
+ * questa servelt controlla la validità dell'email dell'utente
  */
 @WebServlet("/SendingInfoEmailControl")
 public class SendingInfoEmailControl extends HttpServlet {
@@ -58,11 +59,11 @@ public class SendingInfoEmailControl extends HttpServlet {
 	}
 	
 	/**
-	 * 
-	 * @param msg
-	 * @param emailUtente
-	 * @param nomeUtente
-	 * @param cognomeUtente
+	 * Questo metodo invia l'eamail all'utente per la verifca
+	 * @param msg messagio da inviare 
+	 * @param emailUtente email dell'utente
+	 * @param nomeUtente il nome dell'utente
+	 * @param cognomeUtente il cognome dell'utente
 	 */
 	public void sendMail(String msg, String emailUtente, String nomeUtente, String cognomeUtente) {
 		// Enter the email address and password for the account from which verification link will be send

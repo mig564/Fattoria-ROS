@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import model.UtenteModelDM;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class AreaPersonale
+ * Questa servlet gestige l'area personale dell'utente
  */
 @WebServlet({"/AreaPersonale"})
 public class AreaPersonale extends HttpServlet {

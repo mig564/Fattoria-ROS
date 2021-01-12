@@ -11,6 +11,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * 
+ * @author pa.ni.ca
+ * Questa classe gestisce le informazioni di email inviata
+ */
 public class SendingEmail {
 
 	private String userEmail;

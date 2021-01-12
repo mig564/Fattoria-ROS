@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class LogoutAdmin
+ * Questa servlet fa il logout dell'admin
  */
 @WebServlet("/LogoutAdmin")
 public class LogoutAdmin extends HttpServlet {

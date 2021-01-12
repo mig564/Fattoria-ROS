@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 
+/**
+ * 
+ * @author pa.ni.ca
+ * @see Model
+ */
 public class UtenteModelDM implements Model<Utente> {
    public Utente doRetrieveByKey(String code) throws SQLException {
       Connection connection = null;

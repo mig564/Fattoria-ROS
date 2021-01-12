@@ -13,7 +13,9 @@ import beans.Utente;
 import model.UtenteModelDM;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class AttivaAccount
+ * Questa servlet attiva l'account dell'utente
  */
 @WebServlet("/AttivaAccount")
 public class AttivaAccount extends HttpServlet {

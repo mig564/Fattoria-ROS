@@ -22,7 +22,9 @@ import model.PrenotazioneAttivitaModelDM;
 import model.PrenotazioneModelDM;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class PagamentoControl
+ * Questa servlet gestisce il pagamento da parte dell'utente
  */
 @WebServlet("/PagamentoControl")
 public class PagamentoControl extends HttpServlet {

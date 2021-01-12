@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
+/**
+ * 
+ * @author pa.ni.ca
+ * @see Model
+ */
 public class FormareModelDM implements Model<Formare> {
    public Formare doRetrieveByKey(String code) throws SQLException {
       Connection connection = null;

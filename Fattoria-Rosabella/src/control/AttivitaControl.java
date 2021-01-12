@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import model.AttivitaModelDM;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class AttivitaControl
+ * questa servlet visualizza le attivita del database
  */
 @WebServlet({"/AttivitaControl"})
 public class AttivitaControl extends HttpServlet {

@@ -13,7 +13,9 @@ import javax.servlet.http.HttpSession;
 import model.FormareModelDM;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class Logout
+ * Questa servlet fa il logout dell'utente
  */
 @WebServlet({"/Logout"})
 public class Logout extends HttpServlet {

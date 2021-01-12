@@ -14,7 +14,9 @@ import beans.CartaDiCredito;
 import model.CartaDiCreditoModelDM;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class CartControl
+ * Questa servlet gestisce le carte di credito dell'utente
  */
 @WebServlet("/CarteControl")
 public class CarteControl extends HttpServlet {

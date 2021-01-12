@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import model.PrenotazioneModelDM;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class PrenotazioneControl
+ * Questa servlet gestisce le prenotazioni dell'utente
  */
 @WebServlet({"/PrenotazioneControl"})
 public class PrenotazioneControl extends HttpServlet {

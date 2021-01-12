@@ -8,6 +8,11 @@ import java.util.Collection;
 
 import beans.Admin;
 
+/**
+ * 
+ * @author pa.ni.ca
+ * @see Model
+ */
 public class AdminModelDM implements Model<Admin>{
 
 	@Override

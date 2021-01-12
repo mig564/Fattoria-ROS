@@ -15,8 +15,9 @@ import model.RiepilogoOrdineModelDM;
 import model.UtenteModelDM;
 
 /**
- * @author panica
+ * @author pa.ni.ca
  * Servlet implementation class Registration
+ * Questa servlet gestisce la registrazione di un utente
  */
 @WebServlet({"/Registration"})
 public class Registration extends HttpServlet {
@@ -49,6 +50,7 @@ public class Registration extends HttpServlet {
          se.sendMail();
       } catch (SQLException var6) {
     	  // TODO
+    	  var6.printStackTrace();
       }
 
       RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/attivazioneaccount.jsp");

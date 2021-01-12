@@ -16,7 +16,9 @@ import model.AttivitaModelDM;
 import model.PrenotazioneModelDM;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class AdminControl
+ * Questa servlet gestisce tutte le attivita che può fare l'admin
  */
 @WebServlet("/AdminControl")
 public class AdminControl extends HttpServlet {

@@ -15,7 +15,9 @@ import beans.Attivita;
 import model.AttivitaModelDM;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class PrenotazioniCalendarioControl
+ * Questa servlet gestisce le attivita di un giorno selezionato
  */
 @WebServlet("/PrenotazioniCalendarioControl")
 public class PrenotazioniCalendarioControl extends HttpServlet {

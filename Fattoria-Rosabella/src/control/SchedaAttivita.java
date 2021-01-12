@@ -11,6 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.AttivitaModelDM;
 
+/**
+ * 
+ * @author pa.ni.ca
+ * Servlet implementation class SchedaAttivita
+ * Questa servlet gestisce un'attivita selezionata dall'utente
+ *
+ */
 @WebServlet({"/SchedaAttivita"})
 public class SchedaAttivita extends HttpServlet {
    private static final long serialVersionUID = 1L;

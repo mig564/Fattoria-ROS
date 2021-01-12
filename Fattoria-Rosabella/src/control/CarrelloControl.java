@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * @author pa.ni.ca
  * Servlet implementation class CarrelloControl
+ * Questa Servlet gestisce il carrello dell'admin
  */
 @WebServlet({"/CarrelloControl"})
 public class CarrelloControl extends HttpServlet {
@@ -69,10 +71,10 @@ public class CarrelloControl extends HttpServlet {
    }
    
    /**
-    * 
-    * @param formCart
-    * @param id_attivita
-    * @return
+    * Questo metodo cerca elemento all'interno del carrello
+    * @param formCart carrello utente
+    * @param id_attivita id dell'attivita da cercare
+    * @return attivita trovata o un attivita vuota
     */
    private Formare cercaElemento(ArrayList<Formare> formCart, String id_attivita) {
   		int id = Integer.parseInt(id_attivita);

@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 
+/**
+ * 
+ * @author pa.ni.ca
+ * @see Model
+ */
 public class PrenotazioneModelDM implements Model<Prenotazione> {
 	
    public Collection<Prenotazione> doRetrieveByCarr(int code) throws SQLException {

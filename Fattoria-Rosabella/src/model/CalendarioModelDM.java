@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 
+/**
+ * 
+ * @author pa.ni.ca
+ * @see Model
+ */
 public class CalendarioModelDM implements Model<Calendario> {
 	
    public Calendario doRetrieveByKey(String code) throws SQLException {

@@ -9,6 +9,11 @@ import java.util.LinkedList;
 
 import beans.PrenotazioneAttivita;
 
+/**
+ * 
+ * @author pa.ni.ca
+ * @see Model
+ */
 public class PrenotazioneAttivitaModelDM implements Model<PrenotazioneAttivita> {
 
 	@Override
