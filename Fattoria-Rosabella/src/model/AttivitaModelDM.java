@@ -59,15 +59,20 @@ public class AttivitaModelDM implements Model<Attivita> {
 		   
 		   try {
 		   connection = DriverManagerConnectionPool.getConnection();
+		   
 		   switch (categoria) {
 		   case "TUTTE":
 			   selectSQL = "SELECT DISTINCT a.id_attivita, a.categoria, a.nome, a.descrizione, a.max_persone, a.prezzo FROM calendario AS c, attivita AS a WHERE c.data = ? AND a.id_attivita = c.id_attivita AND c.ora='09:00'";
+			   preparedStatement = connection.prepareStatement(selectSQL);
+			   preparedStatement.setString(1, data);
 			   break;
 		   default: selectSQL = "SELECT DISTINCT a.id_attivita, a.categoria, a.nome, a.descrizione, a.max_persone, a.prezzo FROM calendario AS c, attivita AS a WHERE c.data = ? AND a.categoria = ? AND a.id_attivita = c.id_attivita AND c.ora='09:00'";
+		   		preparedStatement = connection.prepareStatement(selectSQL);
+		   		preparedStatement.setString(1, data);
+		   		preparedStatement.setString(2, categoria);
 		   }
-		   preparedStatement = connection.prepareStatement(selectSQL);
-		   preparedStatement.setString(1, data);
-		   preparedStatement.setString(2, categoria);
+		   
+		   
 		   System.out.println("DoRetreiveAll: " + preparedStatement.toString());
 		   ResultSet rs = preparedStatement.executeQuery();
 
