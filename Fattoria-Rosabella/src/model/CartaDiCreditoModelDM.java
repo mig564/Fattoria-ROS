@@ -79,9 +79,7 @@ public class CartaDiCreditoModelDM implements Model<CartaDiCredito> {
          } finally {
             DriverManagerConnectionPool.releaseConnection(connection);
          }
-
       }
-
       return carte;
    }
 
@@ -99,7 +97,7 @@ public class CartaDiCreditoModelDM implements Model<CartaDiCredito> {
          preparedStatement.setInt(4, product.getCvv());
          preparedStatement.setString(5, product.getEmail());
          System.out.println("doSave: " + preparedStatement.toString());
-         preparedStatement.executeUpdate();
+         preparedStatement.executeQuery();
          connection.commit();
       } finally {
          try {
