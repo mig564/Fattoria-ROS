@@ -20,7 +20,6 @@ function getReadyStateHandler(req) {
 function ajaxCall(date, id) {
 	var ora = document.forms["selezioneAttivita"]["ora"].value
 	var partecipanti = document.forms["selezioneAttivita"]["partecipanti"].value
-	console.log("" + ora + partecipanti);
 	
 	var req = xhr = new XMLHttpRequest();
 	console.log("Get XML http request");
