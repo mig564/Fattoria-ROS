@@ -89,7 +89,7 @@ public class Login extends HttpServlet {
    
    private boolean isGestore(String email) throws SQLException {
 	   Admin admin = this.adminModelDM.doRetrieveByKey(email);
-	   if(admin == null || admin.getEmail().equals("")) return false;
+	   if(admin == null || admin.getEmail() == null || admin.getEmail().equals("")) return false;
 	   else return true;
    }
 }
