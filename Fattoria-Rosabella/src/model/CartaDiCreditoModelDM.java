@@ -97,7 +97,7 @@ public class CartaDiCreditoModelDM implements Model<CartaDiCredito> {
          preparedStatement.setInt(4, product.getCvv());
          preparedStatement.setString(5, product.getEmail());
          System.out.println("doSave: " + preparedStatement.toString());
-         preparedStatement.executeQuery();
+         preparedStatement.executeUpdate();
          connection.commit();
       } finally {
          try {
