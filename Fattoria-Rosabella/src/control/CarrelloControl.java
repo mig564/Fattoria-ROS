@@ -59,6 +59,8 @@ public class CarrelloControl extends HttpServlet {
       }
       request.removeAttribute("attivita");
       request.setAttribute("attivita", list);
+      request.removeAttribute("formCart");
+      request.setAttribute("formCart", formCart);
       RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/riepilogo.jsp");
       dispatcher.forward(request, response);
    }

@@ -1,7 +1,9 @@
+<%@page import="beans.Formare"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*" import="beans.Attivita"%>
 <%
 Collection<?> attivita = (Collection<?>) request.getAttribute("attivita");
+Collection<?> formAttivita = (Collection<?>) request.getAttribute("formCart");
 if (attivita == null) {
 	response.sendRedirect(response.encodeRedirectURL("./CarrelloControl"));
 	return;
@@ -74,24 +76,25 @@ if (attivita == null) {
 			<%if (attivita != null && attivita.size() > 0) {
 				Iterator<?> iterator =  attivita.iterator();
 				while(iterator.hasNext()){
-					Attivita bean = (Attivita) iterator.next();%>
+					Attivita bean = (Attivita) iterator.next();
+					%>
 					<div class="row" style="margin-top: 60px;">
 						<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
 						<div class="col-md-7" style="background-color: white; border-radius: 0px 30px 30px 0px; border: 1px solid rgba(0,0,0,.125); padding: 22px;">
 							<h3 class="title-green"><%=bean.getNome()%></h3> 
-							<p>Prezzo: <%=bean.getPrezzo()%> $</p>
+							<p>Prezzo: <%=bean.getPrezzo()%>,00 Euro </p>
 							<p>Orario <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected">10:00-11:00 </option>
+								<option value="10:00-11:00" selected="selected"><%=%> </option>
 								<option value="orario1">09:00-10:00 </option>
 								<option value="orario2">08:00-09:00 </option></select></p> 
-							<p>partecipanti <select style="margin-left: 5px;">
+							<p>Partecipanti <select style="margin-left: 5px;">
 								<option value="10:00-11:00" selected="selected">1 </option>
 								<option value="part1">2 </option>
 								<option value="part2">3 </option></select>
 							<span>
 								<p style="text-align: right; margin-right: 26px;">
-									<button type="submit" class="btn btn-success btn-lg" style="margin-right: 22px;">Prenota</button>
-									<button type="reset" class="btn btn-danger btn-lg">Elimina</button>
+									<button type="submit" class="btn btn-success btn-lg" style="margin-right: 22px;">Modifica</button>
+									<button type="reset" class="btn btn-danger btn-lg">Rimuovi</button>
 								</p>
 							</span>
 						</div>
@@ -106,9 +109,7 @@ if (attivita == null) {
 				</div>
 			<%} else {%>
 				<p>Non ci sono attivita</p>
-		<%	} %>
-			
-    		
+		<%	}%>	
     		
 		<!-- Footer -->
 		<div class="container-fluid" style="background-color: #198754; margin-top: 42px; padding: 22px 0px;">

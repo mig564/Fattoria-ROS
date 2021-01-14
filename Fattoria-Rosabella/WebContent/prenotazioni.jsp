@@ -112,15 +112,15 @@
 		</div>
 		
 	<% if (attivitas != null && attivitas.size() > 0) {%>
+		
 			<h2 class="text-center title-green" style="margin-top: 42px; ">Attività disponibili</h2>
-		<%CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
+			<%CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
 			Iterator<?> iterator = attivitas.iterator();
 			while (iterator.hasNext()) {
 				Attivita bean = (Attivita) iterator.next();
 				Collection<?> calendarios = (Collection<?>) calendarioModelDM.doRetrieveByAtt(bean.getId_attivita(), date);
 				Iterator<?> iterator2 = calendarios.iterator();%>
 				<div class="container">
-				
 					<!-- card orizzontale per attività -->
     				<form name="selezioneAttivita" method="post" action="CarrelloControl?data=<%=date %>&action=aggiungi&id=<%=bean.getId_attivita() %>" onsubmit="">
     					<div class="row" style="margin-top: 60px;" >
@@ -149,9 +149,13 @@
 						</div>
 					</form>
 				</div>
-		<% 	}
-			} else if (error != null){ %> 
-				<p><%=error%> </p> <%
+		<% 	}%>
+			<div class="container" style="margin-top: 40px;">
+				<p class="text-center"><a href="" class="btn btn-success btn-lg">Vai al riepilogo</a></p>
+			</div>
+		<%} else if (error != null){ %> 
+				<p><%=error%> </p> 
+				<%
 			} %>
 			
 		<!-- Footer -->
