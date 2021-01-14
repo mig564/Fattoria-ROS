@@ -45,6 +45,39 @@ public class CalendarioModelDM implements Model<Calendario> {
          }
       }
    }
+   
+   public Collection<Calendario> doRetrieveByIdAttivita(int code) throws SQLException {
+	      Connection connection = null;
+	      PreparedStatement preparedStatement = null;
+	      Collection<Calendario> calendari = new LinkedList<Calendario>();
+	      String selectSQL = "SELECT * FROM calendario WHERE id_attivita = ?";
+
+	      try {
+	         connection = DriverManagerConnectionPool.getConnection();
+	         preparedStatement = connection.prepareStatement(selectSQL);
+	         preparedStatement.setInt(1, code);
+	         System.out.println("doRetrieveByIdAttivita: " + preparedStatement.toString());
+	         ResultSet rs = preparedStatement.executeQuery();
+
+	         while(rs.next()) {
+	        	Calendario bean = new Calendario();
+	            bean.setDate(rs.getString("data"));
+	            bean.setOra(rs.getString("ora"));
+	            bean.setId_attivita(rs.getInt("id_attivita"));
+	            calendari.add(bean);
+	         }
+	         return calendari;
+	      } finally {
+	         try {
+	            if (preparedStatement != null) {
+	               preparedStatement.close();
+	            }
+	         } finally {
+	            DriverManagerConnectionPool.releaseConnection(connection);
+	         }
+	      }
+	      
+	   }
 
    public Collection<Calendario> doRetrieveByAtt(int id, String data) throws SQLException {
 	   Connection connection = null;
@@ -64,7 +97,6 @@ public class CalendarioModelDM implements Model<Calendario> {
 	            Calendario bean = new Calendario();
 	            bean.setDate(rs.getString("data"));
 	            bean.setOra(rs.getString("ora"));
-	            bean.setPartecipanti(rs.getInt("partecipanti"));
 	            bean.setId_attivita(rs.getInt("id_attivita"));
 	            calendari.add(bean);
 	         }

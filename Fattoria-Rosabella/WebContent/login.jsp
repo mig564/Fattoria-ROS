@@ -35,7 +35,7 @@
 						<li class="nav-item"><a class="nav-link" href="attivita.jsp">ATTIVITÀ</a></li>
 						<li class="nav-item"><a class="nav-link" href="prenotazioni.jsp">PRENOTAZIONI</a></li>
 						<li class="nav-item"><a class="nav-link" href="contatti.jsp">CONTATTI</a></li>
-					</ul>>
+					</ul>
     			</div>
   			</div>
 		</nav>

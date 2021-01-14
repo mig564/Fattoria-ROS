@@ -6,6 +6,12 @@ function select_activity (name) {
 
 
 function showAggiungiAttivita() {
-	document.aggiungiattivita.style.display="block";
+	if(document.aggiungiattivita.style.display == "none") {
+		document.aggiungiattivita.style.display="block";
+		document.getElementById("btnAggiungi").value="Comprimi";
+	} else {
+		document.aggiungiattivita.style.display="none";
+		document.getElementById("btnAggiungi").value="Aggiungi una nuova attività";
+	}
 }
 

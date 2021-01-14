@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*"%>
-		<%@page import="beans.Calendario"%>
-		<%@page import="beans.Attivita" import="model.CalendarioModelDM"%>
+<%@	page import="beans.Calendario"%>
+<%@	page import="beans.Attivita" import="model.CalendarioModelDM"%>
 <%Boolean adminRoles = (Boolean) session.getAttribute("adminFilterRoles");
-Collection<?> attivitas = (Collection<?>) request.getAttribute("attivitas");
-String error = (String) request.getAttribute("error");
-String date = (String) request.getAttribute("date");
 if ((adminRoles == null) || (!adminRoles.booleanValue())) {	
    	response.sendRedirect("./login.jsp");
    	return;
@@ -55,9 +52,8 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 		
 		<!-- Corpo della pagina -->
 		<div class="container">
-			<h3 class="text-center title-green" style="margin-top: 40px;">Benvenuto, utenteX</h3>
-			<p class="text-center" style="margin-bottom: 40px;">Sezione gestione attività</p>
-			<p class="text-center"><button type="button" class="btn btn-link" style="color: green; text-decoration: none;" onclick="javascript:showAggiungiAttivita()">
+			<h3 class="text-center title-green" style="margin-top: 40px;">Sezione gestione attività</h3>
+			<p class="text-center"><button type="button" class="btn btn-link" style="color: green; text-decoration: none;" id="btnAggiungi" onclick="javascript:showAggiungiAttivita()">
   				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
   					<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   					<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -212,48 +208,70 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 		</div>
 		
 		<!-- Attività disponibili -->
-		<% if (attivitas != null && attivitas.size() > 0) {%>
-		
-			<h2 class="text-center title-green" style="margin-top: 42px; ">Modifica attività</h2>
-			<%CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
-			Iterator<?> iterator = attivitas.iterator();
-			while (iterator.hasNext()) {
+		<%
+		Collection<?> attivita = (Collection<?>) request.getAttribute("attivita");
+		if(attivita == null) response.sendRedirect("./AdminControl?tipo=attivita&action=tutto");
+		if(attivita != null && attivita.size() > 0) {
+			Iterator<?> iterator = attivita.iterator();
+			while(iterator.hasNext()) {
 				Attivita bean = (Attivita) iterator.next();
-				Collection<?> calendarios = (Collection<?>) calendarioModelDM.doRetrieveByAtt(bean.getId_attivita(), date);
-				Iterator<?> iterator2 = calendarios.iterator();
-				Calendario calendario= new Calendario();%>
-				
-				<div class="container">
-					<!-- card orizzontale per attività -->
-    				<form name="selezioneAttivita" method="post" action="CarrelloControl?data=<%=date %>&action=aggiungi&id=<%=bean.getId_attivita() %>" onsubmit="">
-    					<div class="row" style="margin-top: 60px;" >
-							<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
-							<div class="col-md-7" style="background-color: white; border-radius: 0px 30px 30px 0px;  border: 1px solid rgba(0,0,0,.125); padding: 22px;">
-							
-								<h3 class="title-green"><%=bean.getNome() %></h3> 
-								<p>Prezzo: <%=bean.getPrezzo() %>,00 Euro</p>
-								<p>Orario <select style="margin-left: 5px;" name="ora">
-								<%while (iterator2.hasNext()) {
-									calendario = (Calendario) iterator2.next();%>
-									<option value="orario1"><%=calendario.getOra() %></option>
-								<%} %></select></p> 
-								<p>Partecipanti
-								
-								<select name="partecipanti" style="margin-left: 5px;">
-									<%int i;
-									for(i=1; i<=(bean.getMax_persone()-calendario.getPartecipanti()); i++) {%>
-										<option value="<%=i %>"><%=i %></option>
-									<%} %>
-								</select>
-							</div>
+		%>
+			<div class="container">
+				<div class="row" style="margin-top: 30px;">
+					<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome()%>.jpg');"></div>
+  					<div class="col-md-7"  style="background-color: white; border-radius: 0px 30px 30px 0px;  border: 1px solid rgba(0,0,0,.125); padding: 22px;">
+    					<h5 class="card-title title-green"><%=bean.getNome()%> - <%=bean.getId_attivita() %></h5>
+    					<p class="card-text"><%=bean.getCategoria() %></p>
+    					<p class="card-text"><%=bean.getDescrizione() %></p>
+						<p class="card-text">Persone: <%=bean.getMax_persone() %></p>
+						<p class="card-text">Prezzo: <%=bean.getPrezzo() %>,00 Euro</p>
+						<div class="col-md-2"><p class="text-center">
+  							<button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%=bean.getId_attivita() %>" aria-expanded="false" aria-controls="collapseExample">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" style="color: black;" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+								</svg>
+							</button>
 						</div>
-					</form>
-				</div>
-		<% 	}
-		} else if (error != null){ %> 
-				<p><%=error%> </p> 
-				<%
-			} %>
+					</div>
+					<div class="collapse" id="collapse<%=bean.getId_attivita() %>">
+							<%
+							CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
+							Collection<?> calendario = (Collection<?>) calendarioModelDM.doRetrieveByIdAttivita(bean.getId_attivita());
+							if(calendario != null && calendario.size() > 0) {
+								Iterator<?> iterator2 = calendario.iterator();
+								while(iterator2.hasNext()) {
+									Calendario cal = (Calendario) iterator2.next();
+							%>
+									<div class="card card-body">
+    									<div class="row">
+    										<div class="col"><p class="text-center"><%=cal.getDate() %></div>
+    										<div class="col"><p class="text-center"><%=cal.getOra()%></div>
+    										<div class="col">
+    											<p class="text-center">
+    												<a class="btn btn-link" style="color:red; text-decoration: none;" href="">
+  														<svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -3px;" width="16" height="16" fill="currentColor" class="bi bi-x-octagon" viewBox="0 0 16 16">
+  															<path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1L1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
+  															<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+														</svg> Elimina
+													</a>
+    											</p>
+    										</div>
+    									</div>	
+									</div>
+							<%
+								}
+							} else { %>
+  								<p>Non ci sono date disponibili</p>
+  							<%
+  							} %>
+    				</div>
+    			</div>
+    		</div>
+			<% 	}
+		} else {
+		%>
+			<p>Non ci sono attività</p>
+		<%} %>
 
 		<!-- Bootstrap - JavaScript -->
 		<script
