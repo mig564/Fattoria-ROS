@@ -1,5 +1,6 @@
 package control;
 
+import beans.Admin;
 import beans.Formare;
 import beans.RiepilogoOrdine;
 import beans.Utente;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import model.AdminModelDM;
 import model.FormareModelDM;
 import model.RiepilogoOrdineModelDM;
 import model.UtenteModelDM;
@@ -26,6 +29,7 @@ import model.UtenteModelDM;
 public class Login extends HttpServlet {
    private static final long serialVersionUID = 1L;
    private UtenteModelDM utenteModelDM = new UtenteModelDM();
+   private AdminModelDM adminModelDM = new AdminModelDM();
    private RiepilogoOrdineModelDM riepilogoOrdineModelDM = new RiepilogoOrdineModelDM();
    private FormareModelDM formareModelDM = new FormareModelDM();
 
@@ -38,6 +42,18 @@ public class Login extends HttpServlet {
       String password = request.getParameter("password");
 
       try {
+    	  if(isGestore(email)) {
+    		  AdminModelDM adminModel = new AdminModelDM();
+    		  Admin admin = adminModel.doRetrieveByKey(email);
+    		  if (admin != null && admin.getEmail().equals(email) && admin.getPassword().equals(password)) {
+    				request.getSession().setAttribute("adminFilterRoles", true);
+    				response.sendRedirect("areariservata.jsp");
+    				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("areariservata.jsp");
+    				dispatcher.forward(request, response);
+    			} else {
+    				throw new Exception("Invalid login and password");
+    			}
+    	  }
          Utente utente = this.utenteModelDM.doRetrieveByKey(email);
          if (utente == null || utente.getEmail() == null || utente.getEmail().equals("") || !utente.getPassword().equals(password) || utente.getAttivo() == 0) {
             error = "Errore. Riprova.";
@@ -60,7 +76,9 @@ public class Login extends HttpServlet {
          }
       } catch (SQLException var10) {
     	  response.sendRedirect("error.html");
-      }
+      } catch (Exception e) {
+		e.printStackTrace();
+	}
    }
 
    /**
@@ -68,5 +86,11 @@ public class Login extends HttpServlet {
 	 */
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       this.doGet(request, response);
+   }
+   
+   private boolean isGestore(String email) throws SQLException {
+	   Admin admin = this.adminModelDM.doRetrieveByKey(email);
+	   if(admin == null || admin.getEmail().equals("")) return false;
+	   else return true;
    }
 }

@@ -114,14 +114,15 @@ public class CalendarioModelDM implements Model<Calendario> {
    public void doSave(Calendario product) throws SQLException {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
-      String insertSQL = "INSERT INTO calendario(data, ora, id_attivita) VALUES (?, ?, ?)";
+      String insertSQL = "INSERT INTO calendario(data, ora, partecipanti, id_attivita) VALUES (?, ?, ?, ?)";
 
       try {
          connection = DriverManagerConnectionPool.getConnection();
          preparedStatement = connection.prepareStatement(insertSQL);
          preparedStatement.setString(1, product.getDate());
          preparedStatement.setString(2, product.getOra());
-         preparedStatement.setInt(3, product.getId_attivita());
+         preparedStatement.setInt(3, product.getPartecipanti());
+         preparedStatement.setInt(4, product.getId_attivita());
          System.out.println("doSave: " + preparedStatement.toString());
          preparedStatement.executeUpdate();
          connection.commit();

@@ -59,50 +59,58 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 			</button></p>
 			
 			<!-- Form aggiunta attività -->
-			<form name="aggiungiattivita" method="post" action="" onSubmit="" style="display: block;">
+			<form name="aggiungiattivita" method="post" action="AdminControl?tipo=attiva&action=aggiungi" onSubmit="" style="display: block;">
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="text" class="form-control" id="campoNomeAttivita"  placeholder="">
-						<label for="campoNomeAttivita">Nome attività</label>
+						<input type="text" class="form-control" id="nome" name="nome" placeholder="">
+						<label for="nome">Nome attività</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<select class="form-select" id="selezionaCategoria" aria-label="Seleziona categoria">
+						<select class="form-select" name="categoria" id="categoria" aria-label="Seleziona categoria">
 	 					 	<option value="1">Escursione</option>
 	 					 	<option value="2">Visita guidata</option>
 	 					 	<option value="3">Fattoria didattica</option>
 	 					 	<option value="4">Balneazione</option>
 		 				 	<option value="5">Ristoro</option>
 		 				 </select>
-		 				 <label for="selezionaCategoria">Categoria</label>
+		 				 <label for="categoria">Categoria</label>
 		 			</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="number" class="form-control" id="numeroParticipanti"  placeholder="">
+						<input type="number" class="form-control" name="numeroParticipanti" id="numeroParticipanti"  placeholder="">
 						<label for="numeroParticipanti">Numero massimo di partecipanti</label>
 					</div>
 						<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="number" class="form-control" id="prezzoAttività"  placeholder="">
+						<input type="number" class="form-control" name="prezzoAttività" id="prezzoAttività"  placeholder="">
 						<label for="prezzoAttività">Prezzo</label>
+					</div>
+					<div class="form-floating" style="margin-bottom: 12px;">
+						<input type="text" class="form-control" name="descrizioneAttività" id="descrizioneAttività"  placeholder="">
+						<label for="descrizioneAttività">Descrizione</label>
 					</div>
 					
 					<div class="form-floating" style="margin-bottom: 12px;">
 						<div class="form-check form-check-inline">
 							<p>Orario: </p>
-							<input class="form-check-input" type="checkbox" id="checkOrario9" value="09:00:00">
+							<input class="form-check-input" type="checkbox" name="orario" id="checkOrario9" value="09:00:00">
 							<label class="form-check-label" for="checkOrario9">9:00</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="checkOrario10" value="10:00:00">
+							<input class="form-check-input" type="checkbox" name="orario" id="checkOrario10" value="10:00:00">
 							<label class="form-check-label" for="checkOrario10">10:00</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="checkOrario14" value="14:00:00">
+							<input class="form-check-input" type="checkbox" name="orario" id="checkOrario10" value="10:00:00">
+							<label class="form-check-label" for="checkOrario10">12:00</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="orario" id="checkOrario14" value="14:00:00">
 							<label class="form-check-label" for="checkOrario14">14:00</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="checkOrario15" value="15:00:00">
+							<input class="form-check-input" type="checkbox" name="orario" id="checkOrario15" value="15:00:00">
 							<label class="form-check-label" for="checkOrario15">15:00</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="checkOrario18" value="18:00:00">
+							<input class="form-check-input" type="checkbox" name="orario" id="checkOrario18" value="18:00:00">
 							<label class="form-check-label" for="checkOrario18">18:00</label>
 						</div>
 					</div>
@@ -111,60 +119,90 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 					<div class="form-floating" style="margin-bottom: 12px;">
 						<div class="form-check form-check-inline"  style="margin-bottom: 12px;">
 							<p>Giorni: </p>
-							<input class="form-check-input" type="checkbox" id="checkGiornoLunedi" value="Lunedì">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoLunedi" value="Lunedì">
 							<label class="form-check-label" for="checkGiornoLunedi">Lunedì</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="checkGiornoMartedi" value="Martedì">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoMartedi" value="Martedì">
 							<label class="form-check-label" for="checkGiornoMartedi">Martedì</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="checkGiornoMercoledi" value="Mercoledì">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoMercoledi" value="Mercoledì">
 							<label class="form-check-label" for="checkGiornoMercoledi">Mercoledì</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="checkGiornoGiovedi" value="Giovedì">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoGiovedi" value="Giovedì">
 							<label class="form-check-label" for="checkGiornoGiovedi">Giovedì</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="checkGiornoVenerdi" value="Venerdì">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoVenerdi" value="Venerdì">
 							<label class="form-check-label" for="checkGiornoVenerdi">Venerdì</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="checkGiornoSabato" value="Sabato">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoSabato" value="Sabato">
 							<label class="form-check-label" for="checkGiornoSabato">Sabato</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="checkGiornoDomenica" value="Domenica">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoDomenica" value="Domenica">
 							<label class="form-check-label" for="checkGiornoDomenica">Domenica</label>
+						</div>
+					</div>
+					<hr>
+					
+					<div class="form-floating" style="margin-bottom: 12px;">
+						<div class="form-check form-check-inline"  style="margin-bottom: 12px;">
+							<p>Mesi: </p>
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseGennaio" value="Gennaio">
+							<label class="form-check-label" for="checkMeseGennaio">Gennaio</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseFebbraio" value="Febbraio">
+							<label class="form-check-label" for="checkMeseFebbraio">Febbraio</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseMarzo" value="Marzo">
+							<label class="form-check-label" for="checkMeseMarzo">Marzo</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseAprile" value="Aprile">
+							<label class="form-check-label" for="checkMeseAprile">Aprile</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseMaggio" value="Maggio">
+							<label class="form-check-label" for="checkMeseMaggio">Maggio</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseGiugno" value="Giugno">
+							<label class="form-check-label" for="checkMeseGiugno">Giugno</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseLuglio" value="Luglio">
+							<label class="form-check-label" for="checkMeseLuglio">Luglio</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseAgosto" value="Agosto">
+							<label class="form-check-label" for="checkMeseAgosto">Agosto</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseSettembre" value="Settembre">
+							<label class="form-check-label" for="checkMeseSettembre">Settembre</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseOttobre" value="Ottobre">
+							<label class="form-check-label" for="checkMeseOttobre">Ottobre</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseNovembre" value="Novembre">
+							<label class="form-check-label" for="checkMeseNovembre">Novembre</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseDicembre" value="Dicembre">
+							<label class="form-check-label" for="checkMeseDicembre">Dicembre</label>
 						</div>
 					</div>
 					
 					<p class="text-center"><button type="submit" class="btn btn-success">AGGIUNGI</button></p>
 				</form>
-			
-			<!-- Cards con tutte le attività -->
-			
-			<!-- card orizzontale per attività -->
-    		<form name="selezioneAttivita" method="post" action="" onsubmit="">
-    		<div class="row" style="height: 150px; margin-top: 100px ;">
-						<div class="col-3 card-shadow" style="background-image: url('img/cascata.jpg'); border-radius: 30px 0px 0px 30px;"></div>
-						<div class="col-9 card-shadow" style="background-color: white; border-radius: 0px 30px 30px 0px; ">
-							<h3>Titolo</h3> 
-							<p>Prezzo: 15 $</p>
-							<p>Orario <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected">10:00-11:00 </option>
-								<option value="orario1">09:00-10:00 </option>
-								<option value="orario2">08:00-09:00 </option></select></p> 
-							<p>partecipanti <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected">1 </option>
-								<option value="part1">2 </option>
-								<option value="part2">3 </option></select>
-								<button type="submit" class="btn btn-success" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
-						</div>
-				</div>
-				</form>
-			
 		</div>
 
 		<!-- Bootstrap - JavaScript -->

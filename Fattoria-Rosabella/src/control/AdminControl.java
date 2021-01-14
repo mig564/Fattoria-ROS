@@ -2,6 +2,9 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Attivita;
+import beans.Calendario;
 import beans.Prenotazione;
 import model.AttivitaModelDM;
+import model.CalendarioModelDM;
 import model.PrenotazioneModelDM;
 
 /**
@@ -25,6 +30,7 @@ public class AdminControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static AttivitaModelDM attivitaModelDM = new AttivitaModelDM();
 	private static PrenotazioneModelDM prenotazioneModelDM = new PrenotazioneModelDM();
+	private static CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,7 +44,49 @@ public class AdminControl extends HttpServlet {
 				if (action != null) {
 					if (tipo.equals("attivita")) {
 						if (action.equals("aggiungi")) {
-							attivitaModelDM.doSave(new Attivita(Integer.parseInt(request.getParameter("id_attivita")), request.getParameter("categoria"), request.getParameter("nome"), request.getParameter("descrizione"), Integer.parseInt(request.getParameter("maxpersone")), Integer.parseInt(request.getParameter("prezzo"))));
+							Attivita attivita = new Attivita();
+							Random random = new Random();
+							int id = random.nextInt(700);
+							attivita.setId_attivita(id);
+							attivita.setNome(request.getParameter("nome"));
+							attivita.setCategoria(request.getParameter("categoria"));
+							attivita.setDescrizione(request.getParameter("descrizioneAttività"));
+							attivita.setMax_persone(Integer.parseInt(request.getParameter("numeroParticipanti")));
+							attivita.setPrezzo(Integer.parseInt(request.getParameter("prezzoAttività")));
+							attivitaModelDM.doSave(attivita);
+							String orari[] = request.getParameterValues("orario");
+							String giorni[] = request.getParameterValues("giorno");
+							String mesi[] = request.getParameterValues("mese");
+							for(String mese : mesi) {
+								Calendar calendar = new GregorianCalendar();
+								int lastDay;
+								if(mese.equals("Gennaio")) {
+									calendar.set(2021, Calendar.JANUARY, 1);
+								} else if(mese.equals("Febbraio")) {
+									calendar.set(2021, Calendar.FEBRUARY, 1);
+								} else if(mese.equals("Marzo")) {
+									calendar.set(2021, Calendar.MARCH, 1);
+								}
+								lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+								for(int i=1; i<=lastDay; i++) {
+									Calendar c = new GregorianCalendar();
+									c.set(2021, calendar.getMaximum(Calendar.MONTH), i);
+									for(String giorno : giorni) {
+										if(giorno.equals("Lunedì")) {
+											if(c.getActualMaximum(Calendar.DAY_OF_WEEK) == 1) {
+												for(String orario : orari) {
+													Calendario cal = new Calendario();
+													cal.setDate(c.toString());
+													cal.setOra(orario);
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													calendarioModelDM.doSave(cal);
+												}
+											}
+										}
+									}
+								}
+								
+							}
 						} else if (action.equals("rimuovi")) {
 							attivitaModelDM.doDelete(new Attivita(Integer.parseInt(request.getParameter("id_attivita")), "", "", "", 0, 0));
 						} else if (action.equals("update")) {
