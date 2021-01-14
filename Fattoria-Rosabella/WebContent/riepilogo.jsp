@@ -29,38 +29,56 @@ if (attivita == null) {
     		</a>
     		
     		<!-- Button to Mobile Navbar -->
-			
     		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       			<span class="navbar-toggler-icon"></span>
     		</button>
     		
 	    		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-	              	<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item dropdown">
-							<button type="button" class="btn btn-outline-success" onclick="">
-  								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
- 									<path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
- 									<path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-								</svg> LOGOUT
-							</button>
-  						</li>
-  					</ul>
+	      			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        			<li class="nav-item"><a class="nav-link active" aria-current="page" href="index.jsp">HOME</a></li>
+						<li class="nav-item"><a class="nav-link" href="attivita.jsp">ATTIVITÀ</a></li>
+						<li class="nav-item"><a class="nav-link" href="prenotazioni.jsp">PRENOTAZIONI</a></li>
+						<li class="nav-item"><a class="nav-link" href="contatti.jsp">CONTATTI</a></li>
+					</ul>
+	              
+	      			<div class="d-flex">
+	        			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  							<li class="nav-item dropdown">
+					  			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"	role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi bi-person-circle" viewBox="0 0 16 16">
+	 				 					<path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+	  									<path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+	  									<path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+									</svg>
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li><a class="dropdown-item" href="ilmioprofilo.jsp">Il mio profilo</a></li>
+									<li><a class="dropdown-item" href="lemieprenotazioni.jsp">Le mie prenotazioni</a></li>
+									<li><a class="dropdown-item" href="lemiecarte.jsp">Le mie carte</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item" onclick="window.location.href='./Logout'">Logout</a></li>
+								</ul>
+							</li>
+						</ul>
+	      			</div>
     			</div>
   			</div>
 		</nav>
 		
 		<div class="container">
-		<h3 class="text-center title-green">Riepilogo Ordine</h3>
+			<h3 class="text-center title-green">Riepilogo Ordine</h3>
+		</div>
 			
-			<!-- card orizzontale per attività -->
+		<!-- card orizzontale per attività -->
+		<div class="container">
 			<%if (attivita != null && attivita.size() > 0) {
 				Iterator<?> iterator =  attivita.iterator();
 				while(iterator.hasNext()){
 					Attivita bean = (Attivita) iterator.next();%>
-				<div class="row" style="margin-top: 40px;">
-						<div class="col-3 card-shadow" style="background-image: url('img/cascata.jpg'); border-radius: 30px 0px 0px 30px;"></div>
-						<div class="col-9 card-shadow" style="background-color: white; border-radius: 0px 30px 30px 0px;">
-							<h3><%=bean.getNome()%></h3> 
+					<div class="row" style="margin-top: 60px;">
+						<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
+						<div class="col-md-7" style="background-color: white; border-radius: 0px 30px 30px 0px; border: 1px solid rgba(0,0,0,.125); padding: 22px;">
+							<h3 class="title-green"><%=bean.getNome()%></h3> 
 							<p>Prezzo: <%=bean.getPrezzo()%> $</p>
 							<p>Orario <select style="margin-left: 5px;">
 								<option value="10:00-11:00" selected="selected">10:00-11:00 </option>
@@ -70,13 +88,23 @@ if (attivita == null) {
 								<option value="10:00-11:00" selected="selected">1 </option>
 								<option value="part1">2 </option>
 								<option value="part2">3 </option></select>
-								<button type="submit" class="btn btn-success" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
+							<span>
+								<p style="text-align: right; margin-right: 26px;">
+									<button type="submit" class="btn btn-success btn-lg" style="margin-right: 22px;">Prenota</button>
+									<button type="reset" class="btn btn-danger btn-lg">Elimina</button>
+								</p>
+							</span>
 						</div>
-				</div>    
+					</div>
+					  
 				
-				<a href="pagamento.jsp">procedi al pagamento</a>		
-			<%	}
-			} else {%>
+						
+			<%	}%>
+				<p class="text-center" style="margin-top: 32px;">
+					<a class="btn btn-success btn-lg" href="pagamento.jsp">Procedi al pagamento</a>
+				</p>
+				</div>
+			<%} else {%>
 				<p>Non ci sono attivita</p>
 		<%	} %>
 			

@@ -78,29 +78,24 @@ boolean log = false;	%>
 				Iterator<?> iterator =  carte.iterator();
 				while(iterator.hasNext()){
 				CartaDiCredito bean = (CartaDiCredito) iterator.next();%>
-				<p><%=bean.getIntestatrio() %></p>
-				
-				<%	}
-			} else {%>
-				<p>Non ci sono carte</p>
-		<%	} %>
-			
-			<div class="row" style="padding: 8px 0;">
-				<div class="col-sm-1 mx-auto">
-					<p class="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-back" viewBox="0 0 16 16">
-  						<path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z"/>
- 						<path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"/>
-						</svg></p>
-				</div>
-				<div class="col-sm-3 mx-auto">
-					<p class="text-center">Carmine Pastore</p>
-				</div>
-				<div class="col-sm-3 mx-auto">
-					<p class="text-center">**** **** **** 9875</p>
-				</div>
-				<div class="col-sm-2 mx-auto">
-					<p class="text-center">07/26</p>
-				</div>
+					<div class="row" style="padding: 8px 0;">
+						<div class="col-sm-1 mx-auto" style="padding-top: 8px;">
+							<p class="text-center">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-back" viewBox="0 0 16 16">
+  								<path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z"/>
+ 								<path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"/>
+								</svg>
+							</p>
+						</div>
+						<div class="col-sm-3 mx-auto" style="padding-top: 8px;">
+							<p class="text-center"><%=bean.getIntestatrio() %></p>
+						</div>
+						<div class="col-sm-3 mx-auto" style="padding-top: 8px;">
+							<p class="text-center"><%=bean.getNumero() %></p>
+						</div>
+						<div class="col-sm-2 mx-auto" style="padding-top: 8px;">
+							<p class="text-center"><%=bean.getScadenza()%></p>
+						</div>
 				<div class="col-sm-3 mx-auto">
 					<p class="text-center"><button type="button" class="btn btn-link" style="color:red; text-decoration: none;" onclick="">
   						<svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -3px;" width="16" height="16" fill="currentColor" class="bi bi-x-octagon" viewBox="0 0 16 16">
@@ -111,6 +106,12 @@ boolean log = false;	%>
 				</div>
 			</div>
 			<hr>
+				<%	}
+			} else {%>
+				<p>Non ci sono carte</p>
+		<%	} %>
+			
+			
 			
 			<!-- Form per aggiunta di una nuova carta -->
 			<div class="row" style="margin: 0 32px;">

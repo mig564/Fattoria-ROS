@@ -28,7 +28,7 @@ public class CartaDiCreditoModelDM implements Model<CartaDiCredito> {
          ResultSet rs = preparedStatement.executeQuery();
 
          while(rs.next()) {
-            bean.setNumero(rs.getInt("numero"));
+            bean.setNumero(rs.getString("numero"));
             bean.setIntestatrio(rs.getString("intestatario"));
             bean.setCvv(rs.getInt("cvv"));
             bean.setEmail(rs.getString("email"));
@@ -64,7 +64,7 @@ public class CartaDiCreditoModelDM implements Model<CartaDiCredito> {
 
          while(rs.next()) {
             CartaDiCredito bean = new CartaDiCredito();
-            bean.setNumero(rs.getInt("numero"));
+            bean.setNumero(rs.getString("numero"));
             bean.setIntestatrio(rs.getString("intestatario"));
             bean.setCvv(rs.getInt("cvv"));
             bean.setEmail(rs.getString("email"));
@@ -93,7 +93,7 @@ public class CartaDiCreditoModelDM implements Model<CartaDiCredito> {
       try {
          connection = DriverManagerConnectionPool.getConnection();
          preparedStatement = connection.prepareStatement(insertSQL);
-         preparedStatement.setInt(1, product.getNumero());
+         preparedStatement.setString(1, product.getNumero());
          preparedStatement.setString(2, product.getIntestatrio());
          preparedStatement.setString(3, product.getScadenza());
          preparedStatement.setInt(4, product.getCvv());
@@ -122,12 +122,12 @@ public class CartaDiCreditoModelDM implements Model<CartaDiCredito> {
       try {
          connection = DriverManagerConnectionPool.getConnection();
          preparedStatement = connection.prepareStatement(updateSQL);
-         preparedStatement.setInt(1, product.getNumero());
+         preparedStatement.setString(1, product.getNumero());
          preparedStatement.setString(2, product.getIntestatrio());
          preparedStatement.setString(3, product.getScadenza());
          preparedStatement.setInt(4, product.getCvv());
          preparedStatement.setString(5, product.getEmail());
-         preparedStatement.setInt(6, product.getNumero());
+         preparedStatement.setString(6, product.getNumero());
          System.out.println("doUpdate: " + preparedStatement.toString());
          preparedStatement.executeUpdate();
          connection.commit();
@@ -152,7 +152,7 @@ public class CartaDiCreditoModelDM implements Model<CartaDiCredito> {
       try {
          connection = DriverManagerConnectionPool.getConnection();
          preparedStatement = connection.prepareStatement(deleteSQL);
-         preparedStatement.setInt(1, product.getNumero());
+         preparedStatement.setString(1, product.getNumero());
          System.out.println("doDelete: " + preparedStatement.toString());
          preparedStatement.executeUpdate();
       } finally {

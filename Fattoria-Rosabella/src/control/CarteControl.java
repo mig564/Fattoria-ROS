@@ -38,9 +38,9 @@ public class CarteControl extends HttpServlet {
 					String mese = (String) request.getParameter("mese");
 					String anno = (String) request.getParameter("anno");
 					String cvv = (String) request.getParameter("cvv");
-					cartaDiCreditoModelDM.doSave(new CartaDiCredito(Integer.parseInt(numero), nome+cognome, mese+"/"+anno, Integer.parseInt(cvv), email));
+					cartaDiCreditoModelDM.doSave(new CartaDiCredito(numero, nome+" "+cognome, mese+"/"+anno, Integer.parseInt(cvv), email));
 				} else {
-					cartaDiCreditoModelDM.doDelete(new CartaDiCredito(Integer.parseInt(request.getParameter("numero")), "","",0,""));
+					cartaDiCreditoModelDM.doDelete(new CartaDiCredito(request.getParameter("numero"), "","",0,""));
 				}
 			}
 			request.removeAttribute("carte");

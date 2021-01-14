@@ -1,13 +1,13 @@
 package beans;
 
 public class CartaDiCredito {
-   private int numero;
+   private String numero;
    private String intestatrio;
    private String scadenza;
    private int cvv;
    private String email;
 
-   public CartaDiCredito(int numero, String intestatrio, String scadenza, int cvv, String email) {
+   public CartaDiCredito(String numero, String intestatrio, String scadenza, int cvv, String email) {
       this.numero = numero;
       this.intestatrio = intestatrio;
       this.scadenza = scadenza;
@@ -18,11 +18,11 @@ public class CartaDiCredito {
    public CartaDiCredito() {
    }
 
-   public int getNumero() {
+   public String getNumero() {
       return this.numero;
    }
 
-   public void setNumero(int numero) {
+   public void setNumero(String numero) {
       this.numero = numero;
    }
 
