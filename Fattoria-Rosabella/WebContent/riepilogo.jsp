@@ -110,7 +110,7 @@ if (attivita == null) {
 			
     		
     		
-<!-- Footer -->
+		<!-- Footer -->
 		<div class="container-fluid" style="background-color: #198754; margin-top: 42px; padding: 22px 0px;">
 			<div class="container">
 				<div class="row">
