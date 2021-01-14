@@ -191,4 +191,37 @@ public class CalendarioModelDM implements Model<Calendario> {
 
    }
 
+public Calendario doRetrieveAllAttribute(String data, String ora, int id) throws SQLException {
+	Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    Calendario bean = new Calendario();
+    String selectSQL = "SELECT * FROM calendario WHERE data = ? AND ora=? AND id_attivita=?";
+
+    try {
+       connection = DriverManagerConnectionPool.getConnection();
+       preparedStatement = connection.prepareStatement(selectSQL);
+       preparedStatement.setString(1, data);
+       preparedStatement.setString(2, ora);
+       preparedStatement.setInt(3, id);
+       System.out.println("doRetrieveByKey: " + preparedStatement.toString());
+       ResultSet rs = preparedStatement.executeQuery();
+
+       while(rs.next()) {
+          bean.setDate(rs.getString("data"));
+          bean.setOra(rs.getString("ora"));
+          bean.setId_attivita(rs.getInt("id_attivita"));
+       }
+       System.out.println(bean);
+       return bean;
+    } finally {
+       try {
+          if (preparedStatement != null) {
+             preparedStatement.close();
+          }
+       } finally {
+          DriverManagerConnectionPool.releaseConnection(connection);
+       }
+    }
+}
+
 }

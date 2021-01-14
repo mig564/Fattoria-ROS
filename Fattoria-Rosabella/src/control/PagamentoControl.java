@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,10 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Calendario;
 import beans.CartaDiCredito;
 import beans.Formare;
 import beans.Prenotazione;
 import beans.PrenotazioneAttivita;
+import model.AttivitaModelDM;
+import model.CalendarioModelDM;
 import model.CartaDiCreditoModelDM;
 import model.PrenotazioneAttivitaModelDM;
 import model.PrenotazioneModelDM;
@@ -32,6 +34,8 @@ public class PagamentoControl extends HttpServlet {
 	private static CartaDiCreditoModelDM cartaDiCreditoModelDM = new CartaDiCreditoModelDM();
 	private static PrenotazioneModelDM prenotazioneModelDM = new PrenotazioneModelDM();
 	private static PrenotazioneAttivitaModelDM prenotazioneAttivitaModelDM = new PrenotazioneAttivitaModelDM();
+	private static CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
+	private static AttivitaModelDM attivitaModelDM = new AttivitaModelDM();
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -62,14 +66,18 @@ public class PagamentoControl extends HttpServlet {
 						error = "Errore. Riprova.";
 				        request.setAttribute("error", error);
 					} else {
-						Date date = new Date();
-						String data = date.toInstant().toString();
-						System.out.println(data);
+						int prezzo=0;
+						for (Formare formare : formares) {
+							prezzo+= attivitaModelDM.doRetrieveByKey(""+formare.getId_attivita()).getPrezzo();
+						}
 						Random random = new Random();
 						int id_prenotazione = random.nextInt();
-						prenotazioneModelDM.doSave(new Prenotazione(id_prenotazione, data.substring(11, 19), "", 0, carrello));
+						prenotazioneModelDM.doSave(new Prenotazione(id_prenotazione, "", "", prezzo, carrello));
 						for (Formare formare : formares) {
 							prenotazioneAttivitaModelDM.doSave(new PrenotazioneAttivita(formare.getId_attivita(), id_prenotazione, formare.getDate(), formare.getOra()));
+							Calendario calendario = calendarioModelDM.doRetrieveAllAttribute(formare.getDate(), formare.getOra(), formare.getId_attivita());
+							calendario.setPartecipanti(formare.getPartecipanti());
+							calendarioModelDM.doUpdate(calendario);
 						}
 						formares.clear();
 						request.getSession().setAttribute("formCart", formares);
