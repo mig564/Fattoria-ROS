@@ -30,21 +30,20 @@ public class AreaPersonale extends HttpServlet {
       try {
          if (action == null) {
         	Utente utente = utenteModelDM.doRetrieveByKey(email);
-            Utente newUtente = new Utente();
-            newUtente.setEmail(utente.getEmail());
-            newUtente.setPassword(utente.getPassword());
-        	newUtente.setNome(request.getParameter("nome").trim());
-        	newUtente.setCognome(request.getParameter("cognome").trim());
-        	newUtente.setCitta(request.getParameter("citta").trim());
-        	newUtente.setData_nascita(request.getParameter("data_nascita").trim());
-        	newUtente.setIndirizzo(request.getParameter("indirizzo").trim());
+            utente.setEmail(utente.getEmail());
+            utente.setPassword(utente.getPassword());
+        	utente.setNome(request.getParameter("nome").trim());
+        	utente.setCognome(request.getParameter("cognome").trim());
+        	utente.setCitta(request.getParameter("citta").trim());
+        	utente.setData_nascita(request.getParameter("data_nascita").trim());
+        	utente.setIndirizzo(request.getParameter("indirizzo").trim());
             utenteModelDM.doUpdate(utente);
          } else {
             request.removeAttribute("utente");
             request.setAttribute("utente", utenteModelDM.doRetrieveByKey(email));
          }
       } catch (Exception var6) {
-    	  
+    	  var6.printStackTrace();
       }
       RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/ilmioprofilo.jsp");
       dispatcher.forward(request, response);
