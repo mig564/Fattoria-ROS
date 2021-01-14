@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
@@ -41,6 +42,16 @@ public class AdminControl extends HttpServlet {
 		String action = (String) request.getParameter("action");
 		if (tipo != null) {
 			try {
+				Collection<Attivita> attivitas = attivitaModelDM.doRetrieveByAtti((String) request.getParameter("date"), (String) request.getParameter("categoria"));
+				if (attivitas.size() > 0) {
+					request.removeAttribute("attivitas");
+					request.setAttribute("attivitas", attivitas);
+					request.removeAttribute("date");
+					request.setAttribute("date", (String) request.getParameter("date"));
+				} else {
+					request.removeAttribute("error");
+					request.setAttribute("error", "spiacente non ci sono attivita nel giorno selezionato");
+				}
 				if (action != null) {
 					if (tipo.equals("attivita")) {
 						if (action.equals("aggiungi")) {
@@ -66,19 +77,117 @@ public class AdminControl extends HttpServlet {
 									calendar.set(2021, Calendar.FEBRUARY, 1);
 								} else if(mese.equals("Marzo")) {
 									calendar.set(2021, Calendar.MARCH, 1);
+								} else if(mese.equals("Aprile")) {
+									calendar.set(2021, Calendar.APRIL, 1);
+								} else if(mese.equals("Maggio")) {
+									calendar.set(2021, Calendar.MAY, 1);
+								} else if(mese.equals("Giugno")) {
+									calendar.set(2021, Calendar.JUNE, 1);
+								} else if(mese.equals("Luglio")) {
+									calendar.set(2021, Calendar.JULY, 1);
+								} else if(mese.equals("Agosto")) {
+									calendar.set(2021, Calendar.AUGUST, 1);
+								} else if(mese.equals("Settembre")) {
+									calendar.set(2021, Calendar.SEPTEMBER, 1);
+								} else if(mese.equals("Ottobre")) {
+									calendar.set(2021, Calendar.OCTOBER, 1);
+								} else if(mese.equals("Novembre")) {
+									calendar.set(2021, Calendar.NOVEMBER, 1);
+								} else if(mese.equals("Dicembre")) {
+									calendar.set(2021, Calendar.DECEMBER, 1);
 								}
 								lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 								for(int i=1; i<=lastDay; i++) {
 									Calendar c = new GregorianCalendar();
-									c.set(2021, calendar.getMaximum(Calendar.MONTH), i);
+									c.set(2021, calendar.get(Calendar.MONTH), i);
 									for(String giorno : giorni) {
-										if(giorno.equals("Lunedì")) {
-											if(c.getActualMaximum(Calendar.DAY_OF_WEEK) == 1) {
+										if(giorno.equals("Lunedi")) {
+											if(c.get(Calendar.DAY_OF_WEEK) == 2) {
 												for(String orario : orari) {
 													Calendario cal = new Calendario();
-													cal.setDate(c.toString());
+													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
+													cal.setDate(m);
 													cal.setOra(orario);
 													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setId_attivita(id);
+													calendarioModelDM.doSave(cal);
+												}
+											}
+										}
+										if(giorno.equals("Martedi")) {
+											if(c.get(Calendar.DAY_OF_WEEK) == 3) {
+												for(String orario : orari) {
+													Calendario cal = new Calendario();
+													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
+													cal.setDate(m);
+													cal.setOra(orario);
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setId_attivita(id);
+													calendarioModelDM.doSave(cal);
+												}
+											}
+										}
+										if(giorno.equals("Mercoledi")) {
+											if(c.get(Calendar.DAY_OF_WEEK) == 4) {
+												for(String orario : orari) {
+													Calendario cal = new Calendario();
+													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
+													cal.setDate(m);
+													cal.setOra(orario);
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setId_attivita(id);
+													calendarioModelDM.doSave(cal);
+												}
+											}
+										}
+										if(giorno.equals("Giovedi")) {
+											if(c.get(Calendar.DAY_OF_WEEK) == 5) {
+												for(String orario : orari) {
+													Calendario cal = new Calendario();
+													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
+													cal.setDate(m);
+													cal.setOra(orario);
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setId_attivita(id);
+													calendarioModelDM.doSave(cal);
+												}
+											}
+										}
+										if(giorno.equals("Venerdi")) {
+											if(c.get(Calendar.DAY_OF_WEEK) == 6) {
+												for(String orario : orari) {
+													Calendario cal = new Calendario();
+													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
+													cal.setDate(m);
+													cal.setOra(orario);
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setId_attivita(id);
+													calendarioModelDM.doSave(cal);
+												}
+											}
+										}
+										if(giorno.equals("Sabato")) {
+											if(c.get(Calendar.DAY_OF_WEEK) == 7) {
+												for(String orario : orari) {
+													Calendario cal = new Calendario();
+													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
+													cal.setDate(m);
+													cal.setOra(orario);
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setId_attivita(id);
+													calendarioModelDM.doSave(cal);
+												}
+											}
+										}
+										if(giorno.equals("Domenica")) {
+											if(c.get(Calendar.DAY_OF_WEEK) == 1) {
+												for(String orario : orari) {
+													Calendario cal = new Calendario();
+													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
+													cal.setDate(m);
+													cal.setOra(orario);
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setId_attivita(id);
 													calendarioModelDM.doSave(cal);
 												}
 											}

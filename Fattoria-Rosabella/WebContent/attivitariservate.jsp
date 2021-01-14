@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"  import="java.util.*"%>
+		<%@page import="beans.Calendario"%>
+		<%@page import="beans.Attivita" import="model.CalendarioModelDM"%>
 <%Boolean adminRoles = (Boolean) session.getAttribute("adminFilterRoles");
+Collection<?> attivitas = (Collection<?>) request.getAttribute("attivitas");
+String error = (String) request.getAttribute("error");
+String date = (String) request.getAttribute("date");
 if ((adminRoles == null) || (!adminRoles.booleanValue())) {	
-   	response.sendRedirect("./login-form-filter.jsp");
+   	response.sendRedirect("./login.jsp");
    	return;
 } %>
 <!DOCTYPE html>
@@ -11,6 +16,7 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="css/style.css" rel="stylesheet">
+		<script type="text/javascript" src="script/prenotazioni.js"></script>
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
 			rel="stylesheet"
@@ -51,7 +57,7 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 		<div class="container">
 			<h3 class="text-center title-green" style="margin-top: 40px;">Benvenuto, utenteX</h3>
 			<p class="text-center" style="margin-bottom: 40px;">Sezione gestione attività</p>
-			<p class="text-center"><button type="button" class="btn btn-link" style="color: green; text-decoration: none;" onclick="showFormAggiungiCarta()">
+			<p class="text-center"><button type="button" class="btn btn-link" style="color: green; text-decoration: none;" onclick="javascript:showAggiungiAttivita()">
   				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
   					<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   					<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -59,18 +65,18 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 			</button></p>
 			
 			<!-- Form aggiunta attività -->
-			<form name="aggiungiattivita" method="post" action="AdminControl?tipo=attiva&action=aggiungi" onSubmit="" style="display: block;">
+			<form name="aggiungiattivita" method="post" action="AdminControl?tipo=attivita&action=aggiungi" onSubmit="" style="display: none;">
 					<div class="form-floating" style="margin-bottom: 12px;">
 						<input type="text" class="form-control" id="nome" name="nome" placeholder="">
 						<label for="nome">Nome attività</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
 						<select class="form-select" name="categoria" id="categoria" aria-label="Seleziona categoria">
-	 					 	<option value="1">Escursione</option>
-	 					 	<option value="2">Visita guidata</option>
-	 					 	<option value="3">Fattoria didattica</option>
-	 					 	<option value="4">Balneazione</option>
-		 				 	<option value="5">Ristoro</option>
+	 					 	<option value="Escursione">Escursione</option>
+	 					 	<option value="Visita guidata">Visita guidata</option>
+	 					 	<option value="Fattoria didattica">Fattoria didattica</option>
+	 					 	<option value="Balneazione">Balneazione</option>
+		 				 	<option value="Ristoro">Ristoro</option>
 		 				 </select>
 		 				 <label for="categoria">Categoria</label>
 		 			</div>
@@ -98,7 +104,7 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 							<label class="form-check-label" for="checkOrario10">10:00</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="orario" id="checkOrario10" value="10:00:00">
+							<input class="form-check-input" type="checkbox" name="orario" id="checkOrario10" value="12:00:00">
 							<label class="form-check-label" for="checkOrario10">12:00</label>
 						</div>
 						<div class="form-check form-check-inline">
@@ -119,23 +125,23 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 					<div class="form-floating" style="margin-bottom: 12px;">
 						<div class="form-check form-check-inline"  style="margin-bottom: 12px;">
 							<p>Giorni: </p>
-							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoLunedi" value="Lunedì">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoLunedi" value="Lunedi">
 							<label class="form-check-label" for="checkGiornoLunedi">Lunedì</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoMartedi" value="Martedì">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoMartedi" value="Martedi">
 							<label class="form-check-label" for="checkGiornoMartedi">Martedì</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoMercoledi" value="Mercoledì">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoMercoledi" value="Mercoledi">
 							<label class="form-check-label" for="checkGiornoMercoledi">Mercoledì</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoGiovedi" value="Giovedì">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoGiovedi" value="Giovedi">
 							<label class="form-check-label" for="checkGiornoGiovedi">Giovedì</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoVenerdi" value="Venerdì">
+							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoVenerdi" value="Venerdi">
 							<label class="form-check-label" for="checkGiornoVenerdi">Venerdì</label>
 						</div>
 						<div class="form-check form-check-inline">
@@ -204,6 +210,50 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 					<p class="text-center"><button type="submit" class="btn btn-success">AGGIUNGI</button></p>
 				</form>
 		</div>
+		
+		<!-- Attività disponibili -->
+		<% if (attivitas != null && attivitas.size() > 0) {%>
+		
+			<h2 class="text-center title-green" style="margin-top: 42px; ">Modifica attività</h2>
+			<%CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
+			Iterator<?> iterator = attivitas.iterator();
+			while (iterator.hasNext()) {
+				Attivita bean = (Attivita) iterator.next();
+				Collection<?> calendarios = (Collection<?>) calendarioModelDM.doRetrieveByAtt(bean.getId_attivita(), date);
+				Iterator<?> iterator2 = calendarios.iterator();
+				Calendario calendario= new Calendario();%>
+				
+				<div class="container">
+					<!-- card orizzontale per attività -->
+    				<form name="selezioneAttivita" method="post" action="CarrelloControl?data=<%=date %>&action=aggiungi&id=<%=bean.getId_attivita() %>" onsubmit="">
+    					<div class="row" style="margin-top: 60px;" >
+							<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
+							<div class="col-md-7" style="background-color: white; border-radius: 0px 30px 30px 0px;  border: 1px solid rgba(0,0,0,.125); padding: 22px;">
+							
+								<h3 class="title-green"><%=bean.getNome() %></h3> 
+								<p>Prezzo: <%=bean.getPrezzo() %>,00 Euro</p>
+								<p>Orario <select style="margin-left: 5px;" name="ora">
+								<%while (iterator2.hasNext()) {
+									calendario = (Calendario) iterator2.next();%>
+									<option value="orario1"><%=calendario.getOra() %></option>
+								<%} %></select></p> 
+								<p>Partecipanti
+								
+								<select name="partecipanti" style="margin-left: 5px;">
+									<%int i;
+									for(i=1; i<=(bean.getMax_persone()-calendario.getPartecipanti()); i++) {%>
+										<option value="<%=i %>"><%=i %></option>
+									<%} %>
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+		<% 	}
+		} else if (error != null){ %> 
+				<p><%=error%> </p> 
+				<%
+			} %>
 
 		<!-- Bootstrap - JavaScript -->
 		<script

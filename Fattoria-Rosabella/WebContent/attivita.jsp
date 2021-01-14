@@ -103,7 +103,7 @@
 							<div class="container-img-card" style="background-image: url('img/<%=bean.getNome()%>.jpg');"></div>
   							<div class="card-body">
     							<h5 class="card-title title-green text-center"><%=bean.getNome()%></h5>
-    							<p class="card-text text-center">La nostra attrazione principale, il punto più bello del parco.</p>
+    							<p class="card-text text-center"><%=bean.getDescrizione() %></p>
     							<p class="text-center"><a href="<%=response.encodeURL("schedaattivita.jsp?id="+bean.getId_attivita())%>" class="btn btn-outline-success">Scopri di più</a></p>
     						</div>
     					</div>

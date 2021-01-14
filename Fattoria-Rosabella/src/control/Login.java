@@ -47,8 +47,7 @@ public class Login extends HttpServlet {
     		  Admin admin = adminModel.doRetrieveByKey(email);
     		  if (admin != null && admin.getEmail().equals(email) && admin.getPassword().equals(password)) {
     				request.getSession().setAttribute("adminFilterRoles", true);
-    				response.sendRedirect("areariservata.jsp");
-    				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("areariservata.jsp");
+    				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/areariservata.jsp");
     				dispatcher.forward(request, response);
     			} else {
     				throw new Exception("Invalid login and password");
