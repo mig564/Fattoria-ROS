@@ -66,11 +66,11 @@ boolean log = false;	%>
 										</svg>
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<li><a class="dropdown-item" href="#">Il mio profilo</a></li>
-										<li><a class="dropdown-item" href="#">Le mie prenotazioni</a></li>
-										<li><a class="dropdown-item" href="#">Le mie carte</a></li>
+										<li><a class="dropdown-item" href="ilmioprofilo.jsp">Il mio profilo</a></li>
+										<li><a class="dropdown-item" href="lemieprenotazioni.jsp">Le mie prenotazioni</a></li>
+										<li><a class="dropdown-item" href="lemiecarte.jsp">Le mie carte</a></li>
 										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" href="#">Logout</a></li>
+										<li><a class="dropdown-item" onclick="window.location.href='./Logout'">Logout</a></li>
 									</ul>
 								</li>
 					    	<%} %>	
@@ -82,112 +82,44 @@ boolean log = false;	%>
 		
 		
 		<!-- riga con riepilogo prenotazione -->
-		
+		<div class="container">
+			<h3 class="text-center title-green" style="margin-top: 30px; margin-bottom: 60px;">Le mie prenotazioni</h3>
+			
 			<%
 				if(prenotazioni != null && prenotazioni.size() > 0) {
 				Iterator<?> iterator =  prenotazioni.iterator();
 				while(iterator.hasNext()){
 					Prenotazione bean = (Prenotazione) iterator.next();
 					PrenotazioneAttivita prenotazioneAttivita =  attivitaModelDM.doRetrieveByKey(""+bean.getId_prenotazione());
-					Attivita attivita = attivitaDM.doRetrieveByKey(prenotazioneAttivita.getId_attivita()+"");
-				%>	<p><%=bean.getPrezzo() %> </p>
-					<p><%=prenotazioneAttivita.getDate()%> </p>
-					<p><%=prenotazioneAttivita.getOra() %> </p>
-					<p><%=attivita.getNome() %> </p>
+					Attivita attivita = attivitaDM.doRetrieveByKey(prenotazioneAttivita.getId_attivita()+"");%>
+					<div class="row" style="margin-top: 20px;">  
+						<div class="col-md-1"><p class="text-center"><%=bean.getId_prenotazione() %></p></div> <!-- id prenotazione -->
+						<div class="col-md-3"><p class="text-center"><%=prenotazioneAttivita.getOra() %></div>
+						<div class="col-md-3"><p class="text-center"><%=prenotazioneAttivita.getDate()%></div>
+						<div class="col-md-2"><p class="text-center"><%=bean.getPrezzo()%></div>
+						<div class="col-md-2"><p class="text-center">
+  							<button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" style="color: black;" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+								</svg>
+							</button>
+						</div>
+						<div class="collapse" id="collapseExample">
+  							<div class="card card-body">
+    							<div class="row">
+    								<div class="col"><p class="text-center"><%=attivita.getId_attivita() %></div>
+    								<div class="col"><p class="text-center"><%=prenotazioneAttivita.getDate()%></div>
+    								<div class="col"><p class="text-center"><%=prenotazioneAttivita.getOra() %></div>
+    								<div class="col"><p class="text-center"><%=attivita.getMax_persone()%></div>
+    							</div>	
+							</div>
+						</div>
+					</div>
 				<%	}
 				} else {%>
 					<p>Non ci sono attivita</p>
 			<%	} %>
-		
-		<div class="container">
-			<h3 class="text-center title-green" style="margin-top: 30px; margin-bottom: 60px;">Le mie prenotazioni</h3>
-		
-			<div class="row" style="margin-top: 20px;">  
-				<div class="col-md-1"><p class="text-center">788</p></div> <!-- id prenotazione -->
-				<div class="col-md-3"><p class="text-center">Ora prenotazione</div>
-				<div class="col-md-3"><p class="text-center">21/11/2020</div>
-				<div class="col-md-2"><p class="text-center">21£</div>
-				<div class="col-md-1"><p class="text-center">pag. in sede</div>
-				<div class="col-md-2"><p class="text-center">
-  					<button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" style="color: black;" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-						</svg>
-					</button>
-				</div>
-				<div class="collapse" id="collapseExample">
-  					<div class="card card-body">
-    					<div class="row">
-    						<div class="col"><p class="text-center">500</div>
-    						<div class="col"><p class="text-center">2020-12-20</div>
-    						<div class="col"><p class="text-center">10:00:00</div>
-    						<div class="col"><p class="text-center">5</div>
-    					</div>	
-					</div>
-				</div>
-			</div>
-			
-			
-			
-			
-			<div class="row" style="margin-top: 20px;">  
-				<div class="col-md-1"><p class="text-center">788</p></div> <!-- id prenotazione -->
-				<div class="col-md-3"><p class="text-center">Ora Prenotazione</div>
-				<div class="col-md-3"><p class="text-center">21/11/2020</div>
-				<div class="col-md-2"><p class="text-center">21£</div>
-				<div class="col-md-1"><p class="text-center">pag. in sede</div>
-				<div class="col-md-2"><p class="text-center">
-  					<button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" style="color: black;" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-						</svg>
-					</button>
-				</div>
-				<div class="collapse" id="collapseExample3">
-  					<div class="card card-body">
-    					<div class="row">
-    						<div class="col"><p class="text-center">500</div>
-    						<div class="col"><p class="text-center">2020-12-20</div>
-    						<div class="col"><p class="text-center">10:00:00</div>
-    						<div class="col"><p class="text-center">5</div>
-    					</div>	
-					</div>
-				</div>
-			</div>
-			
-			<div class="row" style="margin-top: 20px;">  
-				<div class="col-md-1"><p class="text-center">788</p></div> <!-- id prenotazione -->
-				<div class="col-md-3"><p class="text-center">Ora Prenotazione</div>
-				<div class="col-md-3"><p class="text-center">21/11/2020</div>
-				<div class="col-md-2"><p class="text-center">21£</div>
-				<div class="col-md-1"><p class="text-center">pag. in sede</div>
-				<div class="col-md-2"><p class="text-center">
-  					<button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" style="color: black;" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-						</svg>
-					</button>
-				</div>
-				<div class="collapse" id="collapseExample2">
-  					<div class="card card-body">
-    					<div class="row">
-    						<div class="col"><p class="text-center">500</div>
-    						<div class="col"><p class="text-center">2020-12-20</div>
-    						<div class="col"><p class="text-center">10:00:00</div>
-    						<div class="col"><p class="text-center">5</div>
-    					</div>	
-					</div>
-				</div>
-			</div>
-		
-		
-		
 		</div>
-		
-		
-		
-		
-		
 		
 	<!-- Footer -->
 		<div class="container-fluid" style="background-color: #198754; margin-top: 42px; padding: 22px 0px;">
