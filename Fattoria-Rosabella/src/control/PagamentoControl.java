@@ -76,7 +76,7 @@ public class PagamentoControl extends HttpServlet {
 						for (Formare formare : formares) {
 							prenotazioneAttivitaModelDM.doSave(new PrenotazioneAttivita(formare.getId_attivita(), id_prenotazione, formare.getDate(), formare.getOra()));
 							Calendario calendario = calendarioModelDM.doRetrieveAllAttribute(formare.getDate(), formare.getOra(), formare.getId_attivita());
-							calendario.setPartecipanti(formare.getPartecipanti());
+							calendario.setPartecipanti(calendario.getPartecipanti()+formare.getPartecipanti());
 							calendarioModelDM.doUpdate(calendario);
 						}
 						formares.clear();
