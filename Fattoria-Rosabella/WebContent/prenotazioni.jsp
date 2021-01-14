@@ -119,7 +119,9 @@
 			while (iterator.hasNext()) {
 				Attivita bean = (Attivita) iterator.next();
 				Collection<?> calendarios = (Collection<?>) calendarioModelDM.doRetrieveByAtt(bean.getId_attivita(), date);
-				Iterator<?> iterator2 = calendarios.iterator();%>
+				Iterator<?> iterator2 = calendarios.iterator();
+				Calendario calendario= new Calendario();%>
+				
 				<div class="container">
 					<!-- card orizzontale per attività -->
     				<form name="selezioneAttivita" method="post" action="CarrelloControl?data=<%=date %>&action=aggiungi&id=<%=bean.getId_attivita() %>" onsubmit="">
@@ -131,7 +133,7 @@
 								<p>Prezzo: <%=bean.getPrezzo() %>,00 Euro</p>
 								<p>Orario <select style="margin-left: 5px;" name="ora">
 								<%while (iterator2.hasNext()) {
-									Calendario calendario = (Calendario) iterator2.next();%>
+									calendario = (Calendario) iterator2.next();%>
 									<option value="orario1"><%=calendario.getOra() %></option>
 								<%} %></select></p> 
 								<p>Partecipanti
@@ -140,7 +142,7 @@
 								
 									<select name="partecipanti" style="margin-left: 5px;">
 										<%int i;
-											for(i=1; i<=bean.getMax_persone(); i++) {%>
+											for(i=1; i<=(bean.getMax_persone()-calendario.getPartecipanti()); i++) {%>
 												<option value="<%=i %>"><%=i %></option>
 											<%} %>
 										</select>
