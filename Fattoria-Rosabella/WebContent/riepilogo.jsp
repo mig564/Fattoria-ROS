@@ -1,9 +1,8 @@
 <%@page import="beans.Formare"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-		pageEncoding="ISO-8859-1"  import="java.util.*" import="beans.Attivita"%>
+		pageEncoding="ISO-8859-1"  import="java.util.*" import="model.FormareModelDM" import="beans.Attivita"%>
 <%
 Collection<?> attivita = (Collection<?>) request.getAttribute("attivita");
-Collection<?> formAttivita = (Collection<?>) request.getAttribute("formCart");
 if (attivita == null) {
 	response.sendRedirect(response.encodeRedirectURL("./CarrelloControl"));
 	return;
@@ -73,10 +72,12 @@ if (attivita == null) {
 			
 		<!-- card orizzontale per attività -->
 		<div class="container">
-			<%if (attivita != null && attivita.size() > 0) {
+			<%FormareModelDM formareModelDM = new FormareModelDM();
+			if (attivita != null && attivita.size() > 0) {
 				Iterator<?> iterator =  attivita.iterator();
 				while(iterator.hasNext()){
 					Attivita bean = (Attivita) iterator.next();
+					Formare formare = formareModelDM.doRetrieveByKey(""+bean.getId_attivita());
 					%>
 					<div class="row" style="margin-top: 60px;">
 						<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
@@ -84,11 +85,11 @@ if (attivita == null) {
 							<h3 class="title-green"><%=bean.getNome()%></h3> 
 							<p>Prezzo: <%=bean.getPrezzo()%>,00 Euro </p>
 							<p>Orario <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected"><%=%> </option>
+								<option value="10:00-11:00" selected="selected"><%=formare.getOra()%> </option>
 								<option value="orario1">09:00-10:00 </option>
 								<option value="orario2">08:00-09:00 </option></select></p> 
 							<p>Partecipanti <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected">1 </option>
+								<option value="10:00-11:00" selected="selected"><%=formare.getPartecipanti() %> </option>
 								<option value="part1">2 </option>
 								<option value="part2">3 </option></select>
 							<span>
