@@ -20,7 +20,7 @@
 			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 			crossorigin="anonymous">
 		<script src="script/prenotazioni.js"></script>
-		
+		<script src="script/ajax.js"></script>
 		<title>Fattoria Rosabella</title>
 	</head>
 <body>
@@ -124,32 +124,32 @@
 				
 				<div class="container">
 					<!-- card orizzontale per attività -->
-    				<form name="selezioneAttivita" method="post" action="CarrelloControl?data=<%=date %>&action=aggiungi&id=<%=bean.getId_attivita() %>" onsubmit="">
+    				<form name="selezioneAttivita" onsubmit="">
     					<div class="row" style="margin-top: 60px;" >
 							<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
 							<div class="col-md-7" style="background-color: white; border-radius: 0px 30px 30px 0px;  border: 1px solid rgba(0,0,0,.125); padding: 22px;">
 							
 								<h3 class="title-green"><%=bean.getNome() %></h3> 
 								<p>Prezzo: <%=bean.getPrezzo() %>,00 Euro</p>
-								<p>Orario <select name="ora" style="margin-left: 5px;">
+								<p>Orario <select id="ora" style="margin-left: 5px;">
 								<%while (iterator2.hasNext()) {
 									calendario = (Calendario) iterator2.next();%>
 									<option value="<%=calendario.getOra() %>"><%=calendario.getOra() %></option>
 								<%} %></select></p> 
-								<p>Partecipanti	<select name="partecipanti" style="margin-left: 5px;">
+								<p>Partecipanti	<select id="partecipanti" style="margin-left: 5px;">
 										<%int i;
 											for(i=1; i<=(bean.getMax_persone()-calendario.getPartecipanti()); i++) {%>
 												<option value="<%=i %>"><%=i %></option>
 											<%} %>
 										</select>
-								<button type="submit" class="btn btn-success btn-lg" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
+								<button type="button" onclick="ajaxCall('<%=date %>','<%=bean.getId_attivita() %>');" class="btn btn-success btn-lg" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
 							</div>
 						</div>
 					</form>
 				</div>
 		<% 	}%>
 			<div class="container" style="margin-top: 40px;">
-				<p class="text-center"><a href="" class="btn btn-success btn-lg">Vai al riepilogo</a></p>
+				<p class="text-center"><a href="riepilogo.jsp" class="btn btn-success btn-lg">Vai al riepilogo</a></p>
 			</div>
 		<%} else if (error != null){ %> 
 				<p><%=error%> </p> 
