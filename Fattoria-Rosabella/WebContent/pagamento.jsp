@@ -140,19 +140,19 @@ boolean log = false;	%>
 				<form name="aggiungicarta" method="post" action="CarteControl?action=aggiungi" onSubmit="" style="display: none;">
 					<h3 class="text-center title-green" style="margin-bottom: 22px;">REGISTRAZIONE</h3>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="number" name="numero" class="form-control" id="campoNumeroCarta"  placeholder="0055 1234 1234 1234">
+						<input type="number" name="numero" class="form-control" id="campoNumeroCarta"  placeholder="0055 1234 1234 1234" maxlength="17">
 						<label for="campoNumeroCarta">Numero carta</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="text" name="nome" class="form-control" id="nomeUtente"  placeholder="Nome">
+						<input type="text" name="nome" class="form-control" id="nomeUtente"  placeholder="Nome" required>
 						<label for="nomeUtente">Nome intestatario</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="text" name="cognome" class="form-control" id="cognomeUtente"  placeholder="Cognome">
+						<input type="text" name="cognome" class="form-control" id="cognomeUtente"  placeholder="Cognome" required>
 						<label for="cognomeUtente">Cogome intestatario</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="number" name="cvv" class="form-control" id="campoCVV"  placeholder="CVV">
+						<input type="number" name="cvv" class="form-control" id="campoCVV"  placeholder="CVV" maxlength="4">
 						<label for="campoCVV">CVV</label>
 					</div>
 					<div class="row" style="margin-bottom: 12px;">

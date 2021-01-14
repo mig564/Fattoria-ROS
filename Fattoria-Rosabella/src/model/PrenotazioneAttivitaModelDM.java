@@ -87,7 +87,7 @@ public class PrenotazioneAttivitaModelDM implements Model<PrenotazioneAttivita> 
 	public void doSave(PrenotazioneAttivita product) throws SQLException {
 		 Connection connection = null;
 	      PreparedStatement preparedStatement = null;
-	      String insertSQL = "INSERT INTO prenotazione(id_prenotazione, id_attivita, data, ora ) VALUES (?, ?, ?, ?)";
+	      String insertSQL = "INSERT INTO prenotazioneAttivita(id_prenotazione, id_attivita, data, ora, partecipanti) VALUES (?, ?, ?, ?, ?)";
 
 	      try {
 	         connection = DriverManagerConnectionPool.getConnection();
@@ -96,7 +96,7 @@ public class PrenotazioneAttivitaModelDM implements Model<PrenotazioneAttivita> 
 	         preparedStatement.setInt(2, product.getId_attivita());
 	         preparedStatement.setString(3, product.getDate());
 	         preparedStatement.setString(4, product.getOra());
-	         
+	         preparedStatement.setInt(5, product.getPartecipanti());
 	         System.out.println("doSave: " + preparedStatement.toString());
 	         preparedStatement.executeUpdate();
 	         connection.commit();

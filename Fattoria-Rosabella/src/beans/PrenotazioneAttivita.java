@@ -6,15 +6,17 @@ public class PrenotazioneAttivita {
 	private int id_prenotazione;
 	private String date;
 	private String ora;
+	private int partecipanti;
 	
 	public PrenotazioneAttivita() {
 	}
-	
-	public PrenotazioneAttivita(int id_attivita, int id_prenotazione, String date, String ora) {
+
+	public PrenotazioneAttivita(int id_attivita, int id_prenotazione, String date, String ora, int partecipanti) {
 		this.id_attivita = id_attivita;
 		this.id_prenotazione = id_prenotazione;
 		this.date = date;
 		this.ora = ora;
+		this.partecipanti = partecipanti;
 	}
 
 	public int getId_attivita() {
@@ -49,10 +51,18 @@ public class PrenotazioneAttivita {
 		this.ora = ora;
 	}
 
+	public int getPartecipanti() {
+		return partecipanti;
+	}
+	
+	public void setPartecipanti(int partecipanti) {
+		this.partecipanti = partecipanti;
+	}
+	
 	@Override
 	public String toString() {
 		return "PrenotazioneAttivita [id_attivita=" + id_attivita + ", id_prenotazione=" + id_prenotazione + ", date="
-				+ date + ", ora=" + ora + "]";
+				+ date + ", ora=" + ora + ",partecipanti=" + partecipanti + "]";
 	}
 	
 }

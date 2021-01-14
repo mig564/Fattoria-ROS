@@ -1,6 +1,8 @@
+<%@page import="beans.Calendario"%>
+<%@page import="model.CalendarioModelDM"%>
 <%@page import="beans.Formare"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-		pageEncoding="ISO-8859-1"  import="java.util.*" import="model.FormareModelDM" import="beans.Attivita"%>
+		pageEncoding="ISO-8859-1"  import="java.util.*" import="model.*" import="beans.*"%>
 <%
 Collection<?> attivita = (Collection<?>) request.getAttribute("attivita");
 if (attivita == null) {
@@ -79,34 +81,47 @@ if (attivita == null) {
 					Attivita bean = (Attivita) iterator.next();
 					ArrayList<?> formCart = (ArrayList<?>) request.getSession().getAttribute("formCart");
 					Formare formare = (Formare) formCart.get(formCart.indexOf(new Formare(0, bean.getId_attivita(), "", "", 0)));
+					CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
+					Collection<?> calendario = (Collection<?>) calendarioModelDM.doRetrieveByAtt(bean.getId_attivita(), formare.getDate());
+					Iterator<?> iterator2 = calendario.iterator();
+					Calendario calendario2 = new Calendario();
 					%>
 					<div class="row" style="margin-top: 60px;">
 						<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
 						<div class="col-md-7" style="background-color: white; border-radius: 0px 30px 30px 0px; border: 1px solid rgba(0,0,0,.125); padding: 22px;">
 							<h3 class="title-green"><%=bean.getNome()%></h3> 
 							<p>Prezzo: <%=bean.getPrezzo()%>,00 Euro </p>
-							<p>Orario <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected"><%=formare.getOra()%> </option>
-								<option value="orario1">09:00-10:00 </option>
-								<option value="orario2">08:00-09:00 </option></select></p> 
-							<p>Partecipanti <select style="margin-left: 5px;">
-								<option value="10:00-11:00" selected="selected"><%=formare.getPartecipanti() %> </option>
-								<option value="part1">2 </option>
-								<option value="part2">3 </option></select>
+							<p>Orario <select name="ora" style="margin-left: 5px;">
+							<%while(iterator2.hasNext()) {
+								calendario2 = (Calendario) iterator.next(); %>
+								<%if (calendario2.getOra().equals(formare.getOra())) {%>
+									<option value="<%=formare.getOra()%> " selected="selected"><%=formare.getOra()%> </option>
+								<%} else {%>
+									<option value="<%=calendario2.getOra() %>"><%=calendario2.getOra() %> </option></select></p> 
+								<%} %>
+							<%} %>
+							<p>Partecipanti <select name="partecipanti" style="margin-left: 5px;">
+							<%	int i;
+								for(i=1; i<=(bean.getMax_persone()-calendario2.getPartecipanti()); i++) {
+									if (calendario2.getPartecipanti()==i) {%>
+										<option value="10:00-11:00" selected="selected"><%=formare.getPartecipanti() %> </option>
+							<%	} %>
+										<option value="<%=i %>"><%=i %></option>
+							<%	} %></select>
+												
 							<span>
 								<p style="text-align: right; margin-right: 26px;">
-									<button type="submit" class="btn btn-success btn-lg" style="margin-right: 22px;">Modifica</button>
-									<button type="reset" class="btn btn-danger btn-lg">Rimuovi</button>
+									<a href="./CarrelloControl?action=modifica&id=<%=bean.getId_attivita() %>" class="btn btn-success btn-lg" style="margin-right: 22px;">Modifica</a>
+									<a href="./CarrelloControl?action=rimuovi&id=<%= bean.getId_attivita() %>" class="btn btn-danger btn-lg">Rimuovi</a>
 								</p>
 							</span>
 						</div>
 					</div>
-					  
-				
 						
 			<%	}%>
 				<p class="text-center" style="margin-top: 32px;">
 					<a class="btn btn-success btn-lg" href="pagamento.jsp">Procedi al pagamento</a>
+					<a class="btn btn-success btn-lg" href="./CarrelloControl?action=svuotaCarrello">svuota</a>
 				</p>
 				</div>
 			<%} else {%>

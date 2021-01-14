@@ -63,7 +63,7 @@ public class PagamentoControl extends HttpServlet {
 					@SuppressWarnings("unchecked")
 					ArrayList<Formare> formares = (ArrayList<Formare>) request.getSession().getAttribute("formCart");
 					if (formares.isEmpty()) {
-						error = "Errore. Riprova.";
+						error = "Errore. carrello vuoto.";
 				        request.setAttribute("error", error);
 					} else {
 						int prezzo=0;
@@ -74,7 +74,7 @@ public class PagamentoControl extends HttpServlet {
 						int id_prenotazione = random.nextInt();
 						prenotazioneModelDM.doSave(new Prenotazione(id_prenotazione, "", "", prezzo, carrello));
 						for (Formare formare : formares) {
-							prenotazioneAttivitaModelDM.doSave(new PrenotazioneAttivita(formare.getId_attivita(), id_prenotazione, formare.getDate(), formare.getOra()));
+							prenotazioneAttivitaModelDM.doSave(new PrenotazioneAttivita(formare.getId_attivita(), id_prenotazione, formare.getDate(), formare.getOra(), formare.getPartecipanti()));
 							Calendario calendario = calendarioModelDM.doRetrieveAllAttribute(formare.getDate(), formare.getOra(), formare.getId_attivita());
 							calendario.setPartecipanti(calendario.getPartecipanti()+formare.getPartecipanti());
 							calendarioModelDM.doUpdate(calendario);
