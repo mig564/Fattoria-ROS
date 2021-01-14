@@ -72,12 +72,13 @@ if (attivita == null) {
 			
 		<!-- card orizzontale per attività -->
 		<div class="container">
-			<%FormareModelDM formareModelDM = new FormareModelDM();
+			<%
 			if (attivita != null && attivita.size() > 0) {
 				Iterator<?> iterator =  attivita.iterator();
 				while(iterator.hasNext()){
 					Attivita bean = (Attivita) iterator.next();
-					Formare formare = formareModelDM.doRetrieveByKey(""+bean.getId_attivita());
+					ArrayList<?> formCart = (ArrayList<?>) request.getSession().getAttribute("formCart");
+					Formare formare = (Formare) formCart.get(formCart.indexOf(new Formare(0, bean.getId_attivita(), "", "", 0)));
 					%>
 					<div class="row" style="margin-top: 60px;">
 						<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>

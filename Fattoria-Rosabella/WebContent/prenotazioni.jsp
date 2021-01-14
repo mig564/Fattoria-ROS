@@ -131,16 +131,12 @@
 							
 								<h3 class="title-green"><%=bean.getNome() %></h3> 
 								<p>Prezzo: <%=bean.getPrezzo() %>,00 Euro</p>
-								<p>Orario <select style="margin-left: 5px;" name="ora">
+								<p>Orario <select name="ora" style="margin-left: 5px;">
 								<%while (iterator2.hasNext()) {
 									calendario = (Calendario) iterator2.next();%>
-									<option value="orario1"><%=calendario.getOra() %></option>
+									<option value="<%=calendario.getOra() %>"><%=calendario.getOra() %></option>
 								<%} %></select></p> 
-								<p>Partecipanti
-								
-								<!-- PRENDERE NUMERO MASSIMO DI PARTECIPANTI DA CALENDARIO E NON DA ATTIVITA' -->
-								
-									<select name="partecipanti" style="margin-left: 5px;">
+								<p>Partecipanti	<select name="partecipanti" style="margin-left: 5px;">
 										<%int i;
 											for(i=1; i<=(bean.getMax_persone()-calendario.getPartecipanti()); i++) {%>
 												<option value="<%=i %>"><%=i %></option>

@@ -61,4 +61,19 @@ public class Formare {
    public String toString() {
       return "Formare [id_riepilogo=" + this.id_riepilogo + ", id_attivita=" + this.id_attivita + ", date=" + this.date + ", ora=" + this.ora + ", partecipanti=" + this.partecipanti + "]";
    }
+
+   @Override
+   public boolean equals(Object obj) {
+	   if (this == obj)
+		   return true;
+	   if (obj == null)
+		   return false;
+	   if (getClass() != obj.getClass())
+		   return false;
+	   Formare other = (Formare) obj;
+	   if (id_attivita != other.id_attivita)
+		   return false;
+	   return true;
+   } 
+   
 }
