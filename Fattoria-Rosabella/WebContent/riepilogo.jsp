@@ -120,12 +120,17 @@ if (attivita == null) {
 							</div>
 						</div>
 					</div>
+				</div>
 			<%	}%>
-				<p class="text-center" style="margin-top: 32px;">
-					<a class="btn btn-success btn-lg" href="pagamento.jsp">Procedi al pagamento</a>
-					<a class="btn btn-success btn-lg" href="./CarrelloControl?action=svuotaCarrello">Svuota</a>
-				</p>
+			<div class="container">
+				<div class="row">
+					<p class="text-center" style="margin-top: 32px;">
+						<a class="btn btn-success btn-lg" href="pagamento.jsp">Procedi al pagamento</a>
+						<a class="btn btn-success btn-lg" href="./CarrelloControl?action=svuotaCarrello">Svuota</a>
+					</p>
+				</div>
 			</div>
+			
 			<%} else {%>
 				<div class="container">
 					<div class="row">

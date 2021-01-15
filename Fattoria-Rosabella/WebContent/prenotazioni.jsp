@@ -127,7 +127,7 @@
     				<form name="selezioneAttivita" onsubmit="">
     					<div class="row" style="margin-top: 60px;" >
 							<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
-							<div class="col-md-7" style="background-color: white; border-radius: 0px 30px 30px 0px;  border: 1px solid rgba(0,0,0,.125); padding: 22px;">
+							<div class="col-md-7" id="<%=bean.getId_attivita() %>" style="background-color: white; border-radius: 0px 30px 30px 0px;  border: 1px solid rgba(0,0,0,.125); padding: 22px;">
 							
 								<h3 class="title-green"><%=bean.getNome() %></h3> 
 								<p>Prezzo: <%=bean.getPrezzo() %>,00 Euro</p>

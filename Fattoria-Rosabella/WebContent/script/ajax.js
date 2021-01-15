@@ -22,6 +22,8 @@ function ajaxCall(date, id) {
 	var ora = document.forms["selezioneAttivita"]["ora"].value
 	var partecipanti = document.forms["selezioneAttivita"]["partecipanti"].value
 	
+	document.getElementById(id).style.backgroundColor = "#AAF59C";
+	
 	var req = xhr = new XMLHttpRequest();
 	console.log("Get XML http request");
 	
