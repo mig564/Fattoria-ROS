@@ -152,7 +152,9 @@
 				<p class="text-center"><a href="riepilogo.jsp" class="btn btn-success btn-lg">Vai al riepilogo</a></p>
 			</div>
 		<%} else if (error != null){ %> 
-				<p><%=error%> </p> 
+				<div class="row" style="margin: 22px;">
+					<h3 class="title-green text-center"><%=error%> </h3>
+				</div> 
 				<%
 			} %>
 			

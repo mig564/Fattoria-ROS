@@ -84,7 +84,7 @@ boolean log = false;	%>
   						<label class="form-check-label custom-control-label" for="radioCartaDiCredito">Carta di credito</label>
 					</div>
 					<div class="form-check form-check-inline">
-  						<input class="form-check-input custom-control-input" type="radio" name="selezionaMetedo" id="radioInSede" value="in sede">
+  						<input class="form-check-input custom-control-input" type="radio" name="selezionaMetedo" id="radioInSede" value="in sede" onclick="javascript:removeCarteDiCredito()">
   						<label class="form-check-label custom-control-label" for="radioInSede">In sede</label>
 					</div>
 				</div>
@@ -95,41 +95,47 @@ boolean log = false;	%>
 		<div class="container card" id="carte" style="display: none;">
 			<h3 class="text-center title-green" style="margin: 40px;">Le mie carte</h3>
 			<!-- Carte registrate dall'utente -->
-			<div class="row" style="padding: 8px 0;">
-				<div class="col-sm-2 mx-auto">
-					<div class="form-check form-check-inline" style="padding-left: 40px;">
-  						<input class="form-check-input custom-control-input" type="radio" name="selezionaCarta" id="carta1" value="carta1">
-					</div>
-				</div>
-				
+			
 				<%
 				if(carte != null && carte.size() > 0) {
 				Iterator<?> iterator =  carte.iterator();
 				while(iterator.hasNext()) {
 					CartaDiCredito bean = (CartaDiCredito) iterator.next();%>
-					
-				<div class="col-sm-4 mx-auto">
-					<p class="text-center"><%=bean.getIntestatrio() %></p>
-				</div>
-				<div class="col-sm-4 mx-auto">
-					<p class="text-center"><%=bean.getNumero() %></p>
-				</div>
-				<div class="col-sm-2 mx-auto">
-					<p class="text-center"><%=bean.getScadenza() %></p>
-				</div>
-			</div>
+					<div class="row" style="padding: 8px 0;">
+						<div class="col-sm-1 mx-auto" style="padding-top: 8px;">
+							<p class="text-center">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-back" viewBox="0 0 16 16">
+  								<path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z"/>
+ 								<path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"/>
+								</svg>
+							</p>
+						</div>
+						<div class="col-sm-3 mx-auto" style="padding-top: 8px;">
+							<p class="text-center"><%=bean.getIntestatrio() %></p>
+						</div>
+						<div class="col-sm-3 mx-auto" style="padding-top: 8px;">
+							<p class="text-center"><%=bean.getNumero() %></p>
+						</div>
+						<div class="col-sm-2 mx-auto" style="padding-top: 8px;">
+							<p class="text-center"><%=bean.getScadenza()%></p>
+						</div>
+						<div class="col-sm-3 mx-auto">
+							<input class="form-check-input custom-control-input" style="margin-top: 10px" type="radio" name="selezionacarta" id="<%=bean.getNumero() %>" value="" checked="checked">
+						</div>
+					</div>
+					<hr>
 			<%	}
 			} else {%>
-				<p>Non ci sono carte</p>
+				<p class="text-center title-green">Non ci sono carte</p>
 		<%	} %>
 			
-			<a href="./PagamentoControl?action=paga">compra</a>
+			
 			<% 	if(error != null) {%>
 					<p id="error"><%=error%></p>
 			<%	} %>
 			
 			<!-- Form per aggiunta di una nuova carta -->
-			<div class="row" style="margin: 0 32px;">
+			<div class="row">
 				<p class="text-center"><button type="button" class="btn btn-link" style="color: green; text-decoration: none;" onclick="showFormAggiungiCarta()">
   					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
   						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -137,7 +143,7 @@ boolean log = false;	%>
 					</svg> Aggiungi una nuova carta
 				</button></p>
 				<!-- Form di aggiunta carta -->
-				<form name="aggiungicarta" method="post" action="CarteControl?action=aggiungi" onSubmit="" style="display: none;">
+				<form name="aggiungicarta" method="post" action="PagamentoControl?action=aggiungi" onSubmit="" style="display: none;">
 					<h3 class="text-center title-green" style="margin-bottom: 22px;">REGISTRAZIONE</h3>
 					<div class="form-floating" style="margin-bottom: 12px;">
 						<input type="number" name="numero" class="form-control" id="campoNumeroCarta"  placeholder="0055 1234 1234 1234" maxlength="17">
@@ -196,6 +202,10 @@ boolean log = false;	%>
 				</form>
 			</div>
 		</div>
+		
+		<p class="text-center" style="margin-top: 20px; display: none;" id="procedi">
+			<a class="btn btn-success" href="./PagamentoControl?action=paga">PROCEDI ALLA PRENOTAZIONE</a>
+		</p>
 		
 		<!-- Footer -->
 		<div class="container-fluid" style="background-color: #198754; margin-top: 100px; padding: 22px 0px;">
