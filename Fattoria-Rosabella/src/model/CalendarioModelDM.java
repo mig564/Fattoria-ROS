@@ -202,12 +202,14 @@ public class CalendarioModelDM implements Model<Calendario> {
    public void doDelete(Calendario product) throws SQLException {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
-      String deleteSQL = "DELETE FROM calendario WHERE id_attivita = ?";
+      String deleteSQL = "DELETE FROM calendario WHERE id_attivita = ? AND data = ? AND ora = ?";
 
       try {
          connection = DriverManagerConnectionPool.getConnection();
          preparedStatement = connection.prepareStatement(deleteSQL);
          preparedStatement.setInt(1, product.getId_attivita());
+         preparedStatement.setString(2, product.getDate());
+         preparedStatement.setString(3, product.getOra());
          System.out.println("doDelete: " + preparedStatement.toString());
          preparedStatement.executeUpdate();
       } finally {

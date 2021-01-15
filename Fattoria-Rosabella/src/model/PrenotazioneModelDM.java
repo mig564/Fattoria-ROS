@@ -84,7 +84,7 @@ public class PrenotazioneModelDM implements Model<Prenotazione> {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
       Collection<Prenotazione> formi = new LinkedList<Prenotazione>();
-      String selectSQL = "SELECT * FROM prenotozione";
+      String selectSQL = "SELECT * FROM prenotazione";
 
       try {
          connection = DriverManagerConnectionPool.getConnection();

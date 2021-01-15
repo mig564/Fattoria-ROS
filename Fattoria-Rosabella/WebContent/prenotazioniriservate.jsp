@@ -1,5 +1,6 @@
+<%@page import="beans.Prenotazione"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-		pageEncoding="ISO-8859-1"  import="java.util.*"%>
+		pageEncoding="ISO-8859-1"  import="java.util.*" import="beans.*" import="model.*" import="control.*"%>
 <%Boolean adminRoles = (Boolean) session.getAttribute("adminFilterRoles");
 if ((adminRoles == null) || (!adminRoles.booleanValue())) {	
    	response.sendRedirect("./login-form-filter.jsp");
@@ -48,14 +49,24 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 		</nav>
 		
 		<!-- riga con riepilogo prenotazione -->
+		<%RiepilogoOrdineModelDM riepilogoOrdineModelDM = new RiepilogoOrdineModelDM();
+		UtenteModelDM utenteModelDM = new UtenteModelDM();
+		Collection<?> preno = (Collection<?>) request.getAttribute("prenotazioni");
+		if(preno == null) response.sendRedirect("./AdminControl?tipo=prenotazioni&action=tutto");
+		if(preno != null && preno.size() > 0) {
+			Iterator<?> iterator = preno.iterator();
+			while(iterator.hasNext()) {
+				Prenotazione bean = (Prenotazione) iterator.next();
+				RiepilogoOrdine ordine = riepilogoOrdineModelDM.doRetrieveByKey(""+bean.getId_riepilogo());
+				Utente utente = utenteModelDM.doRetrieveByIDRie(ordine.getId_riepilogo());%>
 		
 		<div class="container">
 		
 			<div class="row">  
-				<div class="col-md-1"><p class="text-center">788</p></div> <!-- id prenotazione -->
-				<div class="col-md-3"><p class="text-center">Pastore cCrmine</div>
-				<div class="col-md-3"><p class="text-center">21/11/2020</div>
-				<div class="col-md-2"><p class="text-center">21£</div>
+				<div class="col-md-1"><p class="text-center"><%=bean.getId_prenotazione() %></p></div> <!-- id prenotazione -->
+				<div class="col-md-3"><p class="text-center"><%=utente.getCognome() %></div>
+				<div class="col-md-3"><p class="text-center"><%=utente.getNome() %></div>
+				<div class="col-md-2"><p class="text-center"><%=bean.getPrezzo() %></div>
 				<div class="col-md-1"><p class="text-center">pag. in sede</div>
 				<div class="col-md-2"><p class="text-center">
   					<button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -77,7 +88,8 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 			</div>
 		
 		</div>
-		
+		<%		}
+			} %>
 		<!-- Bootstrap - JavaScript -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"

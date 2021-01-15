@@ -249,5 +249,44 @@ public class UtenteModelDM implements Model<Utente> {
       }
 
    }
+   
+	public Utente doRetrieveByIDRie(int code) throws SQLException {
+	      Connection connection = null;
+	      PreparedStatement preparedStatement = null;
+	      Utente bean = new Utente();
+	      String selectSQL = "SELECT * FROM utente WHERE id_riepilogo = ?";
+
+	      try {
+	         connection = DriverManagerConnectionPool.getConnection();
+	         preparedStatement = connection.prepareStatement(selectSQL);
+	         preparedStatement.setInt(1, code);
+	         System.out.println("doRetrieveByKey: " + preparedStatement.toString());
+	         ResultSet rs = preparedStatement.executeQuery();
+
+	         while(rs.next()) {
+	            bean.setEmail(rs.getString("email"));
+	            bean.setNome(rs.getString("nome"));
+	            bean.setCognome(rs.getString("cognome"));
+	            bean.setCitta(rs.getString("citta"));
+	            bean.setIndirizzo(rs.getString("indirizzo"));
+	            bean.setPassword(rs.getString("password"));
+	            bean.setData_nascita(rs.getString("data_nascita"));
+	            bean.setAttivo(rs.getInt("attivo"));
+	            bean.setId_riepilogo(rs.getInt("id_riepilogo"));
+	         }
+
+	         System.out.println(bean);
+	         return bean;
+	      } finally {
+	         try {
+	            if (preparedStatement != null) {
+	               preparedStatement.close();
+	            }
+	         } finally {
+	            DriverManagerConnectionPool.releaseConnection(connection);
+	         }
+
+	      }
+	   }
 
 }

@@ -51,9 +51,9 @@ public class AdminControl extends HttpServlet {
 							attivita.setId_attivita(id);
 							attivita.setNome(request.getParameter("nome"));
 							attivita.setCategoria(request.getParameter("categoria"));
-							attivita.setDescrizione(request.getParameter("descrizioneAttività"));
+							attivita.setDescrizione(request.getParameter("descrizioneAttivitï¿½"));
 							attivita.setMax_persone(Integer.parseInt(request.getParameter("numeroParticipanti")));
-							attivita.setPrezzo(Integer.parseInt(request.getParameter("prezzoAttività")));
+							attivita.setPrezzo(Integer.parseInt(request.getParameter("prezzoAttivitï¿½")));
 							attivitaModelDM.doSave(attivita);
 							String orari[] = request.getParameterValues("orario");
 							String giorni[] = request.getParameterValues("giorno");
@@ -184,26 +184,29 @@ public class AdminControl extends HttpServlet {
 										}
 									}
 								}
-								
 							}
 						} else if (action.equals("rimuovi")) {
 							String id_attivita = request.getParameter("id");
 							attivitaModelDM.doDelete(new Attivita(Integer.parseInt(id_attivita), "", "", "", 0, 0));
 						} else if (action.equals("update")) {
 							Attivita attivita = new Attivita();
-							attivita.setId_attivita(Integer.parseInt(request.getParameter("idattivita")));
 							attivita.setNome(request.getParameter("nome"));
+							String id = request.getParameter("id_attivita2");
+							attivita.setId_attivita(Integer.parseInt(id));
 							attivita.setCategoria(request.getParameter("categoria"));
-							attivita.setDescrizione(request.getParameter("descrizioneAttività"));
+							attivita.setDescrizione(request.getParameter("descrizioneAttivita"));
 							attivita.setMax_persone(Integer.parseInt(request.getParameter("numeroParticipanti")));
-							attivita.setPrezzo(Integer.parseInt(request.getParameter("prezzoAttività")));
+							attivita.setPrezzo(Integer.parseInt(request.getParameter("prezzoAttivita")));
 							attivitaModelDM.doUpdate(attivita);
+						} else if (action.equals("rimuoviData")) {
+							calendarioModelDM.doDelete(new Calendario(request.getParameter("data"), request.getParameter("ora"), 0, Integer.parseInt(request.getParameter("id"))));
 						}
 						RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/attivitariservate.jsp");
 					    dispatcher.forward(request, response);
 					} else if (tipo.equals("prenotazioni")) {
-						if (action.equals("")) {
-							
+						if (action.equals("tutto")) {
+							request.removeAttribute("prenotazioni"); 
+							request.setAttribute("prenotazioni", prenotazioneModelDM.doRetrieveAll(""));
 						} else if (action.equals("rimuovi")) {
 							prenotazioneModelDM.doDelete(new Prenotazione(Integer.parseInt(request.getParameter("id_prenotazione")), "", "", 0, 0));
 						} else if (action.equals("update")) {
