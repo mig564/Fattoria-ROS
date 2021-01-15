@@ -87,6 +87,7 @@ if (attivita == null) {
 					Iterator<?> iterator2 = calendario.iterator();
 					Calendario calendario2 = new Calendario();
 					%>
+					<div class="container">
 					<div class="row" style="margin-top: 60px;">
 						<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
 						<div class="col-md-7" style="background-color: white; border-radius: 0px 30px 30px 0px; border: 1px solid rgba(0,0,0,.125); padding: 22px;">
@@ -111,22 +112,35 @@ if (attivita == null) {
 								}%></select>		
 							<span>
 								<p style="text-align: right; margin-right: 26px;">
+							
+							
+												
+							<div class="row">
+								<div class="col">
 									<a href="./CarrelloControl?action=modifica&id=<%=bean.getId_attivita() %>" class="btn btn-success btn-lg" style="margin-right: 22px;">Modifica</a>
+								</div>
+								<div class="col">
 									<a href="./CarrelloControl?action=rimuovi&id=<%= bean.getId_attivita() %>" class="btn btn-danger btn-lg">Rimuovi</a>
-								</p>
-							</span>
+								</div>
+							</div>
 						</div>
 					</div>
-						
-			<%	}%>
+						<%} %>
+			
 				<p class="text-center" style="margin-top: 32px;">
 					<a class="btn btn-success btn-lg" href="pagamento.jsp">Procedi al pagamento</a>
-					<a class="btn btn-success btn-lg" href="./CarrelloControl?action=svuotaCarrello">svuota</a>
+					<a class="btn btn-success btn-lg" href="./CarrelloControl?action=svuotaCarrello">Svuota</a>
 				</p>
 				</form>
-				</div>
+				
+			</div>
 			<%} else {%>
-				<p>Non ci sono attivita</p>
+				<div class="container">
+					<div class="row">
+						<p class="title-green text-center">Non ci sono attivita</p>	
+					</div>
+				</div>
+				
 		<%	}%>	
     		
 		<!-- Footer -->

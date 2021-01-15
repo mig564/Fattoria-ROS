@@ -8,6 +8,7 @@ function getReadyStateHandler(req) {
 				console.log("Receive response");
 		} else if (req.readyState == 4) {
 			console.log("Request finished and response is ready");
+			
 			if (req.status == 200 || req.status == 304) {
 				console.log("Send data to the handler");
 			} else {
@@ -20,6 +21,13 @@ function getReadyStateHandler(req) {
 function ajaxCall(date, id) {
 	var ora = document.forms["selezioneAttivita"]["ora"].value
 	var partecipanti = document.forms["selezioneAttivita"]["partecipanti"].value
+	
+	document.getElementById(id).style.backgroundColor = "#198754";
+	document.getElementById("h3"+id).style.color = "white";
+	document.getElementById("prezzo"+id).style.color = "white";
+	document.getElementById("orario"+id).style.color = "white";
+	document.getElementById("partecipanti"+id).style.color = "white";
+	document.getElementById("btn"+id).style.display = "none";
 	
 	var req = xhr = new XMLHttpRequest();
 	console.log("Get XML http request");
