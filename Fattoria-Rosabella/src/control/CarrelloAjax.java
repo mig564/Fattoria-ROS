@@ -27,7 +27,7 @@ public class CarrelloAjax extends HttpServlet {
 		ArrayList<Formare> formCart = (ArrayList<Formare>) request.getSession().getAttribute("formCart");
 		String id = request.getParameter("id");
 		String partecipanti = (String) request.getParameter("partecipanti");
-		formCart.add(new Formare((int)request.getSession().getAttribute("carrello"), Integer.parseInt(id), (String)request.getAttribute("date"), (String)request.getParameter("ora"), Integer.parseInt(partecipanti)));
+		formCart.add(new Formare((int)request.getSession().getAttribute("carrello"), Integer.parseInt(id), (String)request.getParameter("date"), (String)request.getParameter("ora"), Integer.parseInt(partecipanti)));
 		request.getSession().setAttribute("formCart", formCart);
 	}
 
