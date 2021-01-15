@@ -187,9 +187,17 @@ public class AdminControl extends HttpServlet {
 								
 							}
 						} else if (action.equals("rimuovi")) {
-							attivitaModelDM.doDelete(new Attivita(Integer.parseInt(request.getParameter("id_attivita")), "", "", "", 0, 0));
+							String id_attivita = request.getParameter("id");
+							attivitaModelDM.doDelete(new Attivita(Integer.parseInt(id_attivita), "", "", "", 0, 0));
 						} else if (action.equals("update")) {
-							attivitaModelDM.doUpdate(new Attivita(Integer.parseInt(request.getParameter("id_attivita")), request.getParameter("categoria"), request.getParameter("nome"), request.getParameter("descrizione"), Integer.parseInt(request.getParameter("maxpersone")), Integer.parseInt(request.getParameter("prezzo"))));
+							Attivita attivita = new Attivita();
+							attivita.setId_attivita(Integer.parseInt(request.getParameter("idattivita")));
+							attivita.setNome(request.getParameter("nome"));
+							attivita.setCategoria(request.getParameter("categoria"));
+							attivita.setDescrizione(request.getParameter("descrizioneAttività"));
+							attivita.setMax_persone(Integer.parseInt(request.getParameter("numeroParticipanti")));
+							attivita.setPrezzo(Integer.parseInt(request.getParameter("prezzoAttività")));
+							attivitaModelDM.doUpdate(attivita);
 						}
 						RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/attivitariservate.jsp");
 					    dispatcher.forward(request, response);

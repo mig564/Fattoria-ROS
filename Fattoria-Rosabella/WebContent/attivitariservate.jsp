@@ -219,53 +219,117 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 			<div class="container">
 				<div class="row" style="margin-top: 30px;">
 					<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome()%>.jpg');"></div>
-  					<div class="col-md-7"  style="background-color: white; border-radius: 0px 30px 30px 0px;  border: 1px solid rgba(0,0,0,.125); padding: 22px;">
-    					<h5 class="card-title title-green"><%=bean.getNome()%> - <%=bean.getId_attivita() %></h5>
-    					<p class="card-text"><%=bean.getCategoria() %></p>
-    					<p class="card-text"><%=bean.getDescrizione() %></p>
-						<p class="card-text">Persone: <%=bean.getMax_persone() %></p>
-						<p class="card-text">Prezzo: <%=bean.getPrezzo() %>,00 Euro</p>
-						<div class="col-md-2"><p class="text-center">
-  							<button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%=bean.getId_attivita() %>" aria-expanded="false" aria-controls="collapseExample">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" style="color: black;" viewBox="0 0 16 16">
-									<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-								</svg>
-							</button>
-						</div>
-					</div>
-					<div class="collapse" id="collapse<%=bean.getId_attivita() %>">
-							<%
-							CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
-							Collection<?> calendario = (Collection<?>) calendarioModelDM.doRetrieveByIdAttivita(bean.getId_attivita());
-							if(calendario != null && calendario.size() > 0) {
-								Iterator<?> iterator2 = calendario.iterator();
-								while(iterator2.hasNext()) {
-									Calendario cal = (Calendario) iterator2.next();
-							%>
-									<div class="card card-body">
-    									<div class="row">
-    										<div class="col"><p class="text-center"><%=cal.getDate() %></div>
-    										<div class="col"><p class="text-center"><%=cal.getOra()%></div>
-    										<div class="col">
-    											<p class="text-center">
-    												<a class="btn btn-link" style="color:red; text-decoration: none;" href="">
-  														<svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -3px;" width="16" height="16" fill="currentColor" class="bi bi-x-octagon" viewBox="0 0 16 16">
-  															<path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1L1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
-  															<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-														</svg> Elimina
-													</a>
-    											</p>
-    										</div>
-    									</div>	
+	  				<div class="col-md-7"  style="background-color: white; border-radius: 0px 30px 30px 0px;  border: 1px solid rgba(0,0,0,.125); padding: 22px;">
+	  					<form name="aggiornattivita" method="post" action="AdminControl?tipo=attivita&action=update" onSubmit="">
+	  						<div class="form-floating" style="margin-bottom: 12px;">
+								<input type="text" class="form-control" id="nome" name="nome" value="<%=bean.getNome()%>">
+								<label for="nome">Nome attività</label>
+							</div>
+							<div class="row">
+								<div class="col">
+									<div class="form-floating" style="margin-bottom: 12px;">
+										<input type="text" class="form-control" id="idattivita" name="idattivita" disabled="disabled" value="<%=bean.getId_attivita()%>">
+										<label for="nome">ID Attività</label>
 									</div>
-							<%
-								}
-							} else { %>
-  								<p>Non ci sono date disponibili</p>
-  							<%
-  							} %>
-    				</div>
-    			</div>
+								</div>
+								<div class="col">
+									<div class="form-floating" style="margin-bottom: 12px;">
+										<select class="form-select" name="categoria" id="categoria" aria-label="Seleziona categoria">
+											<%if(bean.getCategoria().equals("Escursione")) {%><option value="Escursione" selected="selected">Escursione</option>
+			 					 			<%} else %> <option value="Escursione">Escursione</option>
+			 					 			<%if(bean.getCategoria().equals("Visita guidata")) {%><option value="Visita guidata" selected="selected">Visita guidata</option>
+			 					 			<%}else %> <option value="Visita guidata">Visita guidata</option>
+			 					 			<%if(bean.getCategoria().equals("Fattoria didattica")) {%><option value="Fattoria didattica" selected="selected">Fattoria didattica</option>
+			 					 			<%}else %> <option value="Fattoria didattica">Fattoria didattica</option>
+			 					 			<%if(bean.getCategoria().equals("Balneazione")) {%><option value="Balneazione" selected="selected">Balneazione</option>
+			 					 			<%}else %> <option value="Balneazione">Balneazione</option>
+			 					 			<%if(bean.getCategoria().equals("Ristoro")) {%><option value="Ristoro" selected="selected">Ristoro</option>
+			 					 			<%}else %> <option value="Ristoro">Ristoro</option>
+				 				 		</select>
+				 				 		<label for="categoria">Categoria</label>
+				 					</div>
+			 					</div>
+		 					</div>
+		 					<div class="form-floating" style="margin-bottom: 12px;">
+								<input type="text" class="form-control" name="descrizioneAttività" id="descrizioneAttività"  value="<%=bean.getDescrizione() %>">
+								<label for="descrizioneAttività">Descrizione</label>
+							</div>
+							<div class="row">
+								<div class="col">
+									<div class="form-floating" style="margin-bottom: 12px;">
+										<input type="number" class="form-control" name="numeroParticipanti" id="numeroParticipanti"  value="<%=bean.getMax_persone() %>">
+										<label for="numeroParticipanti">Numero massimo di partecipanti</label>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-floating" style="margin-bottom: 12px;">
+										<input type="number" class="form-control" name="prezzoAttività" id="prezzoAttività"  value="<%=bean.getPrezzo() %>">
+										<label for="prezzoAttività">Prezzo</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<p class="text-center"><button type="submit" class="btn btn-outline-success">
+										<svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -3px;" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+										  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+										</svg> Modifica
+									</button></p>
+								</div>
+								<div class="col">
+									<p class="text-center"><button type="button" class="btn btn-outline-danger" onclick="window.location.href='./AdminControl?tipo=attivita&action=rimuovi&id=<%=bean.getId_attivita()%>'">
+										<svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -3px;" width="16" height="16" fill="currentColor" class="bi bi-x-octagon" viewBox="0 0 16 16">
+	  										<path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1L1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
+	  										<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+										</svg> Elimina
+									</button></p>
+								</div>
+								<div class="col"><p class="text-center">
+		  							<button class="btn btn-outline-info" style="margin-top: -3px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%=bean.getId_attivita() %>" aria-expanded="false" aria-controls="collapseExample">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+											<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+										</svg> Calendario
+									</button>
+								</div>
+							</div>
+						</form>
+						</div>
+						
+					
+						
+						<div class="collapse" id="collapse<%=bean.getId_attivita() %>">
+								<%
+								CalendarioModelDM calendarioModelDM = new CalendarioModelDM();
+								Collection<?> calendario = (Collection<?>) calendarioModelDM.doRetrieveByIdAttivita(bean.getId_attivita());
+								if(calendario != null && calendario.size() > 0) {
+									Iterator<?> iterator2 = calendario.iterator();
+									while(iterator2.hasNext()) {
+										Calendario cal = (Calendario) iterator2.next();
+								%>
+										<div class="card card-body">
+	    									<div class="row">
+	    										<div class="col"><p class="text-center"><%=cal.getDate() %></div>
+	    										<div class="col"><p class="text-center"><%=cal.getOra()%></div>
+	    										<div class="col">
+	    											<p class="text-center">
+	    												<a class="btn btn-link" style="color:red; text-decoration: none;" href="">
+	  														<svg xmlns="http://www.w3.org/2000/svg" style="margin-top: -3px;" width="16" height="16" fill="currentColor" class="bi bi-x-octagon" viewBox="0 0 16 16">
+	  															<path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1L1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
+	  															<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+															</svg> Elimina
+														</a>
+	    											</p>
+	    										</div>
+	    									</div>	
+										</div>
+								<%
+									}
+								} else { %>
+	  								<p>Non ci sono date disponibili</p>
+	  							<%
+	  							} %>
+	    				</div>
+	    			</div>
     		</div>
 			<% 	}
 		} else {
