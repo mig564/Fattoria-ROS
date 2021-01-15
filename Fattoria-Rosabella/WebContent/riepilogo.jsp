@@ -73,8 +73,7 @@ if (attivita == null) {
 		</div>
 			
 		<!-- card orizzontale per attività -->
-		<div class="container">
-		<form name="riepilogo" onsubmit="">
+		
 			<%
 			if (attivita != null && attivita.size() > 0) {
 				Iterator<?> iterator =  attivita.iterator();
@@ -93,26 +92,15 @@ if (attivita == null) {
 						<div class="col-md-7" style="background-color: white; border-radius: 0px 30px 30px 0px; border: 1px solid rgba(0,0,0,.125); padding: 22px;">
 							<h3 class="title-green"><%=bean.getNome()%></h3> 
 							<p>Prezzo: <%=bean.getPrezzo()%>,00 Euro </p>
-							<p>Orario <select name="ora" id="ora" style="margin-left: 5px;">
-								<option value="<%=formare.getOra()%> " selected="selected"><%=formare.getOra()%> </option>
+							<p>Orario <select name="ora" style="margin-left: 5px;">
 							<%while(iterator2.hasNext()) {
-								calendario2 = (Calendario) iterator2.next(); %>
-								<%if (calendario2.getOra().equals(formare.getOra())) {
-								} else {%>
-									<option value="<%=calendario2.getOra() %>"><%=calendario2.getOra() %> </option> 
+								calendario2 = (Calendario) iterator.next(); %>
+								<%if (calendario2.getOra().equals(formare.getOra())) {%>
+									<option value="<%=formare.getOra()%> " selected="selected"><%=formare.getOra()%> </option>
+								<%} else {%>
+									<option value="<%=calendario2.getOra() %>"><%=calendario2.getOra() %> </option></select></p> 
 								<%} %>
-							<%} %></select></p>
-							<p>Partecipanti	<select name="partecipanti" id="partecipanti" style="margin-left: 5px;">
-								<option value="<%=formare.getPartecipanti()%> " selected="selected"><%=formare.getPartecipanti()%> </option>
-								<%int i;
-								for(i=1; i<=(bean.getMax_persone()-calendario2.getPartecipanti()); i++) {
-									if (formare.getPartecipanti() == i){}else {%>
-										<option value="<%=i %>"><%=i %></option>
-							<%		} 
-								}%></select>		
-							<span>
-								<p style="text-align: right; margin-right: 26px;">
-							
+							<%} %>
 							
 												
 							<div class="row">
@@ -125,14 +113,12 @@ if (attivita == null) {
 							</div>
 						</div>
 					</div>
-						<%} %>
-			
+						
+			<%	}%>
 				<p class="text-center" style="margin-top: 32px;">
 					<a class="btn btn-success btn-lg" href="pagamento.jsp">Procedi al pagamento</a>
 					<a class="btn btn-success btn-lg" href="./CarrelloControl?action=svuotaCarrello">Svuota</a>
 				</p>
-				</form>
-				
 			</div>
 			<%} else {%>
 				<div class="container">
