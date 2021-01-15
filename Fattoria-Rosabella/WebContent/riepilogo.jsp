@@ -20,7 +20,7 @@ if (attivita == null) {
 			rel="stylesheet"
 			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 			crossorigin="anonymous">
-		
+		<script src="script/ajax.js"></script>
 		<title>Fattoria Rosabella</title>
 	</head>
 
@@ -112,7 +112,7 @@ if (attivita == null) {
 												
 							<div class="row">
 								<div class="col">
-									<a href="./CarrelloControl?action=modifica&id=<%=bean.getId_attivita() %>" class="btn btn-success btn-lg" style="margin-right: 22px;">Modifica</a>
+									<button type="button" onclick="ajaxModifica('<%=bean.getId_attivita() %>');" class="btn btn-success btn-lg" style="margin-right: 22px;">Modifica</button>
 								</div>
 								<div class="col">
 									<a href="./CarrelloControl?action=rimuovi&id=<%= bean.getId_attivita() %>" class="btn btn-danger btn-lg">Rimuovi</a>
@@ -120,7 +120,6 @@ if (attivita == null) {
 							</div>
 						</div>
 					</div>
-						
 			<%	}%>
 				<p class="text-center" style="margin-top: 32px;">
 					<a class="btn btn-success btn-lg" href="pagamento.jsp">Procedi al pagamento</a>

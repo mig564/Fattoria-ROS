@@ -175,15 +175,13 @@ public class CalendarioModelDM implements Model<Calendario> {
    public void doUpdate(Calendario product) throws SQLException {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
-      String updateSQL = "UPDATE calendario SET data = ?, ora = ?, id_attivita=? WHERE id_attivita = ?";
+      String updateSQL = "UPDATE calendario SET partecipanti=? WHERE id_attivita = ?";
 
       try {
          connection = DriverManagerConnectionPool.getConnection();
          preparedStatement = connection.prepareStatement(updateSQL);
-         preparedStatement.setString(1, product.getDate());
-         preparedStatement.setString(2, product.getOra());
-         preparedStatement.setInt(3, product.getId_attivita());
-         preparedStatement.setInt(4, product.getId_attivita());
+         preparedStatement.setInt(1, product.getPartecipanti());
+         preparedStatement.setInt(2, product.getId_attivita());
          System.out.println("doUpdate: " + preparedStatement.toString());
          preparedStatement.executeUpdate();
          connection.commit();

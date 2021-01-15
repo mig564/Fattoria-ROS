@@ -45,14 +45,7 @@ public class CarrelloControl extends HttpServlet {
             formCart.remove(cercaElemento(formCart, id_attivita));
          } else if(action.equals("svuotaCarrello")) {
         	formCart.clear(); 
-         } else if (action.equals("modifica")) {
-        	 String partecipanti = (String) request.getParameter("partecipanti");
-        	 Formare formare = cercaElemento(formCart, id_attivita);
-        	 formare.setOra((String) request.getParameter("ora"));
-        	 System.out.println(formare.getOra());
-        	 formare.setPartecipanti(Integer.parseInt(partecipanti));
-        	 formCart.set(formCart.indexOf(formare), formare); 
-		}
+         }
       }
       request.getSession().setAttribute("formCart", formCart);
       list.clear();
