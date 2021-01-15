@@ -100,6 +100,7 @@ public class CalendarioModelDM implements Model<Calendario> {
 	            bean.setId_attivita(rs.getInt("id_attivita"));
 	            calendari.add(bean);
 	         }
+	         return calendari;
 	      } finally {
 	         try {
 	            if (preparedStatement != null) {
@@ -109,7 +110,7 @@ public class CalendarioModelDM implements Model<Calendario> {
 	            DriverManagerConnectionPool.releaseConnection(connection);
 	         }
 	      }
-	      return calendari;
+	      
    }
    
    public Collection<Calendario> doRetrieveAll(String order) throws SQLException {

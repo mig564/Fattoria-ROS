@@ -54,7 +54,7 @@ public class PagamentoControl extends HttpServlet {
 					String mese = (String) request.getParameter("mese");
 					String anno = (String) request.getParameter("anno");
 					String cvv = (String) request.getParameter("cvv");
-					cartaDiCreditoModelDM.doSave(new CartaDiCredito(numero, nome+cognome, mese+"/"+anno, Integer.parseInt(cvv), email));
+					cartaDiCreditoModelDM.doSave(new CartaDiCredito(numero, nome+" "+cognome, mese+"/"+anno, Integer.parseInt(cvv), email));
 					request.removeAttribute("carte");
 					request.setAttribute("carte", cartaDiCreditoModelDM.doRetrieveAll(email));
 					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/pagamento.jsp");

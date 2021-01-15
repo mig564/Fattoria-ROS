@@ -100,14 +100,7 @@ if (attivita == null) {
 									<option value="<%=calendario2.getOra() %>"><%=calendario2.getOra() %> </option></select></p> 
 								<%} %>
 							<%} %>
-							<p>Partecipanti <select name="partecipanti" style="margin-left: 5px;">
-							<%	int i;
-								for(i=1; i<=(bean.getMax_persone()-calendario2.getPartecipanti()); i++) {
-									if (calendario2.getPartecipanti()==i) {%>
-										<option value="10:00-11:00" selected="selected"><%=formare.getPartecipanti() %> </option>
-							<%	} %>
-										<option value="<%=i %>"><%=i %></option>
-							<%	} %></select>
+							
 												
 							<span>
 								<p style="text-align: right; margin-right: 26px;">
