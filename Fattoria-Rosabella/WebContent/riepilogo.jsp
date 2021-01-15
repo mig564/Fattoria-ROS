@@ -103,12 +103,14 @@ if (attivita == null) {
 							<%} %>
 							
 												
-							<span>
-								<p style="text-align: right; margin-right: 26px;">
+							<div class="row">
+								<div class="col">
 									<a href="./CarrelloControl?action=modifica&id=<%=bean.getId_attivita() %>" class="btn btn-success btn-lg" style="margin-right: 22px;">Modifica</a>
+								</div>
+								<div class="col">
 									<a href="./CarrelloControl?action=rimuovi&id=<%= bean.getId_attivita() %>" class="btn btn-danger btn-lg">Rimuovi</a>
-								</p>
-							</span>
+								</div>
+							</div>
 						</div>
 					</div>
 						
