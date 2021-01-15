@@ -127,22 +127,22 @@
     				<form name="selezioneAttivita" onsubmit="">
     					<div class="row" style="margin-top: 60px;" >
 							<div class="col-md-5 cover-img" style="background-image: url('img/<%=bean.getNome() %>.jpg'); border-radius: 30px 0px 0px 30px;"></div>
-							<div class="col-md-7" style="background-color: white; border-radius: 0px 30px 30px 0px;  border: 1px solid rgba(0,0,0,.125); padding: 22px;">
+							<div class="col-md-7" id="<%=bean.getId_attivita() %>" style="background-color: white; border-radius: 0px 30px 30px 0px;  border: 1px solid rgba(0,0,0,.125); padding: 22px;">
 							
-								<h3 class="title-green"><%=bean.getNome() %></h3> 
-								<p>Prezzo: <%=bean.getPrezzo() %>,00 Euro</p>
-								<p>Orario <select id="ora" style="margin-left: 5px;">
+								<h3 class="title-green" id="h3<%=bean.getId_attivita() %>"><%=bean.getNome() %></h3> 
+								<p id="prezzo<%=bean.getId_attivita() %>">Prezzo: <%=bean.getPrezzo() %>,00 Euro</p>
+								<p id="orario<%=bean.getId_attivita() %>">Orario <select id="ora" style="margin-left: 5px;">
 								<%while (iterator2.hasNext()) {
 									calendario = (Calendario) iterator2.next();%>
 									<option value="<%=calendario.getOra() %>"><%=calendario.getOra() %></option>
 								<%} %></select></p> 
-								<p>Partecipanti	<select id="partecipanti" style="margin-left: 5px;">
+								<p id="partecipanti<%=bean.getId_attivita() %>">Partecipanti	<select id="partecipanti" style="margin-left: 5px;">
 										<%int i;
 											for(i=1; i<=(bean.getMax_persone()-calendario.getPartecipanti()); i++) {%>
 												<option value="<%=i %>"><%=i %></option>
 											<%} %>
 										</select>
-								<button type="button" onclick="ajaxCall('<%=date %>','<%=bean.getId_attivita() %>');" class="btn btn-success btn-lg" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
+								<button type="button" id="btn<%=bean.getId_attivita() %>" onclick="ajaxCall('<%=date %>','<%=bean.getId_attivita() %>');" class="btn btn-success btn-lg" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
 							</div>
 						</div>
 					</form>
@@ -155,8 +155,7 @@
 				<div class="row" style="margin: 22px;">
 					<h3 class="title-green text-center"><%=error%> </h3>
 				</div> 
-				<%
-			} %>
+		<%	} %>
 			
 		<!-- Footer -->
 		<div class="container-fluid" style="background-color: #198754; margin-top: 100px; padding: 22px 0px;">
