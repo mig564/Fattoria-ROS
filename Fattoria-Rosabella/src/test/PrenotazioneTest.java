@@ -16,7 +16,6 @@ public class PrenotazioneTest extends TestCase {
 	public void testSetId_P() {
 		p.setId_prenotazione(12);
 		assertEquals(12, p.getId_prenotazione());
-		
 	}
 
 	public void testSetPrezzo() {
@@ -27,12 +26,10 @@ public class PrenotazioneTest extends TestCase {
 	public void testSetId_R() {
 		p.setId_riepilogo(187);
 		assertEquals(187, p.getId_riepilogo());
-	
 	}
 	
 	public static Test suite() {
 		return new TestSuite(PrenotazioneTest.class);
-		
 	}
 
 }

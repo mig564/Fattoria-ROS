@@ -6,8 +6,8 @@ import junit.framework.TestSuite;
 import beans.Admin;
 
 public class GestoreTest extends TestCase {
-	private Admin gs;
 	
+	private Admin gs;
 	
 	protected void setUp() throws Exception {
 		gs = new Admin( "mario@rossi.it","Rossi007");
@@ -16,7 +16,6 @@ public class GestoreTest extends TestCase {
 	public void testSetEmail() {
 		gs.setEmail("giannigianni@gmail.com");
 		assertEquals("giannigianni@gmail.com", gs.getEmail());
-		
 	}
 	
 	public void testSetPassword() {
@@ -26,9 +25,6 @@ public class GestoreTest extends TestCase {
 	
 	public static Test suite() {
 		return new TestSuite(GestoreTest.class);
-		
 	}
-
 	
-
 }

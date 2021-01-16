@@ -7,6 +7,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 public class RiepilogoOrdineTest extends TestCase{
+	
 	private RiepilogoOrdine ro;
 	
 	@Override
@@ -21,7 +22,6 @@ public class RiepilogoOrdineTest extends TestCase{
 	
 	public static Test suite() {
 		return new TestSuite(RiepilogoOrdineTest.class);
-		
 	}
-
+	
 }
