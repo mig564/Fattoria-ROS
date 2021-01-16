@@ -101,4 +101,56 @@ public class Utente {
    public String toString() {
       return "Utente [email=" + this.email + ", password=" + this.password + ", nome=" + this.nome + ", cognome=" + this.cognome + ", data_nascita=" + this.data_nascita + ", citta=" + this.citta + ", indirizzo=" + this.indirizzo + ", id_riepilogo=" + this.id_riepilogo + "]";
    }
+
+   @Override
+   public boolean equals(Object obj) {
+	   if (this == obj)
+		   return true;
+	   if (obj == null)
+		   return false;
+	   if (getClass() != obj.getClass())
+		   return false;
+	   Utente other = (Utente) obj;
+	   if (attivo != other.attivo)
+		   return false;
+	   if (citta == null) {
+		   if (other.citta != null)
+			   return false;
+	   } else if (!citta.equals(other.citta))
+		   return false;
+	   if (cognome == null) {
+		   if (other.cognome != null)
+			   return false;
+	   } else if (!cognome.equals(other.cognome))
+		   return false;
+	   if (data_nascita == null) {
+		   if (other.data_nascita != null)
+			   return false;
+	   } else if (!data_nascita.equals(other.data_nascita))
+		   return false;
+	   if (email == null) {
+		   if (other.email != null)
+			   return false;
+	   } else if (!email.equals(other.email))
+		   return false;
+	   if (id_riepilogo != other.id_riepilogo)
+		   return false;
+	   if (indirizzo == null) {
+		   if (other.indirizzo != null)
+			   return false;
+	   } else if (!indirizzo.equals(other.indirizzo))
+		   return false;
+	   if (nome == null) {
+		   if (other.nome != null)
+			   return false;
+	   } else if (!nome.equals(other.nome))
+		   return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		return true;
+	}
+   
 }
