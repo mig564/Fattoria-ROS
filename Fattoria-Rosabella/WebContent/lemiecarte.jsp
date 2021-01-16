@@ -125,8 +125,9 @@ boolean log = false;	%>
 				<form name="aggiungicarta" method="post" action="CarteControl?action=aggiungi" onSubmit="" style="display: none;">
 					<h3 class="text-center title-green" style="margin-bottom: 22px;">REGISTRAZIONE</h3>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input name="numero" type="number" class="form-control" id="campoNumeroCarta"  placeholder="0055 1234 1234 1234" maxlength="17">
+						<input name="numero" type="number" class="form-control" id="campoNumeroCarta"  placeholder="0055 1234 1234 1234" maxlength="17" required>
 						<label for="campoNumeroCarta">Numero carta</label>
+						<p id="errorNumero"></p>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
 						<input name="nome" type="text" class="form-control" id="nomeUtente"  placeholder="Nome" required>
@@ -137,13 +138,13 @@ boolean log = false;	%>
 						<label for="cognomeUtente">Cogome intestatario</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input name="cvv" type="number" class="form-control" id="campoCVV"  placeholder="CVV" maxlength="4">
+						<input name="cvv" type="number" class="form-control" id="campoCVV"  placeholder="CVV" maxlength="4" readonly>
 						<label for="campoCVV">CVV</label>
 					</div>
 					<div class="row" style="margin-bottom: 12px;">
 						<div class="col">
 							<div class="form-floating">
-								<select name="mese" class="form-select" id="selezionaMese" aria-label="Seleziona mese">
+								<select name="mese" class="form-select" id="selezionaMese" aria-label="Seleziona mese" required>
 	 							 	<option value="1">Gennaio</option>
 	 							 	<option value="2">Febbraio</option>
 	 							 	<option value="3">Marzo</option>
@@ -162,7 +163,7 @@ boolean log = false;	%>
 						</div>
 						<div class="col">
 							<div class="form-floating">
-								<select name="anno" class="form-select" id="selezionaAnno" aria-label="Seleziona mese">
+								<select name="anno" class="form-select" id="selezionaAnno" aria-label="Seleziona mese" required>
 		 						 	<option value="2021">2021</option>
 		 						 	<option value="2022">2022</option>
 		 						 	<option value="2023">2023</option>
