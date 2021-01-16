@@ -33,5 +33,27 @@ public class Admin {
 	public String toString() {
 		return "Admin [email=" + email + ", password=" + password + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Admin) {
+			Admin a = (Admin) obj;
+			if(this.getEmail().equals(a.getEmail()) && this.getPassword().equals(a.getPassword())) return true;
+			
+		}
+		return false;
+			
+	}
+	
+	
 	
 }
