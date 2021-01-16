@@ -1,5 +1,6 @@
 package test;
 
+import beans.Admin;
 import beans.RiepilogoOrdine;
 import junit.framework.Test;
 import junit.framework.TestCase;
