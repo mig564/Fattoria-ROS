@@ -18,7 +18,6 @@ public class AllTest {
 		s.addTest(RiepilogoOrdineTest.suite());
 		s.addTest(UtenteTest.suite());
 		return s;
-		
 	}
 	
 	public static void main(String[] args) {
