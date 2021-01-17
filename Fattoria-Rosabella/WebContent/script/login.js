@@ -20,13 +20,9 @@ function check_reg() {
 	var double_password = document.registrazione.secondaPassword;
 	
 	if(chekName(name)) {
-		if(chekSurname()) {
-			if (data_nascita(data_nascita)) {
-				if(chekCity(city)) {
-					if (validateEmail(email)) {
-						if (check_password(password, double_password)) return true;
-					}
-				}
+		if(chekCity(city)) {
+			if (validateEmail(email)) {
+				if (check_password(password, double_password)) return true;
 			}
 		}
 	}
@@ -92,7 +88,7 @@ function chekCity(city) {
 		document.registrazione.citta.style.border = "1px solid green";
 		return true;
 	} else {
-		document.getElementById("errorCitta").innerHTML = "Città inserita non valida.";
+		document.getElementById("errorCitta").innerHTML = "Citta' inserita non valida.";
 		document.getElementById("errorCitta").style.color = "red";
 		document.registrazione.citta.style.border = "1px solid red";
 		return false;
