@@ -21,7 +21,7 @@ public class PrenotazioneAttivitaModelDM implements Model<PrenotazioneAttivita> 
 		Connection connection = null;
 	      PreparedStatement preparedStatement = null;
 	      PrenotazioneAttivita bean = new PrenotazioneAttivita();
-	      String selectSQL = "SELECT * FROM prenotazione WHERE id_prenotazione = ?";
+	      String selectSQL = "SELECT * FROM prenotazioneAttivita WHERE id_prenotazione = ?";
 
 	      try {
 	         connection = DriverManagerConnectionPool.getConnection();
@@ -34,7 +34,8 @@ public class PrenotazioneAttivitaModelDM implements Model<PrenotazioneAttivita> 
 	            bean.setId_prenotazione(rs.getInt("id_prenotazione"));
 	            bean.setId_attivita(rs.getInt("id_attivita"));
 	            bean.setOra(rs.getString("ora"));
-	            bean.setDate(rs.getString("date"));
+	            bean.setDate(rs.getString("data"));
+	            bean.setPartecipanti(rs.getInt("partecipanti"));
 	         }
 
 	         System.out.println(bean);
@@ -55,7 +56,7 @@ public class PrenotazioneAttivitaModelDM implements Model<PrenotazioneAttivita> 
 		Connection connection = null;
 	      PreparedStatement preparedStatement = null;
 	      Collection<PrenotazioneAttivita> formi = new LinkedList<PrenotazioneAttivita>();
-	      String selectSQL = "SELECT * FROM prenotozione";
+	      String selectSQL = "SELECT * FROM prenotazioneAttivita";
 
 	      try {
 	         connection = DriverManagerConnectionPool.getConnection();
@@ -69,6 +70,7 @@ public class PrenotazioneAttivitaModelDM implements Model<PrenotazioneAttivita> 
 	            bean.setId_attivita(rs.getInt("id_attivita"));
 	            bean.setOra(rs.getString("ora"));
 	            bean.setDate(rs.getString("date"));
+	            bean.setPartecipanti(rs.getInt("partecipanti"));
 	            formi.add(bean);
 	         }
 	      } finally {
@@ -149,7 +151,7 @@ public class PrenotazioneAttivitaModelDM implements Model<PrenotazioneAttivita> 
 	public void doUpdate(PrenotazioneAttivita product) throws SQLException {
 		 Connection connection = null;
 	      PreparedStatement preparedStatement = null;
-	      String updateSQL = "UPDATE prenotazione SET id_prenotazione = ?, id_attivita = ?, data=?, ora=?,  WHERE id_prenotazione = ?";
+	      String updateSQL = "UPDATE prenotazioneAttivita SET id_prenotazione = ?, id_attivita = ?, data=?, ora=?, partecipanti=?  WHERE id_prenotazione = ?";
 
 	      try {
 	         connection = DriverManagerConnectionPool.getConnection();
@@ -158,8 +160,8 @@ public class PrenotazioneAttivitaModelDM implements Model<PrenotazioneAttivita> 
 	         preparedStatement.setInt(2, product.getId_attivita());
 	         preparedStatement.setString(3, product.getDate());
 	         preparedStatement.setString(4, product.getOra());
-	         
-	         preparedStatement.setInt(5, product.getId_prenotazione());
+	         preparedStatement.setInt(5, product.getPartecipanti());
+	         preparedStatement.setInt(6, product.getId_prenotazione());
 	         System.out.println("doUpdate: " + preparedStatement.toString());
 	         preparedStatement.executeUpdate();
 	         connection.commit();

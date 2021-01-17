@@ -17,6 +17,10 @@ public class AttivitaModelDMTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		attivita = new Attivita(300, "Escursione", "Cascata della Maronnella", "Escursione presso il punto più bello del bioparco", 32, 25);
+		Attivita db = attivitaModelDM.doRetrieveByKey("5");
+		attivitaModelDM.doDelete(db);
+		db = attivitaModelDM.doRetrieveByKey("2");
+		attivitaModelDM.doDelete(db);
 	}
 	
 	public void testDoRetrieveByKey() throws SQLException {
@@ -31,19 +35,28 @@ public class AttivitaModelDMTest extends TestCase {
 		}	
 	}
 	
-	public void testDoRetrieveAll() throws SQLException {
-		Collection<Attivita> att = attivitaModelDM.doRetrieveAll("");
-		assertEquals(att.size(), 12);								//TODO 12 � il numero di attivit� al momento, se aggiungo un attivit� al db il tests dar� errore	
-	}
-	
-	public void testdoSave() {
-		
+	public void testdoSave() throws SQLException {
+		Attivita atti = new Attivita(2, "Escursione", "Cascata", "", 10, 85);
+		attivitaModelDM.doSave(atti);
+		assertEquals(atti.toString(), attivitaModelDM.doRetrieveByKey("2").toString());	
 	}
 	
 	public void testDoUpdate() throws SQLException {
-		attivita.setNome("RosolinoGay");
-		attivitaModelDM.doUpdate(attivita);
-		assertEquals("RosolinoGay", attivitaModelDM.doRetrieveByKey("300").getNome());
+		Attivita db = new Attivita(5, "Escursione", "Cascata", "", 45, 41);
+		attivitaModelDM.doSave(db);
+		db.setNome("RosolinoGay");
+		attivitaModelDM.doUpdate(db);
+		assertEquals("RosolinoGay", attivitaModelDM.doRetrieveByKey("5").getNome());
+		attivitaModelDM.doDelete(db);
 	}
 	
+	public void testDoDelete() throws SQLException {
+		Attivita db = attivitaModelDM.doRetrieveByKey("2");
+		attivitaModelDM.doDelete(db);
+		assertEquals(new Attivita().toString(), attivitaModelDM.doRetrieveByKey("2").toString());
+	}
+	
+	public static Test suite() {
+		return new TestSuite(AttivitaModelDMTest.class);
+	}
 }

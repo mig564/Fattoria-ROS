@@ -141,15 +141,15 @@ public class PrenotazioneModelDM implements Model<Prenotazione> {
    public void doUpdate(Prenotazione product) throws SQLException {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
-      String updateSQL = "UPDATE prenotazione SET id_prenotazione = ?, prezzo = ?,id_riepilogo = ?,  WHERE id_prenotazione = ?";
+      String updateSQL = "UPDATE prenotazione SET id_prenotazione = ?, prezzo = ?, id_riepilogo = ?  WHERE id_prenotazione = ?";
 
       try {
          connection = DriverManagerConnectionPool.getConnection();
          preparedStatement = connection.prepareStatement(updateSQL);
          preparedStatement.setInt(1, product.getId_prenotazione());
-         preparedStatement.setInt(4, product.getPrezzo());
-         preparedStatement.setInt(5, product.getId_riepilogo());
-         preparedStatement.setInt(6, product.getId_prenotazione());
+         preparedStatement.setInt(2, product.getPrezzo());
+         preparedStatement.setInt(3, product.getId_riepilogo());
+         preparedStatement.setInt(4, product.getId_prenotazione());
          System.out.println("doUpdate: " + preparedStatement.toString());
          preparedStatement.executeUpdate();
          connection.commit();

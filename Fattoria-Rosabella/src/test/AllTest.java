@@ -17,6 +17,14 @@ public class AllTest {
 		s.addTest(PrenotazioneTest.suite());
 		s.addTest(RiepilogoOrdineTest.suite());
 		s.addTest(UtenteTest.suite());
+		s.addTest(AdminModelDMTest.suite());
+		s.addTest(AttivitaModelDMTest.suite());
+		s.addTest(CalendarioModelDMTest.suite());
+		s.addTest(FormareModelTest.suite());
+		s.addTest(PrenotazioneAttivitaModelDMTest.suite());
+		s.addTest(PrenotazioneModelDMTest.suite());
+		s.addTest(RiepilogoOrdineModelDMTest.suite());
+		s.addTest(UtenteModelDMTest.suite());
 		return s;
 	}
 	

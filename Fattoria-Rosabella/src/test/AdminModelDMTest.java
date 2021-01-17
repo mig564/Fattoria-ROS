@@ -18,7 +18,6 @@ public class AdminModelDMTest extends TestCase {
 		gs = new Admin("root@root.it", "root");
 	}
 	
-	
 	public void testDoRietrieveByKey() throws SQLException {
 		Admin db = am.doRetrieveByKey("root@root.it");
 		assertEquals(gs.toString(), db.toString());		

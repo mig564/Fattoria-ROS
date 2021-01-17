@@ -30,7 +30,7 @@ public class FormareModelDM implements Model<Formare> {
 
          while(rs.next()) {
             bean.setId_attivita(rs.getInt("id_attivita"));
-            bean.setDate(rs.getString("date"));
+            bean.setDate(rs.getString("data"));
             bean.setId_riepilogo(rs.getInt("id_riepilogo"));
             bean.setOra(rs.getString("ora"));
             bean.setPartecipanti(rs.getInt("partecipanti"));
@@ -65,7 +65,7 @@ public class FormareModelDM implements Model<Formare> {
          while(rs.next()) {
             Formare bean = new Formare();
             bean.setId_attivita(rs.getInt("id_attivita"));
-            bean.setDate(rs.getString("date"));
+            bean.setDate(rs.getString("data"));
             bean.setId_riepilogo(rs.getInt("id_riepilogo"));
             bean.setOra(rs.getString("ora"));
             bean.setPartecipanti(rs.getInt("partecipanti"));
@@ -117,7 +117,7 @@ public class FormareModelDM implements Model<Formare> {
    public void doUpdate(Formare product) throws SQLException {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
-      String updateSQL = "UPDATE formare SET id_attivita = ?, id_riepilogo = ?, data=?, ora = ?, partecipanti = ?  WHERE numero = ?";
+      String updateSQL = "UPDATE formare SET id_attivita = ?, id_riepilogo = ?, data=?, ora = ?, partecipanti = ?  WHERE id_riepilogo = ?";
 
       try {
          connection = DriverManagerConnectionPool.getConnection();
