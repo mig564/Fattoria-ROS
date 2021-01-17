@@ -83,6 +83,40 @@ public class PrenotazioneAttivitaModelDM implements Model<PrenotazioneAttivita> 
 	      return formi;
 	}
 
+	public Collection<PrenotazioneAttivita> doRetrieveByID(String var1) throws SQLException {
+		Connection connection = null;
+	      PreparedStatement preparedStatement = null;
+	      Collection<PrenotazioneAttivita> formi = new LinkedList<PrenotazioneAttivita>();
+	      String selectSQL = "SELECT * FROM prenotazioneAttivita WHERE id_prenotazione = ?";
+
+	      try {
+	         connection = DriverManagerConnectionPool.getConnection();
+	         preparedStatement = connection.prepareStatement(selectSQL);
+	         preparedStatement.setInt(1, Integer.parseInt(var1));
+	         System.out.println("DoRetreiveAll: " + preparedStatement.toString());
+	         ResultSet rs = preparedStatement.executeQuery();
+
+	         while(rs.next()) {
+	            PrenotazioneAttivita bean = new PrenotazioneAttivita();
+	            bean.setId_prenotazione(rs.getInt("id_prenotazione"));
+	            bean.setId_attivita(rs.getInt("id_attivita"));
+	            bean.setOra(rs.getString("ora"));
+	            bean.setDate(rs.getString("data"));
+	            bean.setPartecipanti(rs.getInt("partecipanti"));
+	            formi.add(bean);
+	         }
+	      } finally {
+	         try {
+	            if (preparedStatement != null) {
+	               preparedStatement.close();
+	            }
+	         } finally {
+	            DriverManagerConnectionPool.releaseConnection(connection);
+	         }
+	      }
+	      return formi;
+	}
+	
 	@Override
 	public void doSave(PrenotazioneAttivita product) throws SQLException {
 		 Connection connection = null;

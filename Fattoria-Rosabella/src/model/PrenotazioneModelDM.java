@@ -19,13 +19,13 @@ public class PrenotazioneModelDM implements Model<Prenotazione> {
 	   	Connection connection = null;
 	      PreparedStatement preparedStatement = null;
 	      Collection<Prenotazione> formi = new LinkedList<Prenotazione>();
-	      String selectSQL = "SELECT * FROM prenotazione WHERE id_prenotazione = ?";
+	      String selectSQL = "SELECT * FROM prenotazione WHERE id_riepilogo = ?";
 
 	      try {
 	         connection = DriverManagerConnectionPool.getConnection();
 	         preparedStatement = connection.prepareStatement(selectSQL);
 	         preparedStatement.setInt(1, code);
-	         System.out.println("DoRetreiveAll: " + preparedStatement.toString());
+	         System.out.println("DoRetreiveByCarr: " + preparedStatement.toString());
 	         ResultSet rs = preparedStatement.executeQuery();
 
 	         while(rs.next()) {

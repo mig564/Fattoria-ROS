@@ -90,12 +90,15 @@ boolean log = false;	%>
 				Iterator<?> iterator =  prenotazioni.iterator();
 				while(iterator.hasNext()){
 					Prenotazione bean = (Prenotazione) iterator.next();
-					PrenotazioneAttivita prenotazioneAttivita =  attivitaModelDM.doRetrieveByKey(""+bean.getId_prenotazione());
-					Attivita attivita = attivitaDM.doRetrieveByKey(prenotazioneAttivita.getId_attivita()+"");%>
+					Collection<?> prenotazioneAttivita = (Collection<?>) attivitaModelDM.doRetrieveByID(""+bean.getId_prenotazione());
+					Iterator<?> iteratorAtti =  prenotazioneAttivita.iterator();
+					while (iteratorAtti.hasNext()) {
+						PrenotazioneAttivita prenotazioneAttivita2 = (PrenotazioneAttivita) iteratorAtti.next();
+						Attivita attivita = attivitaDM.doRetrieveByKey(prenotazioneAttivita2.getId_attivita()+"");%>
 					<div class="row" style="margin-top: 20px;">  
 						<div class="col-md-1"><p class="text-center"><%=bean.getId_prenotazione() %></p></div> <!-- id prenotazione -->
-						<div class="col-md-3"><p class="text-center"><%=prenotazioneAttivita.getOra() %></div>
-						<div class="col-md-3"><p class="text-center"><%=prenotazioneAttivita.getDate()%></div>
+						<div class="col-md-3"><p class="text-center"><%=prenotazioneAttivita2.getOra() %></div>
+						<div class="col-md-3"><p class="text-center"><%=prenotazioneAttivita2.getDate()%></div>
 						<div class="col-md-2"><p class="text-center"><%=bean.getPrezzo()%></div>
 						<div class="col-md-2"><p class="text-center">
   							<button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -108,14 +111,15 @@ boolean log = false;	%>
   							<div class="card card-body">
     							<div class="row">
     								<div class="col"><p class="text-center"><%=attivita.getId_attivita() %></div>
-    								<div class="col"><p class="text-center"><%=prenotazioneAttivita.getDate()%></div>
-    								<div class="col"><p class="text-center"><%=prenotazioneAttivita.getOra() %></div>
+    								<div class="col"><p class="text-center"><%=prenotazioneAttivita2.getDate()%></div>
+    								<div class="col"><p class="text-center"><%=prenotazioneAttivita2.getOra() %></div>
     								<div class="col"><p class="text-center"><%=attivita.getMax_persone()%></div>
     							</div>	
 							</div>
 						</div>
 					</div>
-				<%	}
+				<%	}	
+				}
 				} else {%>
 					<p>Non ci sono attivita</p>
 			<%	} %>

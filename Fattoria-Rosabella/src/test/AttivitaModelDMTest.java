@@ -16,7 +16,7 @@ public class AttivitaModelDMTest extends TestCase {
 	
 	@Override
 	protected void setUp() throws Exception {
-		attivita = new Attivita(300, "Escursione", "Cascata della Maronnella", "Escursione presso il punto più bello del bioparco", 32, 25);
+		attivita = new Attivita(300, "Escursione", "Cascata della Maronnella", "Escursione presso il punto piÃ¹ bello del bioparco", 32, 25);
 	}
 	
 	public void testDoRetrieveByKey() throws SQLException {
@@ -33,9 +33,8 @@ public class AttivitaModelDMTest extends TestCase {
 	
 	public void testDoRetrieveAll() throws SQLException {
 		Collection<Attivita> att = attivitaModelDM.doRetrieveAll("");
-		assertEquals(att.size(), 12);								//TODO 12 è il numero di attività al momento, se aggiungo un attività al db il tests darà errore	
+		assertEquals(att.size(), 12);								//TODO 12 ï¿½ il numero di attivitï¿½ al momento, se aggiungo un attivitï¿½ al db il tests darï¿½ errore	
 	}
-	
 	
 	public void testdoSave() {
 		
@@ -46,6 +45,5 @@ public class AttivitaModelDMTest extends TestCase {
 		attivitaModelDM.doUpdate(attivita);
 		assertEquals("RosolinoGay", attivitaModelDM.doRetrieveByKey("300").getNome());
 	}
-	
 	
 }
