@@ -1,6 +1,7 @@
 package test;
 
 import java.sql.SQLException;
+import java.util.Collection;
 
 import beans.Attivita;
 import junit.framework.Test;
@@ -15,28 +16,36 @@ public class AttivitaModelDMTest extends TestCase {
 	
 	@Override
 	protected void setUp() throws Exception {
-		attivita = new Attivita(1, "Escursione", "Cascata della Maronnella","Escursione presso il punto piÃ¹ bello del bioparco" , 15, 21);
-		attivitaModelDM.doSave(attivita);
+		attivita = new Attivita(300, "Escursione", "Cascata della Maronnella", "Escursione presso il punto più bello del bioparco", 32, 25);
 	}
-
-	public void testDoRietrieveByKey() throws SQLException {
-		Attivita db = attivitaModelDM.doRetrieveByKey("1");
-		assertEquals(attivita.toString(), db.toString());
+	
+	public void testDoRetrieveByKey() throws SQLException {
+		Attivita db = attivitaModelDM.doRetrieveByKey("300");
+		assertEquals(attivita.toString(), db.toString());	
+	}
+	
+	public void testDoRetrieveByAttri() throws SQLException {
+		Collection<Attivita> att = attivitaModelDM.doRetrieveByAtti("2020-12-01", "Escursione");
+		for (Attivita a : att){
+			assertEquals("Escursione", a.getCategoria());		
+		}	
+	}
+	
+	public void testDoRetrieveAll() throws SQLException {
+		Collection<Attivita> att = attivitaModelDM.doRetrieveAll("");
+		assertEquals(att.size(), 12);								//TODO 12 è il numero di attività al momento, se aggiungo un attività al db il tests darà errore	
+	}
+	
+	
+	public void testdoSave() {
+		
 	}
 	
 	public void testDoUpdate() throws SQLException {
-		attivita.setMax_persone(54);
+		attivita.setNome("RosolinoGay");
 		attivitaModelDM.doUpdate(attivita);
-		Attivita db = attivitaModelDM.doRetrieveByKey("1");
-		assertEquals(attivita.toString(), db.toString());
+		assertEquals("RosolinoGay", attivitaModelDM.doRetrieveByKey("300").getNome());
 	}
 	
-	@Override
-	protected void tearDown() throws Exception{
-		attivitaModelDM.doDelete(attivita);
-	}
 	
-	public static Test suite() {  
-		return new TestSuite(AttivitaModelDMTest.class);
-	}
 }
