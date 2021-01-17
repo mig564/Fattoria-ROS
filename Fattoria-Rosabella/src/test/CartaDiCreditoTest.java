@@ -11,19 +11,16 @@ public class CartaDiCreditoTest extends TestCase{
 	@Override
 	protected void setUp() throws Exception {
 		cc = new CartaDiCredito("12345698712365470" , "gianni rossi", "2024-11-11", 458, "rossigiuseppe@gmail.com");
-		
 	}
 	
 	public void testSetEmail() {
 		cc.setEmail("giannigianni@gmail.com");
 		assertEquals("giannigianni@gmail.com", cc.getEmail());
-		
 	}
 	
 	public void testSetIntestatario() {
 		cc.setIntestatrio("clemente russo");
 		assertEquals("clemente russo",cc.getIntestatrio());
-		
 	}
 	
 	public void testSetScadenza() {
@@ -43,7 +40,6 @@ public class CartaDiCreditoTest extends TestCase{
 	
 	public static Test suite() {
 		return new TestSuite(CartaDiCreditoTest.class);
-		
 	}
 
 }

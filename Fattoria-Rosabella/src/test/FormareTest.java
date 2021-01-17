@@ -37,14 +37,10 @@ public class FormareTest extends TestCase{
 	public void testSetPartecipanti() {
 		f.setPartecipanti(55);
 		assertEquals(55, f.getPartecipanti());
-	
 	}
 	
 	public static Test suite() {
 		return new TestSuite(FormareTest.class);
-		
 	}
-	
-	
 
 }

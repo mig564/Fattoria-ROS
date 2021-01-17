@@ -21,13 +21,11 @@ public class PrenotazioneAttivitaTest extends TestCase {
 	public void testSetOra() {
 		pa.setOra("17:00:00");
 		assertEquals("17:00:00", pa.getOra());
-	
 	}
 	
 	public void testSetPartecipanti() {
 		pa.setPartecipanti(55);
 		assertEquals(55, pa.getPartecipanti());
-	
 	}
 	
 	public void testSetId_A() {
@@ -42,8 +40,6 @@ public class PrenotazioneAttivitaTest extends TestCase {
 	
 	public static Test suite() {
 		return new TestSuite(PrenotazioneAttivitaTest.class);
-		
 	}
-	
 
 }
