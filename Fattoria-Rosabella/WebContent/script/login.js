@@ -12,27 +12,91 @@ function showFormLogin() {
 //validazione form registrazione
 function check_reg() {
 	var name = document.registrazione.nome;
-	var surname = document.registrazione.cognome;
-	var password = document.registrazione.password;
-	var email = document.registrazione.email;
-	var double_password = document.registrazione.secondaPassword;
+	
 	var data_nascita = document.registrazione.data_nascita;
-	var indirizzo = document.registrazione.indirizzo;
 	var city = document.registrazione.citta;
+	var email = document.registrazione.email;
+	var password = document.registrazione.password;
+	var double_password = document.registrazione.secondaPassword;
+	
 	if(chekName(name)) {
-		if(chekSurname(surname)) {
-			if(chekCity(city)) {
-				if (validateEmail(email)) {
-					if (check_password(password, double_password)) {
-						if (data_nascita(data_nascita)) {
-							return true;
-						}
+		if(chekSurname()) {
+			if (data_nascita(data_nascita)) {
+				if(chekCity(city)) {
+					if (validateEmail(email)) {
+						if (check_password(password, double_password)) return true;
 					}
 				}
 			}
 		}
 	}
 	return false;
+}
+
+function chekName(name) {
+	var letters = /^[A-Za-z]+$/;
+	if(name.value.match(letters)) {
+		document.getElementById("errorNome").innerHTML = "";
+		document.getElementById("errorNome").style.dislay = "none";
+		document.registrazione.nome.style.border = "1px solid green";
+		return true;
+	} else {
+		document.getElementById("errorNome").innerHTML = "Nome inserito non valido.";
+		document.getElementById("errorNome").style.color = "red";
+		document.registrazione.nome.style.border = "1px solid red";
+		return false;
+	}
+}
+
+function chekSurname() {
+	var surname = document.registrazione.cognome;
+	var chars = /^[A-Za-z]+$/;
+	if(surname.value.match(chars)) {
+		document.getElementById("errorCognome").innerHTML = "";
+		document.getElementById("errorCognome").style.dislay = "none";
+		document.registrazione.cognome.style.border = "1px solid green";
+		return true;
+	} else {
+		document.getElementById("errorCogome").innerHTML = "Cognome inserito non valido.";
+		document.getElementById("errorCognome").style.color = "red";
+		document.registrazione.cognome.style.border = "1px solid red";
+		return false;
+	}
+}
+
+function data_nascita(data_nascita) {
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = today.getFullYear();
+
+	today = mm + '/' + dd + '/' + yyyy;
+	if (data_nascita < today) {
+		document.getElementById("errorData").innerHTML = "";
+		document.getElementById("errorData").style.dislay = "none";
+		document.registrazione.data_nascita.style.border = "1px solid green";
+		return true;
+	} else {
+		document.getElementById("errorData").innerHTML = "Non puoi essere nato nel futuro.";
+		document.getElementById("errorData").style.color = "red";
+		document.registrazione.data_nascita.style.border = "1px solid red";
+		return false;
+	}
+}
+
+function chekCity(city) {
+	var letters = /^[A-Za-z]+$/;
+	if(city.value.match(letters)) {
+		document.getElementById("errorCitta").innerHTML = "";
+		document.getElementById("errorCitta").style.dislay = "none";
+		document.registrazione.citta.style.border = "1px solid green";
+		return true;
+	} else {
+		document.getElementById("errorCitta").innerHTML = "Città inserita non valida.";
+		document.getElementById("errorCitta").style.color = "red";
+		document.registrazione.citta.style.border = "1px solid red";
+		return false;
+	}
 }
 
 function validateEmail(email) {
@@ -80,67 +144,3 @@ function check_password(password, psw_repeat) {
 	}
 }
 
-function chekName(name) {
-	var letters = /^[A-Za-z]+$/;
-	if(name.value.match(letters)) {
-		document.getElementById("errorNome").innerHTML = "";
-		document.getElementById("errorNome").style.dislay = "none";
-		document.registrazione.nome.style.border = "1px solid green";
-		return true;
-	} else {
-		document.getElementById("errorNome").innerHTML = "Nome inserito non valido.";
-		document.getElementById("errorNome").style.color = "red";
-		document.registrazione.nome.style.border = "1px solid red";
-		return false;
-	}
-}
-
-function chekSurname(surname) {
-	var letters = /^[A-Za-z]+$/;
-	if(surname.value.match(letters)) {
-		document.getElementById("errorCognome").innerHTML = "";
-		document.getElementById("errorCognome").style.dislay = "none";
-		document.registrazione.cognome.style.border = "1px solid green";
-		return true;
-	} else {
-		document.getElementById("errorCogome").innerHTML = "Cognome inserito non valido.";
-		document.getElementById("errorCognome").style.color = "red";
-		document.registrazione.nome.style.border = "1px solid red";
-		return false;
-	}
-}
-
-function chekCity(city) {
-	var letters = /^[A-Za-z]+$/;
-	if(city.value.match(letters)) {
-		document.getElementById("errorCitta").innerHTML = "";
-		document.getElementById("errorCitta").style.dislay = "none";
-		document.registrazione.citta.style.border = "1px solid green";
-		return true;
-	} else {
-		document.getElementById("errorCitta").innerHTML = "Città inserita non valida.";
-		document.getElementById("errorCitta").style.color = "red";
-		document.registrazione.citta.style.border = "1px solid red";
-		return false;
-	}
-}
-
-function data_nascita(data_nascita) {
-	var today = new Date();
-	var dd = String(today.getDate()).padStart(2, '0');
-	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-	var yyyy = today.getFullYear();
-
-	today = mm + '/' + dd + '/' + yyyy;
-	if (data_nascita < today) {
-		document.getElementById("errorData").innerHTML = "";
-		document.getElementById("errorData").style.dislay = "none";
-		document.registrazione.data_nascita.style.border = "1px solid green";
-		return true;
-	} else {
-		document.getElementById("errorData").innerHTML = "Non puoi essere nato nel futuro.";
-		document.getElementById("errorData").style.color = "red";
-		document.registrazione.data_nascita.style.border = "1px solid red";
-		return false;
-	}
-}

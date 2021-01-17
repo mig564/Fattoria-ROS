@@ -39,7 +39,7 @@ public class Registration extends HttpServlet {
       utente.setPassword(request.getParameter("password").trim());
       utente.setIndirizzo(request.getParameter("indirizzo").trim());
       utente.setAttivo(0);
-      utente.setId_riepilogo(random.nextInt());
+      utente.setId_riepilogo(random.nextInt(3000));
 
       try {
          this.riepilogoOrdineModelDM.doSave(new RiepilogoOrdine(utente.getId_riepilogo()));

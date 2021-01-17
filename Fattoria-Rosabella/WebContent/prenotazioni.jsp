@@ -86,8 +86,7 @@
 						<h3 class= "text-center" style="color: white; margin-top: 15px; margin-bottom: 25px;">PRENOTA LE TUE ATTIVITÀ</h3>
     					<form name="prenotazione" method="post" action="PrenotazioniCalendarioControl" onSubmit="">	
 						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="date" name="date" class="form-control" 
-							id="prenotazioneData"  placeholder="Seleziona una data">
+							<input type="date" name="date" class="form-control" id="prenotazioneData"  placeholder="Seleziona una data" required>
 							<label for="prenotazioneData">Seleziona una data</label>
 						</div>
 						<div class="form-floating" style="margin-bottom: 22px;">
