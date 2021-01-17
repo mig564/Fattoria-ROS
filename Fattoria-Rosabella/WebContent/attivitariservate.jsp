@@ -61,13 +61,13 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 			</button></p>
 			
 			<!-- Form aggiunta attività -->
-			<form name="aggiungiattivita" method="post" action="AdminControl?tipo=attivita&action=aggiungi" onSubmit="" style="display: none;">
+			<form name="aggiungiattivita" method="post" action="AdminControl?tipo=attivita&action=aggiungi" onSubmit="javascript:return checkAttivita()" style="display: none;">
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="text" class="form-control" id="nome" name="nome" placeholder="">
+						<input type="text" class="form-control" id="nome" name="nome" placeholder="" required>
 						<label for="nome">Nome attività</label>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<select class="form-select" name="categoria" id="categoria" aria-label="Seleziona categoria">
+						<select class="form-select" name="categoria" id="categoria" aria-label="Seleziona categoria" required>
 	 					 	<option value="Escursione">Escursione</option>
 	 					 	<option value="Visita guidata">Visita guidata</option>
 	 					 	<option value="Fattoria didattica">Fattoria didattica</option>
@@ -77,16 +77,18 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 		 				 <label for="categoria">Categoria</label>
 		 			</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="number" class="form-control" name="numeroParticipanti" id="numeroParticipanti"  placeholder="">
-						<label for="numeroParticipanti">Numero massimo di partecipanti</label>
+						<input type="number" class="form-control" name="partecipanti" id="partecipanti"  placeholder="" required>
+						<label for="partecipanti">Numero massimo di partecipanti</label>
+						<p id="errorPartecipanti"></p>
 					</div>
 						<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="number" class="form-control" name="prezzoAttività" id="prezzoAttività"  placeholder="">
-						<label for="prezzoAttività">Prezzo</label>
+						<input type="number" class="form-control" name="prezzo" id="prezzo"  placeholder="" required>
+						<label for="prezzo">Prezzo</label>
+						<p id="errorPrezzo"></p>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input type="text" class="form-control" name="descrizioneAttività" id="descrizioneAttività"  placeholder="">
-						<label for="descrizioneAttività">Descrizione</label>
+						<input type="text" class="form-control" name="descrizione" id="descrizione"  placeholder="" required>
+						<label for="descrizione">Descrizione</label>
 					</div>
 					
 					<div class="form-floating" style="margin-bottom: 12px;">
@@ -100,7 +102,7 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 							<label class="form-check-label" for="checkOrario10">10:00</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" name="orario" id="checkOrario10" value="12:00:00">
+							<input class="form-check-input" type="checkbox" name="orario" id="checkOrario12" value="12:00:00">
 							<label class="form-check-label" for="checkOrario10">12:00</label>
 						</div>
 						<div class="form-check form-check-inline">
@@ -115,6 +117,7 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 							<input class="form-check-input" type="checkbox" name="orario" id="checkOrario18" value="18:00:00">
 							<label class="form-check-label" for="checkOrario18">18:00</label>
 						</div>
+						<p id="errorOrario"></p>
 					</div>
 					<hr>
 							
@@ -148,6 +151,7 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 							<input class="form-check-input" type="checkbox" name="giorno" id="checkGiornoDomenica" value="Domenica">
 							<label class="form-check-label" for="checkGiornoDomenica">Domenica</label>
 						</div>
+						<p id="errorGiorno"></p>
 					</div>
 					<hr>
 					
@@ -201,6 +205,7 @@ if ((adminRoles == null) || (!adminRoles.booleanValue())) {
 							<input class="form-check-input" type="checkbox" name="mese" id="checkMeseDicembre" value="Dicembre">
 							<label class="form-check-label" for="checkMeseDicembre">Dicembre</label>
 						</div>
+						<p id="errorMese"></p>
 					</div>
 					
 					<p class="text-center"><button type="submit" class="btn btn-success">AGGIUNGI</button></p>

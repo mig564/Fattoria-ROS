@@ -142,7 +142,11 @@
 												<option value="<%=i %>"><%=i %></option>
 											<%} %>
 										</select>
-								<button type="button" onclick="ajaxCall('<%=date %>','<%=bean.getId_attivita() %>');" class="btn btn-success btn-lg" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
+								<%if (log == false) { %>
+									<button type="button" onclick="window.location.href='login.jsp'" class="btn btn-success" style="margin-left: 80%;margin-bottom: 10px;">Effettua il login</button></p>
+								<%} else { %>		
+									<button type="button" onclick="ajaxCall('<%=date %>','<%=bean.getId_attivita() %>');" class="btn btn-success btn-lg" style="margin-left: 80%;margin-bottom: 10px;">Prenota</button></p>
+								<%} %>	
 							</div>
 						</div>
 					</form>

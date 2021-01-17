@@ -70,39 +70,45 @@
 					</form>
 					
 					<!-- Form di regisrazione -->
-					<form name="registrazione" method="post" action="Registration" onSubmit="return check_reg();" style="display: none;">
+					<form name="registrazione" method="post" action="Registration" onSubmit="javascript:return check_reg()" style="display: none;">
 						<h3 class="text-center title-green" style="margin-bottom: 22px;">REGISTRAZIONE</h3>
 						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="text" class="form-control" name="nome" id="nomeUtente"  placeholder="Nome">
+							<input type="text" class="form-control" name="nome" id="nomeUtente"  placeholder="Nome" required>
 							<label for="nomeUtente">Nome</label>
+							<p id="errorNome"></p>
 						</div>
 						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="text" class="form-control" name="cognome" id="cognomeUtente"  placeholder="Cognome">
+							<input type="text" class="form-control" name="cognome" id="cognomeUtente"  placeholder="Cognome" required>
 							<label for="cognomeUtente">Cognome</label>
+							<p id="errorCognome"></p>
 						</div>
 						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="date" class="form-control" name="data_nascita" id="dataDiNascita"  placeholder="DataDiNascita">
+							<input type="date" class="form-control" name="data_nascita" id="dataDiNascita"  placeholder="DataDiNascita" required>
 							<label for="dataDiNascita">Data di nascita</label>
+							<p id="errorData"></p>
 						</div>
 						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="text" class="form-control" name="indirizzo" id="indirizzoUtente"  placeholder="Indirizzo">
+							<input type="text" class="form-control" name="indirizzo" id="indirizzoUtente"  placeholder="Indirizzo" required>
 							<label for="indirizzoUtente">Indirizzo</label>
+							<p id="errorIndirizzo"></p>
 						</div>
 						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="text" class="form-control" name="citta" id="citta"  placeholder="Città">
+							<input type="text" class="form-control" name="citta" id="citta"  placeholder="Città" required>
 							<label for="citta">Città</label>
+							<p id="errorCitta"></p>
 						</div>
 						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email">
+							<input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email" required>
 							<label for="email">Email</label>
+							<p id="errorEmail"></p>
 						</div>
 						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="password" class="form-control" name="password" id="primaPassword"	placeholder="Password">
+							<input type="password" class="form-control" name="password" id="primaPassword"	placeholder="Password" required>
 							<label for="primaPassword">Password</label>
 							<p id="errorPassReg"></p>
 						</div>
 						<div class="form-floating" style="margin-bottom: 22px;">
-							<input type="password" class="form-control" id="secondaPassword" placeholder="Ripeti Password">
+							<input type="password" class="form-control" id="secondaPassword" placeholder="Ripeti Password" required>
 							<label for="secondaPassword">Ripeti password</label>
 							<p id="errorRepeatPass"></p>
 						</div>

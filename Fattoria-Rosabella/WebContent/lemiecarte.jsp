@@ -122,24 +122,27 @@ boolean log = false;	%>
 					</svg> Aggiungi una nuova carta
 				</button></p>
 				<!-- Form di aggiunta carta -->
-				<form name="aggiungicarta" method="post" action="CarteControl?action=aggiungi" onSubmit="" style="display: none;">
+				<form name="aggiungicarta" method="post" action="CarteControl?action=aggiungi" onSubmit="javascript:return checkCarta()" style="display: none;">
 					<h3 class="text-center title-green" style="margin-bottom: 22px;">REGISTRAZIONE</h3>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input name="numero" type="number" class="form-control" id="campoNumeroCarta"  placeholder="0055 1234 1234 1234" maxlength="17" required>
+						<input type="number" class="form-control" name="numero" id="campoNumeroCarta" placeholder="0055 1234 1234 1234" maxlength="17" required>
 						<label for="campoNumeroCarta">Numero carta</label>
 						<p id="errorNumero"></p>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
 						<input name="nome" type="text" class="form-control" id="nomeUtente"  placeholder="Nome" required>
 						<label for="nomeUtente">Nome intestatario</label>
+						<p id="errorNome"></p>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
 						<input name="cognome" type="text" class="form-control" id="cognomeUtente"  placeholder="Cognome" required>
 						<label for="cognomeUtente">Cogome intestatario</label>
+						<p id="errorCognome"></p>
 					</div>
 					<div class="form-floating" style="margin-bottom: 12px;">
-						<input name="cvv" type="number" class="form-control" id="campoCVV"  placeholder="CVV" maxlength="4" readonly>
+						<input name="cvv" type="number" class="form-control" id="campoCVV"  placeholder="CVV" maxlength="4" required>
 						<label for="campoCVV">CVV</label>
+						<p id="errorCvv"></p>
 					</div>
 					<div class="row" style="margin-bottom: 12px;">
 						<div class="col">
@@ -159,6 +162,7 @@ boolean log = false;	%>
 		 						 	<option value="12">Dicembre</option>
 		 						 </select>
 		 						 <label for="selezionaMese">Mese di scadenza</label>
+		 						 <p id="errorMese"></p>
 		 					</div>
 						</div>
 						<div class="col">
@@ -174,6 +178,7 @@ boolean log = false;	%>
 		 						 	<option value="2028">2028</option>
 								 </select>
 								 <label for="selezionaMese">Anno di scadenza</label>
+								 <p id="errorAnno"></p>
 							 </div>
 						</div>
 					</div>

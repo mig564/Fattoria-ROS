@@ -51,9 +51,9 @@ public class AdminControl extends HttpServlet {
 							attivita.setId_attivita(id);
 							attivita.setNome(request.getParameter("nome"));
 							attivita.setCategoria(request.getParameter("categoria"));
-							attivita.setDescrizione(request.getParameter("descrizioneAttivit�"));
-							attivita.setMax_persone(Integer.parseInt(request.getParameter("numeroParticipanti")));
-							attivita.setPrezzo(Integer.parseInt(request.getParameter("prezzoAttivit�")));
+							attivita.setDescrizione(request.getParameter("descrizione"));
+							attivita.setMax_persone(Integer.parseInt(request.getParameter("partecipanti")));
+							attivita.setPrezzo(Integer.parseInt(request.getParameter("prezzo")));
 							attivitaModelDM.doSave(attivita);
 							String orari[] = request.getParameterValues("orario");
 							String giorni[] = request.getParameterValues("giorno");
@@ -98,7 +98,7 @@ public class AdminControl extends HttpServlet {
 													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
 													cal.setDate(m);
 													cal.setOra(orario);
-													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("partecipanti")));
 													cal.setId_attivita(id);
 													calendarioModelDM.doSave(cal);
 												}
@@ -111,7 +111,7 @@ public class AdminControl extends HttpServlet {
 													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
 													cal.setDate(m);
 													cal.setOra(orario);
-													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("partecipanti")));
 													cal.setId_attivita(id);
 													calendarioModelDM.doSave(cal);
 												}
@@ -124,7 +124,7 @@ public class AdminControl extends HttpServlet {
 													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
 													cal.setDate(m);
 													cal.setOra(orario);
-													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("partecipanti")));
 													cal.setId_attivita(id);
 													calendarioModelDM.doSave(cal);
 												}
@@ -137,7 +137,7 @@ public class AdminControl extends HttpServlet {
 													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
 													cal.setDate(m);
 													cal.setOra(orario);
-													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("partecipanti")));
 													cal.setId_attivita(id);
 													calendarioModelDM.doSave(cal);
 												}
@@ -150,7 +150,7 @@ public class AdminControl extends HttpServlet {
 													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
 													cal.setDate(m);
 													cal.setOra(orario);
-													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("partecipanti")));
 													cal.setId_attivita(id);
 													calendarioModelDM.doSave(cal);
 												}
@@ -163,7 +163,7 @@ public class AdminControl extends HttpServlet {
 													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
 													cal.setDate(m);
 													cal.setOra(orario);
-													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("partecipanti")));
 													cal.setId_attivita(id);
 													calendarioModelDM.doSave(cal);
 												}
@@ -176,7 +176,7 @@ public class AdminControl extends HttpServlet {
 													String m = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.DAY_OF_MONTH);
 													cal.setDate(m);
 													cal.setOra(orario);
-													cal.setPartecipanti(Integer.parseInt(request.getParameter("numeroParticipanti")));
+													cal.setPartecipanti(Integer.parseInt(request.getParameter("partecipanti")));
 													cal.setId_attivita(id);
 													calendarioModelDM.doSave(cal);
 												}
@@ -194,9 +194,9 @@ public class AdminControl extends HttpServlet {
 							String id = request.getParameter("id_attivita2");
 							attivita.setId_attivita(Integer.parseInt(id));
 							attivita.setCategoria(request.getParameter("categoria"));
-							attivita.setDescrizione(request.getParameter("descrizioneAttivita"));
-							attivita.setMax_persone(Integer.parseInt(request.getParameter("numeroParticipanti")));
-							attivita.setPrezzo(Integer.parseInt(request.getParameter("prezzoAttivita")));
+							attivita.setDescrizione(request.getParameter("descrizione"));
+							attivita.setMax_persone(Integer.parseInt(request.getParameter("partecipanti")));
+							attivita.setPrezzo(Integer.parseInt(request.getParameter("prezzo")));
 							attivitaModelDM.doUpdate(attivita);
 						} else if (action.equals("rimuoviData")) {
 							calendarioModelDM.doDelete(new Calendario(request.getParameter("data"), request.getParameter("ora"), 0, Integer.parseInt(request.getParameter("id"))));

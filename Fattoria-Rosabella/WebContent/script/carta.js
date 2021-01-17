@@ -17,18 +17,81 @@ function removeCarteDiCredito() {
 }
 
 function checkCarta() {
-	var numero = document.aggiungicarta.numero;
-	
+	var num = document.aggiungicarta.numero;
+	var name = document.aggiungicarta.nome;
+	var surname = document.aggiungicarta.cognome;
+	var cvv = document.aggiungicarta.cvv;
+	if(checkNumero(num)) {
+		if(checkName(name)) {
+			if(checkSurname(surname)) {
+				if(checkCvv(cvv)) {
+					return true;
+				}
+			}
+		}
+	}
+	return false;
 }
 
+
+
 function checkNumero(numero) {
-	if(numero.lenght() != 16) {
-		$("#errorNumero").text("Il numero di carta inserito non rispetta il formato.");
-		document.getElementById("errorPassReg").style.color = "red";
-		document.registrazione.password.style.border = "2px solid red";
-		return false;
-	} else {
-		document.getElementById("errorNumero").style.display = "none";
+	var numbers = /^\d{16}$/;
+	if(numero.value.match(numbers)) {
+		document.getElementById("errorNumero").innerHTML = "";
+		document.getElementById("errorNumero").style.dislay = "none";
+		document.aggiungicarta.numero.style.border = "1px solid green";
 		return true;
+	} else {
+		document.getElementById("errorNumero").innerHTML = "Numero carta inserito non valido.";
+		document.getElementById("errorNumero").style.color = "red";
+		document.aggiungicarta.numero.style.border = "1px solid red";
+		return false;
 	}
 }
+
+function checkName(name) {
+	var letters = /^[A-Za-z]+$/;
+	if(name.value.match(letters)) {
+		document.getElementById("errorNome").innerHTML = "";
+		document.getElementById("errorNome").style.dislay = "none";
+		document.aggiungicarta.nome.style.border = "1px solid green";
+		return true;
+	} else {
+		document.getElementById("errorNome").innerHTML = "Nome inserito non valido.";
+		document.getElementById("errorNome").style.color = "red";
+		document.aggiungicarta.nome.style.border = "1px solid red";
+		return false;
+	}
+}
+
+function checkSurname(surname) {
+	var letters = /^[A-Za-z]+$/;
+	if(surname.value.match(letters)) {
+		document.getElementById("errorCognome").innerHTML = "";
+		document.getElementById("errorCognome").style.dislay = "none";
+		document.aggiungicarta.cognome.style.border = "1px solid green";
+		return true;
+	} else {
+		document.getElementById("errorCogome").innerHTML = "Cognome inserito non valido.";
+		document.getElementById("errorCognome").style.color = "red";
+		document.aggiungicarta.nome.style.border = "1px solid red";
+		return false;
+	}
+}
+
+function checkCvv(cvv) {
+	var numbers = /^\d{3}$/;;
+	if(cvv.value.match(numbers)) {
+		document.getElementById("errorCvv").innerHTML = "";
+		document.getElementById("errorCvv").style.dislay = "none";
+		document.aggiungicarta.cvv.style.border = "1px solid green";
+		return true;
+	} else {
+		document.getElementById("errorCvv").innerHTML = "Il cvv inserito non è valido.";
+		document.getElementById("errorCvv").style.color = "red";
+		document.aggiungicarta.cvv.style.border = "1px solid red";
+		return false;
+	}
+}
+
