@@ -2,6 +2,7 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Attivita;
 import model.AttivitaModelDM;
+import moduloai.ModuloAI;
 
 /**
  * @author pa.ni.ca
@@ -30,9 +32,22 @@ public class PrenotazioniCalendarioControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			Collection<Attivita> attivitas = attivitaModelDM.doRetrieveByAtti((String) request.getParameter("date"), (String) request.getParameter("categoria"));
-			if (attivitas.size() > 0) {
+			boolean bambino = Boolean.getBoolean((String) request.getParameter("adattoBambini"));
+			int b, t;
+			if (bambino) b = 1;
+			else b = 0;
+			String tipologia = (String) request.getParameter("tipo");
+			if(tipologia.equals("Relax")) t = 0;
+			else if(tipologia.equals("Cardio")) t = 1;
+			else t = 2;
+			int min = Integer.parseInt(request.getParameter("minNumber"));
+			int max = Integer.parseInt(request.getParameter("maxNumber"));
+			System.out.println("STAMPA PRIMA DI CERCA");
+			Collection<Attivita> attivita = ModuloAI.cerca(attivitas, b, t, min, max);
+			System.out.println("STAMPA DOPO CERCA");
+			if (attivita.size() > 0) {
 				request.removeAttribute("attivitas");
-				request.setAttribute("attivitas", attivitas);
+				request.setAttribute("attivitas", attivita);
 				request.removeAttribute("date");
 				request.setAttribute("date", (String) request.getParameter("date"));
 			} else {

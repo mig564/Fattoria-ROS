@@ -100,9 +100,51 @@
 		 						 </select>
 							<label for="prenotazioneData">Seleziona una categoria</label>
 						</div>
+						
+						<!-- Vincoli problema di AI -->
+						<div class="row">
+							<div class="col-md-6">
+								<p style="color: white; text-align: left;">Adatto per bambini:</p>
+							</div>							
+							<div class="col-md-3">
+							  	<input class="form-check-input" type="radio" name="adattoBambini" id="true" value="true">
+							  	<label class="form-check-label" for="true" style="color: white;">
+							    	SI
+							  	</label>
+							</div>
+							<div class="col-md-3">
+							  	<input class="form-check-input" type="radio" name="adattoBambini" id="false" value="false" checked>
+							  	<label class="form-check-label" for="false"  style="color: white;">
+							    	NO
+							  	</label>
+							</div>
+						</div>
+						
+						<div class="form-floating" style="margin-bottom: 22px;">
+							<select class="form-select" name="tipo" id="selezionaTipo" aria-label="Seleziona tipo">
+									<option selected="selected">TUTTE</option>
+	 							 	<option value="Relax" >Relax</option>
+	 							 	<option value="Avventura">Cardio</option>
+	 							 	<option value="Balnezione">Culturale</option>
+		 						 </select>
+							<label for="prenotazioneData">Seleziona una tipologia</label>
+						</div>
+						
+						<div class="row">
+							<div class="form-floating col-md-6" style="margin-bottom: 22px;">
+								<input type="number" name="minNumber" class="form-control" id="minNumber"  placeholder="Minimo di partecipanti">
+								<label for="minNumber">Minimo di partecipanti</label>
+							</div>
+							
+							<div class="form-floating col-md-6" style="margin-bottom: 22px;">
+								<input type="number" name="maxNumber" class="form-control" id="maxNumber"  placeholder="Massimo di partecipanti">
+								<label for="maxNumber">Massimo di partecipanti</label>
+							</div>
+							
+						</div>
+						
 						<p class="text-center"><button type="submit" class="btn btn-success">Cerca</button></p>
 					</form>
-					<p style="color: white;" >L'attività di balneazione è sospesa nel periodo invernale</p>
 					
 					</div>
     		</div>
