@@ -15,7 +15,7 @@ public class ModuloAI {
 		Collection<Attivita> attivita = new LinkedList<Attivita>();
 		for (Attivita a : attivitas) {
 			dominio = new Dominio(a);
-			if(backtracking(assegnamento, bambino, tipologia, min, max)!= null) {
+			if(backtracking(assegnamento, bambino, tipologia, min, max).isCompleto()) {
 				attivita.add(a);
 			}
 		}
@@ -23,28 +23,33 @@ public class ModuloAI {
 	}
 	
 	private static Assegnamento backtracking (Assegnamento assegnamento, int bambino2, int tipologia, int min, int max) {
+		
 		if(assegnamento.isCompleto()) return assegnamento;
 		
-		int var = assegnamento.getVariabile(); // Scegliamo la variabile più piccola non assegnata (Passo 1: bambino)
+		int var = assegnamento.getVariabile(); // Scegliamo la variabile piï¿½ piccola non assegnata (Passo 1: bambino)
 		
 		if(var == 0) i = dominio.getBambino();
 		else if(var == 1) i = dominio.getTipo();
 		else if(var == 2) i = dominio.getMeteo();
 		else if(var == 3) i = dominio.getPartecipanti();
-		
+
 		for(Integer valore : i) { // Per ogni valore (true o false) assegnamo un valore (Passo 2: bambino = true)
-			if(assegnamentoConsistente(var, valore, bambino2, tipologia, min, max)) { // Controllo se assegnamento è consistente (Passo 3: utente ha messo si, dunque per bambino = true assegnamento consistente)
-				assegnamento.setBambino(valore); // Aggiungi ad attività
+			if(assegnamentoConsistente(var, valore,  bambino2, tipologia, min, max)) { // Controllo se assegnamento ï¿½ consistente (Passo 3: utente ha messo si, dunque per bambino = true assegnamento consistente)
+				assegnamento.setValore(var); // Aggiungi ad attivitï¿½
 				assegnamento = backtracking(assegnamento, bambino2, tipologia, min, max); // Richiamiamo backtracking
 			}
-			if(assegnamento.isCompleto()) return assegnamento;			
+			if(assegnamento.isCompleto()) return assegnamento;	
 		}
-		return null;
+		return assegnamento;
 	}
 
 	private static boolean assegnamentoConsistente(int var, int valore, int bambino2, int tipologia, int min, int max) {
 		if(var == 0) {
-			if(valore == bambino2) return true;
+			if ((valore == bambino2) && bambino2 == 0) return true; 
+			else if ((valore == bambino2) && bambino2 == 1) {
+				if (dominio.getAttivita().getCategoria().equals("Visita guidata") || dominio.getAttivita().getCategoria().equals("Ristoro")) return true;
+			}
+					
 		}
 		if(var == 1) {
 			if(valore == tipologia) return true;

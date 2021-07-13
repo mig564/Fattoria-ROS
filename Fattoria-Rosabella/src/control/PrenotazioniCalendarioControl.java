@@ -2,7 +2,6 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
@@ -42,9 +41,7 @@ public class PrenotazioniCalendarioControl extends HttpServlet {
 			else t = 2;
 			int min = Integer.parseInt(request.getParameter("minNumber"));
 			int max = Integer.parseInt(request.getParameter("maxNumber"));
-			System.out.println("STAMPA PRIMA DI CERCA");
 			Collection<Attivita> attivita = ModuloAI.cerca(attivitas, b, t, min, max);
-			System.out.println("STAMPA DOPO CERCA");
 			if (attivita.size() > 0) {
 				request.removeAttribute("attivitas");
 				request.setAttribute("attivitas", attivita);

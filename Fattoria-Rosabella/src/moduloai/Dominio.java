@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import beans.Attivita;
 
 public class Dominio {
+	
+	private Attivita attivita;
 	private ArrayList<Integer> bambino;
 	private ArrayList<Integer> tipo; //0=relax, 1=cardio, 2=culturale
 	private ArrayList<Integer> meteo;
 	private ArrayList<Integer> partecipanti;
 	
 	public Dominio(Attivita attivita) {
+		this.attivita = attivita;
 		bambino = new ArrayList<Integer>();
 		bambino.add(0);
 		bambino.add(1);
@@ -23,6 +26,14 @@ public class Dominio {
 		
 		partecipanti = new ArrayList<Integer>();
 		for(int i=1; i<=attivita.getMax_persone(); i++) partecipanti.add(i);
+	}
+
+	public Attivita getAttivita() {
+		return attivita;
+	}
+
+	public void setAttivita(Attivita attivita) {
+		this.attivita = attivita;
 	}
 
 	public ArrayList<Integer> getBambino() {
@@ -55,5 +66,11 @@ public class Dominio {
 
 	public void setPartecipanti(ArrayList<Integer> partecipanti) {
 		this.partecipanti = partecipanti;
+	}
+
+	@Override
+	public String toString() {
+		return "Dominio [bambino=" + bambino + ", tipo=" + tipo + ", meteo=" + meteo + ", partecipanti=" + partecipanti
+				+ "]";
 	}
 }

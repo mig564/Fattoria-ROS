@@ -11,8 +11,8 @@ public class Assegnamento {
 	}
 	
 	public boolean isCompleto() {
-		if(bambino == -1 && meteo == -1 && partecipanti == -1 && tipo == -1) return true;
-		return false;
+		if(bambino == -1 || meteo == -1 || partecipanti == -1 || tipo == -1) return false;
+		return true;
 	}
 	
 	public int getVariabile() {
@@ -21,6 +21,17 @@ public class Assegnamento {
 		if(meteo == -1) return 2;
 		if(partecipanti == -1) return 3;
 		return 4;
+	}
+	
+	public void setValore(int valore) {
+		switch (valore) {
+		case 0:	this.setBambino(1); break;
+		case 1:	this.setTipo(1); break;
+		case 2:	this.setMeteo(1); break;
+		case 3:	this.setPartecipanti(1); break;
+		default:
+			break;
+		}
 	}
 
 	public int isBambino() {
@@ -53,5 +64,11 @@ public class Assegnamento {
 
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		return "Assegnamento [bambino=" + bambino + ", meteo=" + meteo + ", partecipanti=" + partecipanti + ", tipo="
+				+ tipo + "]";
 	}
 }
