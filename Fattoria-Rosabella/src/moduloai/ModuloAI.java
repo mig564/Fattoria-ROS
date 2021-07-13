@@ -44,37 +44,9 @@ public class ModuloAI {
 	}
 
 	private static boolean assegnamentoConsistente(int var, int valore, int bambino2, int tipologia, int min, int max) {
-		if(var == 0) {
-			if ((valore == bambino2) && bambino2 == 0) return true; 
-			else if ((valore == bambino2) && bambino2 == 1) {
-				if (dominio.getAttivita().getCategoria().equals("Visita guidata") || dominio.getAttivita().getCategoria().equals("Ristoro")) 
-					return true;
-			}
-		}
-		if(var == 1) {
-			if((valore == tipologia) && tipologia == 0) {
-				if (dominio.getAttivita().getCategoria().equals("Balneazione"))
-					return true;
-			}
-			else if((valore == tipologia) && tipologia == 1) {
-				if (dominio.getAttivita().getCategoria().equals("Escursione"))
-					return true;
-			}
-			else if((valore == tipologia) && tipologia == 2) {
-				if (dominio.getAttivita().getCategoria().equals("Visita guidata"))
-					return true;
-			}
-		}
-		if(var == 2) {
-			return true; //Aggiungere check meteo
-		}
-		if(var == 3) {
-			if(min <= valore && max >= valore) return true;
-		}
+		
 		return false;
 	}
-
-
 
 	/*private static boolean condizioniMeteo() throws IOException {
 		System.out.println("STAMPA CONDIZIONE METEO PRIMA");
