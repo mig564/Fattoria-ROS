@@ -60,7 +60,7 @@ public class ModuloAI {
 				if (dominio.getAttivita().getCategoria().equals("Escursione"))
 					return true;
 			}
-			else if((valore == tipologia) && tipologia == 3) {
+			else if((valore == tipologia) && tipologia == 2) {
 				if (dominio.getAttivita().getCategoria().equals("Visita guidata"))
 					return true;
 			}
