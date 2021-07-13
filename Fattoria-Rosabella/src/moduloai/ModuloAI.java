@@ -22,7 +22,7 @@ public class ModuloAI {
 		return attivita;
 	}
 	
-	private static Assegnamento backtracking (Assegnamento assegnamento, int bambino2, int tipologia, int min, int max) {
+	private static Assegnamento backtracking(Assegnamento assegnamento, int bambino2, int tipologia, int min, int max) {
 		
 		if(assegnamento.isCompleto()) return assegnamento;
 		
@@ -47,12 +47,23 @@ public class ModuloAI {
 		if(var == 0) {
 			if ((valore == bambino2) && bambino2 == 0) return true; 
 			else if ((valore == bambino2) && bambino2 == 1) {
-				if (dominio.getAttivita().getCategoria().equals("Visita guidata") || dominio.getAttivita().getCategoria().equals("Ristoro")) return true;
+				if (dominio.getAttivita().getCategoria().equals("Visita guidata") || dominio.getAttivita().getCategoria().equals("Ristoro")) 
+					return true;
 			}
-					
 		}
 		if(var == 1) {
-			if(valore == tipologia) return true;
+			if((valore == tipologia) && tipologia == 0) {
+				if (dominio.getAttivita().getCategoria().equals("Balneazione"))
+					return true;
+			}
+			else if((valore == tipologia) && tipologia == 1) {
+				if (dominio.getAttivita().getCategoria().equals("Escursione"))
+					return true;
+			}
+			else if((valore == tipologia) && tipologia == 3) {
+				if (dominio.getAttivita().getCategoria().equals("Visita guidata"))
+					return true;
+			}
 		}
 		if(var == 2) {
 			return true; //Aggiungere check meteo
