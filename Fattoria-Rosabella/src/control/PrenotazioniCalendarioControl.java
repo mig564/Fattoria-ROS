@@ -41,7 +41,8 @@ public class PrenotazioniCalendarioControl extends HttpServlet {
 			else t = 2;
 			int min = Integer.parseInt(request.getParameter("minNumber"));
 			int max = Integer.parseInt(request.getParameter("maxNumber"));
-			Collection<Attivita> attivita = ModuloAI.cerca(attivitas, b, t, min, max);
+			int temperatura = Integer.parseInt(request.getParameter("temperatura"));
+			Collection<Attivita> attivita = ModuloAI.cerca(attivitas, b, t, min, max, temperatura);
 			if (attivita.size() > 0) {
 				request.removeAttribute("attivitas");
 				request.setAttribute("attivitas", attivita);

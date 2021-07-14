@@ -19,11 +19,12 @@
 			rel="stylesheet"
 			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 			crossorigin="anonymous">
-		<script src="script/prenotazioni.js"></script>
+		
 		<script src="script/ajax.js"></script>
 		<title>Fattoria Rosabella</title>
 	</head>
-<body>
+<body onload="findTemperatura();">
+
 	<nav class="navbar navbar-expand-lg navbar-light">
   			<div class="container">
     		<a class="navbar-brand" href="index.jsp">
@@ -143,6 +144,11 @@
 							
 						</div>
 						
+						<div class="form-floating" style="margin-bottom: 22px;">
+							<input type="text" name="temperatura" class="form-control" id="temperatura"  placeholder="" readonly>
+							<label for="temperatura">Temperatura attuale</label>
+						</div>
+						
 						<p class="text-center"><button type="submit" class="btn btn-success">Cerca</button></p>
 					</form>
 					
@@ -237,7 +243,8 @@
 				</div>
 			</div>
 		</div>
-	
+		
+		<script src="script/prenotazioni.js"></script>
 		<!-- Bootstrap - JavaScript -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"

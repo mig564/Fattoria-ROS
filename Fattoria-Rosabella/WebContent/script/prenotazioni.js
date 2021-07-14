@@ -145,3 +145,21 @@ function checkMesi() {
 		return false;
 	}
 }
+
+function findTemperatura() {
+	let apiKey = '0dc6af3eec8ee8f81b65b03b0e17b205';
+	let city = 'Avellino';
+	let uri = 'http://api.openweathermap.org/data/2.5/weather?q=' +city + '&appid=' + apiKey;
+	console.log('STAMPA');
+	var request = new XMLHttpRequest();
+	request.open('GET', uri, true);
+	request.onload = function(){
+
+		var data = JSON.parse(this.response);
+		var temp = data.main.temp;
+		temp = parseInt(temp) - 273;
+		document.getElementById("temperatura").value = temp;
+	}
+
+	request.send();
+}

@@ -22,7 +22,7 @@ public class Dominio {
 		for(int i=0; i<3; i++) tipo.add(i);
 		
 		meteo = new ArrayList<Integer>();
-		for(int i=0; i<10; i++) meteo.add(i);
+		for(int i=0; i<1; i++) meteo.add(i);
 		
 		partecipanti = new ArrayList<Integer>();
 		for(int i=1; i<=attivita.getMax_persone(); i++) partecipanti.add(i);
